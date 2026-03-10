@@ -47,21 +47,21 @@ export const placeholderWide = (hue, label="") => {
 
 // ✎ WORKS — Replace `img` URLs with your artwork photos
 export const WORKS = [
-  { id:1, title:"Midnight Bloom", sub:"Oil on linen · 30×40″ · 2025", img:"/artwork/farfalla_1.jpg", hue:265 },
-  { id:2, title:"Golden Reverie", sub:"Acrylic on canvas · 24×36″ · 2025", img:"/artwork/farfalla_2.jpg", hue:42 },
-  { id:3, title:"Cerulean Drift", sub:"Watercolor · 18×24″ · 2024", img:"/artwork/farfalla_3.jpg", hue:200 },
-  { id:4, title:"Ember & Ash", sub:"Mixed media · 36×48″ · 2024", img:"/artwork/farfalla_4.jpg", hue:10 },
-  { id:5, title:"Lavender Sigh", sub:"Oil on linen · 20×30″ · 2024", img:"/artwork/farfalla_5.jpg", hue:275 },
-  { id:6, title:"Sunlit Fragment", sub:"Gouache · 16×20″ · 2023", img:"/artwork/farfalla_6.jpg", hue:48, rotate: "-1.7deg" },
-  { id:7, title:"Velvet Whisper", sub:"Charcoal & ink · 22×28″", img:"/artwork/farfalla_7.jpg", hue:240 },
-  { id:8, title:"Aurora Petal", sub:"Oil on panel · 24×24″ · 2023", img:"/artwork/farfalla_1.jpg", hue:175 },
+  { id:1, title:"Midnight Bloom", sub:"Oil on linen · 30×40″ · 2025", img:"artwork/farfalla_1.jpg", hue:265 },
+  { id:2, title:"Golden Reverie", sub:"Acrylic on canvas · 24×36″ · 2025", img:"artwork/farfalla_2.jpg", hue:42 },
+  { id:3, title:"Cerulean Drift", sub:"Watercolor · 18×24″ · 2024", img:"artwork/farfalla_3.jpg", hue:200 },
+  { id:4, title:"Ember & Ash", sub:"Mixed media · 36×48″ · 2024", img:"artwork/farfalla_4.jpg", hue:10 },
+  { id:5, title:"Lavender Sigh", sub:"Oil on linen · 20×30″ · 2024", img:"artwork/farfalla_5.jpg", hue:275 },
+  { id:6, title:"Sunlit Fragment", sub:"Gouache · 16×20″ · 2023", img:"artwork/farfalla_6.jpg", hue:48, rotate: "-1.7deg" },
+  { id:7, title:"Velvet Whisper", sub:"Charcoal & ink · 22×28″", img:"artwork/farfalla_7.jpg", hue:240 },
+  { id:8, title:"Aurora Petal", sub:"Oil on panel · 24×24″ · 2023", img:"artwork/farfalla_1.jpg", hue:175 },
 ];
 
 // ✎ PROCESS — Replace `img` URLs with your process photos
 export const STEPS = [
-  { title:"Intention", text:"Before a single stroke — sitting with the blank canvas, feeling what wants to emerge. Sometimes for hours. Sometimes for days.", img:"/artwork/farfalla_2.jpg" },
-  { title:"Underpainting", text:"Thin washes of burnt sienna and raw umber map the soul of the composition. This layer never fully disappears.", img:"/artwork/farfalla_3.jpg" },
-  { title:"Revelation", text:"The moment the painting tells you what it wants to be. You stop leading. You start listening.", img:"/artwork/farfalla_4.jpg" },
+  { title:"Intention", text:"Before a single stroke — sitting with the blank canvas, feeling what wants to emerge. Sometimes for hours. Sometimes for days.", img:"artwork/farfalla_2.jpg" },
+  { title:"Underpainting", text:"Thin washes of burnt sienna and raw umber map the soul of the composition. This layer never fully disappears.", img:"artwork/farfalla_3.jpg" },
+  { title:"Revelation", text:"The moment the painting tells you what it wants to be. You stop leading. You start listening.", img:"artwork/farfalla_4.jpg" },
 ];
 
 // ✎ TOOLS — Update names, notes, prices, and affiliate links

@@ -25,8 +25,8 @@ export const Grain = ({ isDark }) => {
       style={{ 
         position:"fixed", inset:0, width:"100%", height:"100%", 
         pointerEvents:"none", zIndex:9997, 
-        opacity: isDark ? 0.45 : 0.2, 
-        mixBlendMode: isDark ? "overlay" : "multiply" 
+        opacity: isDark ? 0.45 : 0.15, 
+        mixBlendMode: isDark ? "overlay" : "soft-light" 
       }} 
     />
   );

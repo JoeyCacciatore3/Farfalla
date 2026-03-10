@@ -25,8 +25,7 @@ export const Nav = ({ scrollY, isDark, toggleTheme, th }) => {
         style={{
         position:"fixed", top:22, left:24, zIndex:10003,
         textDecoration:"none", display:"flex", alignItems:"center", gap:9,
-        opacity: show ? 1 : 0, transition:"all 0.5s ease",
-        pointerEvents: show ? "auto" : "none",
+        transition:"all 0.5s ease",
         transform: hLogo ? "scale(1.02)" : "scale(1)",
       }}>
         <Wing size={20} c1={th.accent} c2={th.accent2} style={{ color:th.textDim, filter: hLogo ? `drop-shadow(0 0 8px ${th.accent}80)` : "none", transition:"filter 0.4s ease" }} />
@@ -39,8 +38,7 @@ export const Nav = ({ scrollY, isDark, toggleTheme, th }) => {
       <div style={{
         position:"fixed", top:22, right:24, zIndex:10003,
         display:"flex", alignItems:"center", gap:8,
-        opacity: show ? 1 : 0, transition:"opacity 0.5s ease",
-        pointerEvents: show ? "auto" : "none",
+        transition:"opacity 0.5s ease",
       }}>
         {/* Theme toggle */}
         <button onClick={toggleTheme} aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}

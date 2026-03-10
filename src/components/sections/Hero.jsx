@@ -37,13 +37,12 @@ export const Hero = ({ scrollY, th, isDark }) => {
           fontFamily:"'Cormorant Garamond',serif",
           fontSize:"clamp(4rem,15vw,13rem)",
           fontWeight:600, lineHeight:0.88, margin:"0 0 8px",
-          backgroundImage:`url('/artwork/header_bg.jpg')`,
+          backgroundImage:`url('artwork/header_bg.jpg')`,
           backgroundSize:"cover", backgroundPosition:"center",
           WebkitBackgroundClip:"text", backgroundClip:"text",
-          WebkitTextFillColor: isDark ? "transparent" : undefined,
-          color: isDark ? undefined : th.text,
+          WebkitTextFillColor: "transparent",
           filter:vis?"none":"blur(20px)",
-          opacity:vis?1:0,
+          opacity:0.9,
           transition:"all 1.4s cubic-bezier(0.16,1,0.3,1) 0.2s",
         }}>Farfalla</h1>
 
