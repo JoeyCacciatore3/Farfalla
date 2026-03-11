@@ -155,7 +155,6 @@ export const PaintCanvas = () => {
       if (mouse.current.x !== -100) {
         const speed = mouse.current.isDown ? 0.45 : 0.08;
         mouse.current.phase += speed;
-        const mainFlutter = 0.6 + Math.sin(mouse.current.phase) * 0.4;
         drawMiniButterfly(ctx, mouse.current.x, mouse.current.y, 4, -Math.PI / 8, "#E8751A", 0.95);
       }
 

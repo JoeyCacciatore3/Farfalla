@@ -19,7 +19,7 @@ export const Connect = ({ th }) => {
           New works, process films, and studio dispatches — arriving like a quiet letter.
         </p>
         {sent ? (
-          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:17, color:th.accent, fontStyle:"italic" }}>You're in. Welcome to the studio.</p>
+          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:17, color:th.accent, fontStyle:"italic" }}>You&apos;re in. Welcome to the studio.</p>
         ) : (
           /* ✎ CONNECT — Replace with your Formspree/ConvertKit action */
           <div style={{ display:"flex", gap:0, flexWrap:"wrap", justifyContent:"center" }}>

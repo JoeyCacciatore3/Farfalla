@@ -1,4 +1,4 @@
-export const Wing = ({ size=36, c1, c2, style={}, className="" }) => (
+export const Wing = ({ size=36, style={}, className="" }) => (
   <svg width={size} height={size} viewBox="0 0 140 120" style={style} className={className} fill="none" aria-hidden="true">
     <g transform="translate(70,56)">
       {/* ── Left upper wing ── */}

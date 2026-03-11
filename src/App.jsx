@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
 
@@ -23,6 +23,11 @@ export default function App() {
   const { y, p } = useScroll();
   const th = isDark ? THEMES.dark : THEMES.light;
   const toggleTheme = useCallback(() => setIsDark(d => !d), []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('color-scheme', isDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   return (
     <div style={{

@@ -1,6 +1,5 @@
 import { useInView } from "../../hooks/useInView";
 import { Wing } from "../effects/Wing";
-import { WORKS } from "../../data/content";
 
 export const Hero = ({ scrollY, th, isDark }) => {
   const [ref, vis] = useInView({ t: 0.05 });

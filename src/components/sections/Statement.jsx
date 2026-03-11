@@ -15,7 +15,7 @@ export const Statement = ({ th }) => {
           opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(40px)",
           transition:"all 1.2s cubic-bezier(0.16,1,0.3,1)",
         }}>
-          "I paint the space between what you see and what you feel — that uncertain, luminous threshold where memory dissolves into color."
+          &quot;I paint the space between what you see and what you feel — that uncertain, luminous threshold where memory dissolves into color.&quot;
         </blockquote>
         {/* ✎ STATEMENT — Bio paragraph */}
         <p style={{

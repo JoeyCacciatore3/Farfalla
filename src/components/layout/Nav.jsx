@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
 
-export const Nav = ({ scrollY, isDark, toggleTheme, th }) => {
+export const Nav = ({ isDark, toggleTheme, th }) => {
   const [open, setOpen] = useState(false);
   const [hLogo, setHLogo] = useState(false);
   const [hTheme, setHTheme] = useState(false);
   const [hMenu, setHMenu] = useState(false);
-  const show = scrollY > 80;
   
   const sections = [
     { label:"Works", id:"works" }, 
