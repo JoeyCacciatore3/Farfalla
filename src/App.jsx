@@ -19,7 +19,7 @@ import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 
 export default function App() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const { y, p } = useScroll();
   const th = isDark ? THEMES.dark : THEMES.light;
   const toggleTheme = useCallback(() => setIsDark(d => !d), []);
@@ -36,6 +36,7 @@ export default function App() {
         ? `linear-gradient(180deg, ${THEMES.dark.bg}, ${THEMES.dark.bg2}, ${THEMES.dark.bg})`
         : `linear-gradient(180deg, ${THEMES.light.bg}, ${THEMES.light.bg2}, ${THEMES.light.bg})`,
       color:th.text,
+      colorScheme: isDark ? "dark" : "light",
       transition:"background 0.8s ease, color 0.6s ease",
     }}>
       <AmbientBg scrollY={y} isDark={isDark} th={th} />
