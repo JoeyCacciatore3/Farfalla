@@ -11,11 +11,37 @@ export const Hero = ({ scrollY, th, isDark }) => {
       alignItems:"center", justifyContent:"center", position:"relative",
       padding:"60px 24px", overflow:"hidden",
     }}>
+      {/* Background Hero Painting */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
+        <img 
+          src="hero-painting.jpg" 
+          alt="Farfalla Art - Hero Landscape" 
+          style={{
+            position: "absolute",
+            top: "-20%",
+            left: 0,
+            width: "100%", 
+            height: "140%", 
+            objectFit: "cover", 
+            transform: `translateY(${scrollY * 0.3}px)`,
+            transition: "transform 0.1s linear"
+          }} 
+        />
+        {/* Responsive contrast gradient depending on theme */}
+        <div style={{
+          position: "absolute", 
+          inset: 0,
+          background: isDark 
+            ? `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, var(--bg) 95%)`
+            : `linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, var(--bg) 95%)`
+        }} />
+      </div>
+
       {/* Decorative oversized mark */}
       <span aria-hidden="true" style={{
-        position:"absolute", top:"10%", right:"8%",
+        position:"absolute", top:"10%", right:"8%", zIndex:1,
         fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(80px,18vw,220px)",
-        fontWeight:300, color: isDark ? "#ffffff04" : "#00000004", lineHeight:1, pointerEvents:"none",
+        fontWeight:300, color: isDark ? "#ffffff08" : "#00000008", lineHeight:1, pointerEvents:"none",
         opacity:vis?1:0, transition:"opacity 2s ease 0.3s", userSelect:"none",
       }}>✦</span>
 
@@ -25,23 +51,22 @@ export const Hero = ({ scrollY, th, isDark }) => {
         <div style={{ overflow:"hidden", marginBottom:12 }}>
           <p style={{
             fontFamily:"'Outfit',sans-serif", fontSize:11, letterSpacing:"0.4em",
-            textTransform:"uppercase", color:th.textDim,
+            textTransform:"uppercase", color: isDark ? "#fff" : th.textDim,
+            textShadow: isDark ? "0 2px 4px rgba(0,0,0,0.4)" : "none",
             transform:vis?"translateY(0)":"translateY(100%)",
             transition:"transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s",
           }}>Oil · Mixed Media · Watercolor</p>
         </div>
 
-        {/* ✎ HERO — Artist name clipped with artwork */}
+        {/* ✎ HERO — Artist name */}
         <h1 style={{
           fontFamily:"'Cormorant Garamond',serif",
-          fontSize:"clamp(4rem,15vw,13rem)",
+          fontSize:"clamp(2.8rem, 15vw, 13rem)",
           fontWeight:600, lineHeight:0.88, margin:"0 0 8px",
-          backgroundImage:`url('artwork/header_bg.jpg')`,
-          backgroundSize:"cover", backgroundPosition:"center",
-          WebkitBackgroundClip:"text", backgroundClip:"text",
-          WebkitTextFillColor: "transparent",
+          color: isDark ? "#fff" : th.text,
+          textShadow: isDark ? "0 4px 12px rgba(0,0,0,0.5)" : "none",
           filter:vis?"none":"blur(20px)",
-          opacity:0.9,
+          opacity:vis?0.95:0,
           transition:"all 1.4s cubic-bezier(0.16,1,0.3,1) 0.2s",
         }}>Farfalla</h1>
 

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
 
@@ -17,6 +18,7 @@ import { GallerySection } from "./components/sections/GallerySection";
 import { ProcessSection } from "./components/sections/ProcessSection";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
+import { SicilyPage } from "./components/sections/SicilyPage";
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -25,8 +27,28 @@ export default function App() {
   const toggleTheme = useCallback(() => setIsDark(d => !d), []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty('color-scheme', isDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    const scheme = isDark ? 'dark' : 'light';
+    document.documentElement.style.setProperty('color-scheme', scheme);
+    document.documentElement.setAttribute('data-theme', scheme);
+
+    let colorSchemeMeta = document.getElementById('color-scheme-meta') ?? document.querySelector('meta[name="color-scheme"]');
+    if (!colorSchemeMeta) {
+      colorSchemeMeta = document.createElement('meta');
+      colorSchemeMeta.setAttribute('name', 'color-scheme');
+      colorSchemeMeta.id = 'color-scheme-meta';
+      document.head.appendChild(colorSchemeMeta);
+    }
+    colorSchemeMeta.setAttribute('content', scheme);
+
+    const themeColor = isDark ? THEMES.dark.bg : THEMES.light.bg;
+    let themeColorMeta = document.getElementById('theme-color-meta') ?? document.querySelector('meta[name="theme-color"]');
+    if (!themeColorMeta) {
+      themeColorMeta = document.createElement('meta');
+      themeColorMeta.setAttribute('name', 'theme-color');
+      themeColorMeta.id = 'theme-color-meta';
+      document.head.appendChild(themeColorMeta);
+    }
+    themeColorMeta.setAttribute('content', themeColor);
   }, [isDark]);
 
   return (
@@ -51,14 +73,19 @@ export default function App() {
       <ProgressBar scrollP={p} th={th} />
       <Nav scrollY={y} isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
-      <main style={{ position:"relative", zIndex:2 }}>
-        <Hero scrollY={y} th={th} isDark={isDark} />
-        <Statement th={th} />
-        <GallerySection th={th} isDark={isDark} />
-        <ProcessSection th={th} />
-        <KitSection th={th} />
-        <Connect th={th} />
-      </main>
+      <Routes>
+        <Route path="/" element={
+          <main style={{ position:"relative", zIndex:2 }}>
+            <Hero scrollY={y} th={th} isDark={isDark} />
+            <Statement th={th} />
+            <GallerySection th={th} isDark={isDark} />
+            <ProcessSection th={th} />
+            <KitSection th={th} />
+            <Connect th={th} />
+          </main>
+        } />
+        <Route path="/sicilia" element={<SicilyPage th={th} isDark={isDark} />} />
+      </Routes>
       <Footer th={th} />
     </div>
   );

@@ -34,7 +34,8 @@ export const Connect = ({ th }) => {
               onFocus={e => e.target.style.borderBottomColor = th.accent}
               onBlur={e => e.target.style.borderBottomColor = th.border} />
             <button onClick={() => email.includes("@") && setSent(true)} style={{
-              padding:"13px 28px", border:`1px solid ${th.accent}30`, borderLeft:"none",
+              padding:"13px 28px", 
+              borderStyle: "solid", borderWidth: "1px 1px 1px 0", borderColor: `${th.accent}30`,
               background:"transparent", color:th.accent, borderRadius:0,
               fontFamily:"'Outfit',sans-serif", fontSize:10, fontWeight:500,
               letterSpacing:"0.16em", textTransform:"uppercase", cursor:"pointer", transition:"all 0.4s",

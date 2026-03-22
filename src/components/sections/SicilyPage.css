@@ -1,0 +1,380 @@
+/* ===== SICILY PAGE — Scoped under .sicily-page ===== */
+
+/* ── Design tokens ── */
+.sicily-page {
+  --terra: #C2654A;
+  --terra-d: #A44E36;
+  --terra-l: #D9917A;
+  --sea: #9ECFDD;
+  --sea-d: #6BB0C4;
+  --green: #B5D49A;
+  --green-d: #7DA864;
+  --ink: #2C261F;
+  --ink-s: #5C544A;
+  --ink-l: #8A8078;
+  --cream: #FFF9ED;
+  --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-out-back: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-spring: cubic-bezier(.23, 1, .32, 1);
+}
+
+/* ── Layout ── */
+.sicily-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 1.5rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sicily-wrap {
+  max-width: 960px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Entrance animations ── */
+.sicily-hdr { animation: sicilyRevealUp .9s var(--ease-spring) both; }
+.sicily-leg { animation: sicilyRevealUp .8s var(--ease-spring) .35s both; opacity: 0; }
+
+@keyframes sicilyRevealUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.sicily-hdr {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sicily-hdr h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: .06em;
+  line-height: 1.15;
+}
+
+.sicily-hdr h1 em {
+  font-style: italic;
+  color: var(--terra);
+  position: relative;
+}
+
+.sicily-hdr h1 em::after {
+  content: '';
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: .05em;
+  height: 2px;
+  background: var(--terra);
+  opacity: .3;
+  border-radius: 2px;
+}
+
+.sicily-hdr .sicily-sub {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  color: var(--terra);
+  opacity: .55;
+  margin-top: .25rem;
+  letter-spacing: .08em;
+}
+
+/* ── Map frame ── */
+.sicily-frame {
+  border-radius: 16px;
+  position: relative;
+  animation: sicilyRevealUp 1s var(--ease-spring) .15s both;
+  box-shadow:
+    0 1px 2px rgba(44,38,31,.03),
+    0 4px 8px rgba(44,38,31,.04),
+    0 8px 24px rgba(44,38,31,.06),
+    0 16px 48px rgba(44,38,31,.08),
+    0 0 0 1px rgba(44,38,31,.03);
+  transition: transform .6s var(--ease-spring), box-shadow .6s ease;
+}
+
+.sicily-frame-inner {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.sicily-frame:hover .sicily-map {
+  transform: rotateX(.4deg) rotateY(-.2deg);
+}
+
+.sicily-frame:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 2px rgba(44,38,31,.03),
+    0 6px 12px rgba(44,38,31,.05),
+    0 12px 32px rgba(44,38,31,.07),
+    0 20px 56px rgba(44,38,31,.1),
+    0 0 0 1px rgba(44,38,31,.03);
+}
+
+/* Loading shimmer */
+.sicily-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.12) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: sicilyShimmer 2.5s ease-in-out .8s 1 forwards;
+  opacity: 0;
+  visibility: hidden;
+}
+@keyframes sicilyShimmer {
+  0% { opacity: 0; background-position: 200% 0; visibility: visible; }
+  8% { opacity: .6; }
+  55% { opacity: .4; background-position: -200% 0; }
+  100% { opacity: 0; background-position: -200% 0; visibility: hidden; }
+}
+
+/* Vignette */
+.sicily-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 16px;
+  box-shadow: inset 0 0 80px rgba(44,38,31,.05), inset 0 0 160px rgba(44,38,31,.025);
+}
+
+.sicily-map {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sicily-frame:hover .sicily-map {
+  transition: transform .8s var(--ease-spring);
+}
+
+/* ── Pin interactions ── */
+.sicily-page .loc {
+  cursor: pointer;
+  animation: sicilyPinDrop .7s var(--ease-out-back) both;
+}
+
+.sicily-page .loc .glow {
+  transition: opacity .4s var(--ease-out-back);
+  opacity: 0;
+}
+.sicily-page .loc:hover { will-change: transform; }
+.sicily-page .loc:hover .glow { opacity: .45; }
+
+.sicily-page .loc .icon-wrap {
+  transition: transform .4s var(--ease-out-back), filter .4s ease;
+  transform-origin: center bottom;
+}
+.sicily-page .loc:hover .icon-wrap {
+  transform: scale(1.15) translateY(-4px);
+  filter: brightness(1.08) drop-shadow(0 2px 4px rgba(44,38,31,.25));
+}
+
+/* Tooltip (glassmorphism) */
+.sicily-page .loc .tip {
+  opacity: 0;
+  transform: translateY(8px) scale(.96);
+  transition: opacity .35s var(--ease-spring), transform .35s var(--ease-spring);
+  pointer-events: none;
+}
+.sicily-page .loc:hover .tip {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes sicilyPinDrop {
+  from { opacity: 0; transform: translateY(-35px) scale(.6); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Pulse */
+.sicily-page .pls { animation: sicilyPulse 4s ease-in-out infinite; transform-origin: center; }
+@keyframes sicilyPulse { 0%,100% { r: 14; opacity: .12; } 50% { r: 28; opacity: 0; } }
+
+/* Waves */
+.sicily-page .wv { animation: sicilyWave 8s ease-in-out infinite; }
+.sicily-page .wv:nth-child(even) { animation-delay: -4s; animation-direction: reverse; }
+@keyframes sicilyWave { 0%,100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+
+/* Coast pulse */
+.sicily-page .coast-pulse { animation: sicilyCoastGlow 6s ease-in-out infinite; }
+@keyframes sicilyCoastGlow {
+  0%, 100% { stroke-opacity: .85; }
+  50% { stroke-opacity: .95; }
+}
+
+/* Heart */
+.sicily-page .heart-beat { animation: sicilyHeartBeat 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes sicilyHeartBeat {
+  0%,100% { transform: scale(1); }
+  10% { transform: scale(1.18); }
+  18% { transform: scale(1); }
+  26% { transform: scale(1.12); }
+  34% { transform: scale(1); }
+}
+
+/* ── Legend ── */
+.sicily-leg {
+  display: flex;
+  justify-content: center;
+  gap: 1rem 1.4rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+  padding: .6rem 0;
+}
+
+.sicily-leg span {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: 'Caveat', cursive;
+  font-size: .9rem;
+  color: var(--ink-s);
+  opacity: .5;
+  transition: opacity .3s ease;
+}
+
+.sicily-leg span:hover { opacity: .8; }
+
+.sicily-leg svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(44,38,31,.15));
+}
+
+/* ── Bio card ── */
+.sicily-bio {
+  text-align: center;
+  max-width: 560px;
+  margin: 1.8rem auto 0;
+  padding: 0 1rem;
+  animation: sicilyRevealUp .8s var(--ease-spring) .5s both;
+}
+
+.sicily-bio-card {
+  background: rgba(255,255,255,.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 1.8rem 2rem 1.5rem;
+  border: 1px solid rgba(255,255,255,.5);
+  box-shadow: 0 2px 12px rgba(44,38,31,.04), 0 8px 32px rgba(44,38,31,.03);
+}
+
+.sicily-bio .sicily-dv {
+  font-size: .65rem;
+  color: var(--terra-l);
+  letter-spacing: 1.2em;
+  margin-bottom: .8rem;
+  opacity: 0;
+  animation: sicilyDivReveal 1.5s var(--ease-spring) 1.2s forwards;
+}
+@keyframes sicilyDivReveal {
+  from { opacity: 0; letter-spacing: 3em; }
+  to { opacity: .4; letter-spacing: 1.2em; }
+}
+
+.sicily-bio p {
+  animation: sicilyRevealUp .8s var(--ease-spring) .65s both;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(.95rem, 1.8vw, 1.08rem);
+  line-height: 2;
+  color: var(--ink-s);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.sicily-bio .sicily-sg {
+  animation: sicilyRevealUp .7s var(--ease-spring) .85s both;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--terra);
+  margin-top: .8rem;
+  display: inline-block;
+  opacity: .7;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.sicily-bio .sicily-sg::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--terra);
+  transition: width .4s var(--ease-spring);
+  margin-top: 2px;
+}
+.sicily-bio .sicily-sg:hover { opacity: 1; }
+.sicily-bio .sicily-sg:hover::after { width: 100%; }
+
+/* ── Back link ── */
+.sicily-back {
+  position: fixed;
+  top: 22px;
+  left: 80px;
+  z-index: 100;
+  font-family: 'Caveat', cursive;
+  font-size: .95rem;
+  text-decoration: none;
+  opacity: .5;
+  transition: opacity .3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sicily-back:hover { opacity: .9; }
+
+/* ── Focus states ── */
+.sicily-page .loc:focus-visible { outline: 2px solid var(--terra); outline-offset: 4px; border-radius: 50%; }
+.sicily-leg span:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; border-radius: 4px; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .sicily-page { padding: 4.5rem 1rem 2rem; }
+  .sicily-hdr h1 { letter-spacing: .04em; }
+  .sicily-frame, .sicily-frame::after { border-radius: 12px; }
+  .sicily-leg { gap: .7rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .sicily-page { padding: 4rem .75rem 1.5rem; }
+  .sicily-hdr { margin-bottom: .6rem; }
+  .sicily-hdr h1 { font-size: 1.8rem; }
+  .sicily-bio { margin-top: 1.2rem; }
+  .sicily-bio p { line-height: 1.8; }
+  .sicily-leg span { font-size: .78rem; }
+  .sicily-leg { gap: .5rem .8rem; }
+  .sicily-frame, .sicily-frame::after { border-radius: 10px; }
+}
+
+/* Touch devices */
+@media (hover: none) {
+  .sicily-frame:hover { transform: none; }
+  .sicily-frame:hover .sicily-map { transform: none; }
+  .sicily-page .loc:active .icon-wrap { transform: scale(1.1); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sicily-page *,
+  .sicily-page *::before,
+  .sicily-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

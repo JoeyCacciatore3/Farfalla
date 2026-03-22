@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
 
@@ -7,12 +8,15 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
   const [hLogo, setHLogo] = useState(false);
   const [hTheme, setHTheme] = useState(false);
   const [hMenu, setHMenu] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "";
   
   const sections = [
     { label:"Works", id:"works" }, 
     { label:"Process", id:"process" },
     { label:"Studio Kit", id:"kit" }, 
     { label:"Connect", id:"connect" },
+    { label:"Sicilia", path:"/sicilia" },
   ];
 
   return (
@@ -86,22 +90,26 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
         opacity:open?1:0, pointerEvents:open?"all":"none",
         transition:"opacity 0.5s cubic-bezier(0.16,1,0.3,1)",
       }}>
-        {sections.map((s, i) => (
-          <a key={s.id} href={`#${s.id}`} onClick={() => setOpen(false)} style={{
+        {sections.map((s, i) => {
+          const linkStyle = {
             fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(2rem,6vw,4.5rem)",
             color:th.text, textDecoration:"none", fontWeight:300,
             opacity:open?1:0, transform:open?"translateY(0)":"translateY(30px)",
             transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.08+0.12}s`,
             padding:"6px 0", position:"relative", lineHeight:1.2,
-          }}
-          onMouseEnter={e => e.target.style.color = th.accent}
-          onMouseLeave={e => e.target.style.color = th.text}>
-            <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, color:th.textGhost, letterSpacing:"0.15em", position:"absolute", left:-36, top:"50%", transform:"translateY(-50%)" }}>
-              {String(i+1).padStart(2,"0")}
-            </span>
-            {s.label}
-          </a>
-        ))}
+          };
+          const num = <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, color:th.textGhost, letterSpacing:"0.15em", position:"absolute", left:-36, top:"50%", transform:"translateY(-50%)" }}>{String(i+1).padStart(2,"0")}</span>;
+          const handlers = {
+            onMouseEnter: e => e.currentTarget.style.color = th.accent,
+            onMouseLeave: e => e.currentTarget.style.color = th.text,
+          };
+
+          if (s.path) {
+            return <Link key={s.label} to={s.path} onClick={() => setOpen(false)} style={linkStyle} {...handlers}>{num}{s.label}</Link>;
+          }
+          const href = isHome ? `#${s.id}` : `/#${s.id}`;
+          return <a key={s.id} href={href} onClick={() => setOpen(false)} style={linkStyle} {...handlers}>{num}{s.label}</a>;
+        })}
         <div style={{ marginTop:36, display:"flex", gap:20, flexWrap:"wrap", justifyContent:"center" }}>
           {SOCIALS.map(l => (
             <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
