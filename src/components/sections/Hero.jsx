@@ -14,7 +14,7 @@ export const Hero = ({ scrollY, th, isDark }) => {
       {/* Background Hero Painting */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
         <img 
-          src="/hero-landscape.jpg" 
+          src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
           alt="Sunrise over mountains, turquoise lake, and green hills — original painting" 
           style={{
             position: "absolute",
