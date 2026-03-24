@@ -16,7 +16,7 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
   
   const sections = [
     { label:"Works", id:"works" }, 
-    { label:"Studio Kit", id:"kit" }, 
+    { label:"Milly's Art Room", id:"kit" }, 
     { label:"Connect", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },
   ];

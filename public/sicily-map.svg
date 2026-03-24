@@ -109,11 +109,11 @@
 <text x="400" y="280" font-family="'Playfair Display',serif" font-size="48" font-weight="700" fill="white" opacity=".25" letter-spacing=".45em" text-anchor="middle">SICILY</text>
 
 <!-- City labels -->
-<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".7">
+<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".9">
 </g>
 
 <!-- Pin labels (drawn ABOVE all city labels) -->
-<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".7">
+<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".9">
 <text x="290.5" y="71.1" text-anchor="middle" font-size="21" font-weight="700">Palermo</text>
 <text x="446.2" y="100.0" text-anchor="middle" font-size="18" font-weight="600">Cefalù</text>
 <text x="342.7" y="316.5" text-anchor="middle" font-size="19" font-weight="600">Agrigento</text>
@@ -134,11 +134,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="150" y="18" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#C2654A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="150" y="18" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#C2654A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="150" y="18" width="280" height="3" rx="10" fill="#C2654A" opacity=".45"/>
 <text x="290" y="44" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#C2654A">Palermo</text>
-<text x="290" y="62" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">My birthplace — golden domes,</text>
-<text x="290" y="76" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">Ballarò markets &amp; arancini</text>
+<text x="290" y="62" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">My birthplace — golden domes,</text>
+<text x="290" y="76" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">Ballarò markets &amp; arancini</text>
 </g>
 </g>
 <g class="loc" style="animation-delay:.45s" tabindex="0" role="button" aria-label="Cefalù — Norman Cathedral">
@@ -156,11 +156,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="306" y="144" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#3D7E99" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="306" y="144" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#3D7E99" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="306" y="144" width="280" height="3" rx="10" fill="#3D7E99" opacity=".45"/>
 <text x="446" y="170" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#3D7E99">Cefalù</text>
-<text x="446" y="188" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Norman cathedral on golden sand,</text>
-<text x="446" y="202" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">where mountains meet the sea</text>
+<text x="446" y="188" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Norman cathedral on golden sand,</text>
+<text x="446" y="202" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">where mountains meet the sea</text>
 </g>
 </g>
 <g class="loc" style="animation-delay:.6s" tabindex="0" role="button" aria-label="Agrigento — Valley of the Temples">
@@ -178,11 +178,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="202" y="360" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#C4A020" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="202" y="360" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#C4A020" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="202" y="360" width="280" height="3" rx="10" fill="#C4A020" opacity=".45"/>
 <text x="342" y="386" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#C4A020">Agrigento</text>
-<text x="342" y="404" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Valley of the Temples — ancient</text>
-<text x="342" y="418" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">Greek columns guarding almond groves</text>
+<text x="342" y="404" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Valley of the Temples — ancient</text>
+<text x="342" y="418" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">Greek columns guarding almond groves</text>
 </g>
 </g>
 <g class="loc" style="animation-delay:.75s" tabindex="0" role="button" aria-label="Mount Etna — Active Volcano">
@@ -197,11 +197,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="425" y="192" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#D4503A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="425" y="192" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#D4503A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="425" y="192" width="280" height="3" rx="10" fill="#D4503A" opacity=".45"/>
 <text x="565" y="218" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#D4503A">Monte Etna</text>
-<text x="565" y="236" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Europe's tallest active volcano —</text>
-<text x="565" y="250" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">fire, snow &amp; vineyards on its slopes</text>
+<text x="565" y="236" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Europe's tallest active volcano —</text>
+<text x="565" y="250" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">fire, snow &amp; vineyards on its slopes</text>
 </g>
 </g>
 <g class="loc" style="animation-delay:.9s" tabindex="0" role="button" aria-label="Taormina — Greek Theater">
@@ -218,11 +218,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="632" y="198" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#5E7A3A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="632" y="198" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#5E7A3A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="632" y="198" width="280" height="3" rx="10" fill="#5E7A3A" opacity=".45"/>
 <text x="772" y="224" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#5E7A3A">Taormina</text>
-<text x="772" y="242" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Ancient Greek theater on a cliff,</text>
-<text x="772" y="256" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">Etna as its eternal backdrop</text>
+<text x="772" y="242" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Ancient Greek theater on a cliff,</text>
+<text x="772" y="256" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">Etna as its eternal backdrop</text>
 </g>
 </g>
 <!-- Compass -->
@@ -254,7 +254,7 @@
 <text x="612" y="98" font-family="'Caveat',cursive" font-size="14.5" fill="var(--ink)" opacity=".2" font-style="italic" transform="rotate(-4,612,98)">Aeolian Islands</text>
 
 <!-- ===== NEW CITY ICON PINS ===== -->
-<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".7">
+<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".9">
 <text x="91.6" y="106" text-anchor="middle" font-size="13.5" font-weight="600" font-size="16">Trapani</text>
 <text x="73.3" y="172" text-anchor="middle" font-size="13.5" font-weight="600" font-size="16">Marsala</text>
 <text x="696.4" y="260" text-anchor="middle" font-size="13.5" font-weight="600" font-size="16">Catania</text>
@@ -279,11 +279,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="80" y="106" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#8B6B3A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="80" y="106" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#8B6B3A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="80" y="106" width="280" height="3" rx="10" fill="#8B6B3A" opacity=".45"/>
 <text x="220" y="132" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#8B6B3A">Trapani</text>
-<text x="220" y="150" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Salt windmills on the western coast,</text>
-<text x="220" y="164" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">gateway to the Egadi Islands</text>
+<text x="220" y="150" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Salt windmills on the western coast,</text>
+<text x="220" y="164" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">gateway to the Egadi Islands</text>
 </g>
 </g>
 
@@ -302,11 +302,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="58" y="216" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#8B2252" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="58" y="216" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#8B2252" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="58" y="216" width="280" height="3" rx="10" fill="#8B2252" opacity=".45"/>
 <text x="198" y="242" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#8B2252">Marsala</text>
-<text x="198" y="260" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">The famous wine that bears its name,</text>
-<text x="198" y="274" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">sunset coast facing Africa</text>
+<text x="198" y="260" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">The famous wine that bears its name,</text>
+<text x="198" y="274" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">sunset coast facing Africa</text>
 </g>
 </g>
 
@@ -327,11 +327,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="440" y="264" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#4A4A4A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="440" y="264" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#4A4A4A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="440" y="264" width="280" height="3" rx="10" fill="#4A4A4A" opacity=".45"/>
 <text x="580" y="290" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#4A4A4A">Catania</text>
-<text x="580" y="308" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Baroque city rebuilt from lava stone,</text>
-<text x="580" y="322" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">the elephant fountain at its heart</text>
+<text x="580" y="308" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Baroque city rebuilt from lava stone,</text>
+<text x="580" y="322" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">the elephant fountain at its heart</text>
 </g>
 </g>
 
@@ -350,11 +350,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="490" y="380" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#B8860B" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="490" y="380" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#B8860B" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="490" y="380" width="280" height="3" rx="10" fill="#B8860B" opacity=".45"/>
 <text x="630" y="406" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#B8860B">Siracusa</text>
-<text x="630" y="424" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Birthplace of Archimedes — Greek</text>
-<text x="630" y="438" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">theater, Ortigia &amp; ancient stone</text>
+<text x="630" y="424" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Birthplace of Archimedes — Greek</text>
+<text x="630" y="438" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">theater, Ortigia &amp; ancient stone</text>
 </g>
 </g>
 
@@ -375,16 +375,16 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="560" y="50" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#5B7FA5" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="560" y="50" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#5B7FA5" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="560" y="50" width="280" height="3" rx="10" fill="#5B7FA5" opacity=".45"/>
 <text x="700" y="76" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#5B7FA5">Messina</text>
-<text x="700" y="94" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Gateway across the strait to Italy,</text>
-<text x="700" y="108" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">the astronomical clock tower</text>
+<text x="700" y="94" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Gateway across the strait to Italy,</text>
+<text x="700" y="108" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">the astronomical clock tower</text>
 </g>
 </g>
 
 <!-- ===== 5 MORE CITY ICON PINS ===== -->
-<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".7">
+<g font-family="'Caveat',cursive" fill="var(--ink)" opacity=".9">
 <text x="609" y="432" text-anchor="middle" font-size="13" font-weight="600" font-size="16">Ragusa</text>
 <text x="505" y="241" text-anchor="middle" font-size="13" font-weight="600" font-size="16">Enna</text>
 <text x="606" y="514" text-anchor="middle" font-size="13" font-weight="600" font-size="16">Scicli</text>
@@ -415,11 +415,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="346" y="428" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#9B6B4A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="346" y="428" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#9B6B4A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="346" y="428" width="280" height="3" rx="10" fill="#9B6B4A" opacity=".45"/>
 <text x="486" y="454" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#9B6B4A">Ragusa</text>
-<text x="486" y="472" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">UNESCO baroque jewel split in two —</text>
-<text x="486" y="486" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">Ibla below, the modern city above</text>
+<text x="486" y="472" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">UNESCO baroque jewel split in two —</text>
+<text x="486" y="486" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">Ibla below, the modern city above</text>
 </g>
 </g>
 
@@ -448,11 +448,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="252" y="238" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#6B7F5A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="252" y="238" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#6B7F5A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="252" y="238" width="280" height="3" rx="10" fill="#6B7F5A" opacity=".45"/>
 <text x="392" y="264" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#6B7F5A">Enna</text>
-<text x="392" y="282" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Mountain fortress at Sicily's center,</text>
-<text x="392" y="296" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">the Castello di Lombardia stands guard</text>
+<text x="392" y="282" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Mountain fortress at Sicily's center,</text>
+<text x="392" y="296" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">the Castello di Lombardia stands guard</text>
 </g>
 </g>
 
@@ -485,11 +485,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="342" y="498" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#A0785A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="342" y="498" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#A0785A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="342" y="498" width="280" height="3" rx="10" fill="#A0785A" opacity=".45"/>
 <text x="482" y="524" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#A0785A">Scicli</text>
-<text x="482" y="542" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Hidden baroque masterpiece — carved</text>
-<text x="482" y="556" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">facades &amp; the setting of Montalbano</text>
+<text x="482" y="542" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Hidden baroque masterpiece — carved</text>
+<text x="482" y="556" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">facades &amp; the setting of Montalbano</text>
 </g>
 </g>
 
@@ -524,11 +524,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="438" y="500" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#4A7A8B" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="438" y="500" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#4A7A8B" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="438" y="500" width="280" height="3" rx="10" fill="#4A7A8B" opacity=".45"/>
 <text x="578" y="526" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#4A7A8B">Marzamemi</text>
-<text x="578" y="544" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Ancient tonnara fishing village,</text>
-<text x="578" y="558" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">cobblestone piazza &amp; crystal waters</text>
+<text x="578" y="544" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Ancient tonnara fishing village,</text>
+<text x="578" y="558" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">cobblestone piazza &amp; crystal waters</text>
 </g>
 </g>
 
@@ -560,11 +560,11 @@
 </g>
 </g>
 <g class="tip" filter="url(#ts)">
-<rect x="428" y="436" width="280" height="86" rx="10" fill="white" fill-opacity=".92" stroke="#C4963A" stroke-width=".6" stroke-opacity=".25"/>
+<rect x="428" y="436" width="280" height="86" rx="10" fill="white" fill-opacity=".97" stroke="#C4963A" stroke-width=".6" stroke-opacity=".25"/>
 <rect x="428" y="436" width="280" height="3" rx="10" fill="#C4963A" opacity=".45"/>
 <text x="568" y="462" text-anchor="middle" font-family="'Playfair Display',serif" font-size="15" font-weight="600" fill="#C4963A">Noto</text>
-<text x="568" y="480" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".7">Capital of baroque — golden limestone</text>
-<text x="568" y="494" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink-s)" opacity=".6">palaces glowing in the Sicilian sun</text>
+<text x="568" y="480" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".88">Capital of baroque — golden limestone</text>
+<text x="568" y="494" text-anchor="middle" font-family="'Caveat',cursive" font-size="11.5" fill="var(--ink)" opacity=".82">palaces glowing in the Sicilian sun</text>
 </g>
 </g>
 

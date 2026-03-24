@@ -27,13 +27,19 @@ export const Hero = ({ scrollY, th, isDark }) => {
             transition: "transform 0.1s linear"
           }} 
         />
-        {/* Responsive contrast gradient depending on theme */}
+        {/* Tone wash + center-weighted scrim for text legibility */}
         <div style={{
-          position: "absolute", 
+          position: "absolute",
           inset: 0,
-          background: isDark 
+          background: isDark
             ? `linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, var(--bg) 95%)`
-            : `linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, var(--bg) 95%)`
+            : `linear-gradient(to bottom, rgba(255,255,255,0.55) 0%, var(--bg) 95%)`,
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: isDark
+            ? `radial-gradient(ellipse 85% 55% at 50% 42%, rgba(0,0,0,0.18) 0%, transparent 65%)`
+            : `radial-gradient(ellipse 80% 50% at 50% 40%, rgba(0,0,0,0.16) 0%, transparent 62%)`,
         }} />
       </div>
 
@@ -51,8 +57,10 @@ export const Hero = ({ scrollY, th, isDark }) => {
         <div style={{ overflow:"hidden", marginBottom:12 }}>
           <p style={{
             fontFamily:"'Outfit',sans-serif", fontSize:11, letterSpacing:"0.4em",
-            textTransform:"uppercase", color: isDark ? "#fff" : th.textDim,
-            textShadow: isDark ? "0 2px 4px rgba(0,0,0,0.4)" : "none",
+            textTransform:"uppercase", color: isDark ? "#fff" : th.textSoft,
+            textShadow: isDark
+              ? "0 2px 4px rgba(0,0,0,0.4)"
+              : "0 1px 0 rgba(255,255,255,0.85), 0 2px 12px rgba(0,0,0,0.35)",
             transform:vis?"translateY(0)":"translateY(100%)",
             transition:"transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s",
           }}>Oil · Mixed Media · Watercolor</p>
@@ -64,7 +72,9 @@ export const Hero = ({ scrollY, th, isDark }) => {
           fontSize:"clamp(2.8rem, 15vw, 13rem)",
           fontWeight:600, lineHeight:0.88, margin:"0 0 8px",
           color: isDark ? "#fff" : th.text,
-          textShadow: isDark ? "0 4px 12px rgba(0,0,0,0.5)" : "none",
+          textShadow: isDark
+            ? "0 4px 12px rgba(0,0,0,0.5)"
+            : "0 1px 0 rgba(255,255,255,0.9), 0 2px 16px rgba(0,0,0,0.28)",
           filter:vis?"none":"blur(20px)",
           opacity:vis?0.95:0,
           transition:"all 1.4s cubic-bezier(0.16,1,0.3,1) 0.2s",
@@ -78,7 +88,11 @@ export const Hero = ({ scrollY, th, isDark }) => {
           <p style={{
             fontFamily:"'Cormorant Garamond',serif",
             fontSize:"clamp(1rem,2.5vw,1.5rem)",
-            color:th.textSoft, fontWeight:300, fontStyle:"italic", letterSpacing:"0.06em",
+            color: isDark ? th.textSoft : th.text,
+            fontWeight:300, fontStyle:"italic", letterSpacing:"0.06em",
+            textShadow: isDark
+              ? "0 1px 8px rgba(0,0,0,0.45), 0 0 1px rgba(0,0,0,0.3)"
+              : "0 1px 0 rgba(255,255,255,0.75), 0 2px 10px rgba(0,0,0,0.22)",
             transform:vis?"translateY(0)":"translateY(100%)",
             transition:"transform 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s",
           }}>Painted worlds, one stroke at a time</p>
@@ -93,11 +107,11 @@ export const Hero = ({ scrollY, th, isDark }) => {
       {/* Scroll cue */}
       <div style={{
         position:"absolute", bottom:28, left:"50%", transform:"translateX(-50%)",
-        opacity:vis && scrollY < 50 ? 0.3 : 0, transition:"opacity 0.6s",
+        opacity:vis && scrollY < 50 ? 0.5 : 0, transition:"opacity 0.6s",
         display:"flex", flexDirection:"column", alignItems:"center", gap:8,
       }}>
-        <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:8, letterSpacing:"0.25em", textTransform:"uppercase", color:th.textDim, writingMode:"vertical-lr" }}>Scroll</span>
-        <div style={{ width:1, height:28, background:`linear-gradient(${th.textDim}60, transparent)`, animation:"scrollPulse 2s ease-in-out infinite" }}/>
+        <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:8, letterSpacing:"0.25em", textTransform:"uppercase", color:th.textSoft, writingMode:"vertical-lr", textShadow:"0 1px 6px rgba(0,0,0,0.25)" }}>Scroll</span>
+        <div style={{ width:1, height:28, background:`linear-gradient(${th.textSoft}70, transparent)`, animation:"scrollPulse 2s ease-in-out infinite" }}/>
       </div>
     </section>
   );

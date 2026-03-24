@@ -58,7 +58,7 @@ export const KitSection = ({ th }) => {
       <div ref={ref} style={{ padding:"0 28px", display:"flex", alignItems:"center", gap:14, marginBottom:36 }}>
         <div style={{ width:vis?36:0, height:1, background:`${th.accent}35`, transition:"width 0.8s ease" }}/>
         <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", color:th.textDim, opacity:vis?1:0, transition:"opacity 0.6s ease 0.2s" }}>
-          Studio Kit
+          Milly&apos;s Art Room
         </span>
       </div>
       <div style={{ display:"flex", gap:0, overflowX:"auto", scrollSnapType:"x mandatory", scrollbarWidth:"none", padding:"0 28px" }}>
