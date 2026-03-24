@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useInView } from "../../hooks/useInView";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
+import { isValidExternalHref } from "../../utils/links";
 
 export const Connect = ({ th }) => {
   const [ref, vis] = useInView({ t: 0.15 });
@@ -47,16 +48,27 @@ export const Connect = ({ th }) => {
           </div>
         )}
         <div style={{ marginTop:44, display:"flex", justifyContent:"center", gap:22, flexWrap:"wrap" }}>
-          {SOCIALS.map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
+          {SOCIALS.map(l => {
+            const socialStyle = {
               fontFamily:"'Outfit',sans-serif", fontSize:10, color:th.textDim, textDecoration:"none",
               letterSpacing:"0.16em", textTransform:"uppercase", transition:"color 0.3s",
-            }}
-            onMouseEnter={e => e.target.style.color = th.accent}
-            onMouseLeave={e => e.target.style.color = th.textDim}>
-              {l.label}
-            </a>
-          ))}
+            };
+            if (isValidExternalHref(l.href)) {
+              return (
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={socialStyle}
+                  onMouseEnter={e => { e.currentTarget.style.color = th.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = th.textDim; }}>
+                  {l.label}
+                </a>
+              );
+            }
+            return (
+              <span key={l.label} aria-disabled="true" style={{ ...socialStyle, cursor:"default", opacity:0.45 }}
+                title="Link coming soon">
+                {l.label}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>

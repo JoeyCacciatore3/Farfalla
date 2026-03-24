@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { useInView } from "../../hooks/useInView";
 import { KIT } from "../../data/content";
+import { isValidExternalHref } from "../../utils/links";
 
 const KitItem = ({ item, i, th }) => {
   const [iRef, iVis] = useInView({ t: 0.1 });
   const [hov, setHov] = useState(false);
-  return (
-    <a ref={iRef} href={item.link} target="_blank" rel="noopener noreferrer"
-      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{
-        flex:"0 0 auto", width:"clamp(210px,28vw,280px)", scrollSnapAlign:"start",
-        textDecoration:"none", padding:"28px 24px", position:"relative",
-        borderLeft:`1px solid ${hov?th.borderHover:th.border}`,
-        transition:"all 0.5s cubic-bezier(0.16,1,0.3,1)",
-        opacity:iVis?1:0, transform:iVis?"translateY(0)":"translateY(18px)",
-        transitionDelay:`${i*0.05}s`,
-      }}>
+  const hasLink = isValidExternalHref(item.link);
+  const shellStyle = {
+    flex:"0 0 auto", width:"clamp(210px,28vw,280px)", scrollSnapAlign:"start",
+    textDecoration:"none", padding:"28px 24px", position:"relative",
+    borderLeft:`1px solid ${hov?th.borderHover:th.border}`,
+    transition:"all 0.5s cubic-bezier(0.16,1,0.3,1)",
+    opacity:iVis?1:0, transform:iVis?"translateY(0)":"translateY(18px)",
+    transitionDelay:`${i*0.05}s`,
+    color:"inherit",
+    display:"block",
+    cursor: hasLink ? "pointer" : "default",
+  };
+  const inner = (
+    <>
       <div style={{ position:"absolute", top:0, left:0, width:2, height:hov?"100%":"0%", background:`${th.accent}35`, transition:"height 0.5s cubic-bezier(0.16,1,0.3,1)" }}/>
       <h4 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:18, fontWeight:500, color:hov?th.text:th.textSoft, margin:"0 0 7px", transition:"color 0.3s" }}>{item.name}</h4>
       <p style={{ fontFamily:"'Outfit',sans-serif", fontSize:12, color:th.textDim, lineHeight:1.6, margin:"0 0 14px", fontStyle:"italic" }}>{item.note}</p>
@@ -27,7 +31,23 @@ const KitItem = ({ item, i, th }) => {
         {item.price}
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H4M9 1V6" stroke={th.accent} strokeWidth="1" strokeLinecap="round"/></svg>
       </span>
-    </a>
+    </>
+  );
+  if (hasLink) {
+    return (
+      <a ref={iRef} href={item.link} target="_blank" rel="noopener noreferrer"
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+        style={shellStyle}>
+        {inner}
+      </a>
+    );
+  }
+  return (
+    <div ref={iRef} role="group" aria-label={item.name}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={shellStyle}>
+      {inner}
+    </div>
   );
 };
 

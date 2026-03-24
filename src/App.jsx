@@ -15,7 +15,6 @@ import { Footer } from "./components/layout/Footer";
 import { Hero } from "./components/sections/Hero";
 import { Statement } from "./components/sections/Statement";
 import { GallerySection } from "./components/sections/GallerySection";
-import { ProcessSection } from "./components/sections/ProcessSection";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 import { SicilyPage } from "./components/sections/SicilyPage";
@@ -79,7 +78,6 @@ export default function App() {
             <Hero scrollY={y} th={th} isDark={isDark} />
             <Statement th={th} />
             <GallerySection th={th} isDark={isDark} />
-            <ProcessSection th={th} />
             <KitSection th={th} />
             <Connect th={th} />
           </main>

@@ -1,6 +1,6 @@
 // ── Placeholder generator ────────────────────────────────────────────
 // Creates unique abstract art placeholders — no external dependencies
-export const placeholder = (hue, sat=30, label="") => {
+export const placeholder = (hue, sat = 30) => {
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'>
     <defs>
       <linearGradient id='g1' x1='0%' y1='0%' x2='100%' y2='100%'>
@@ -21,12 +21,11 @@ export const placeholder = (hue, sat=30, label="") => {
     <rect width='800' height='800' fill='url(%23g3)'/>
     <circle cx='250' cy='300' r='120' fill='hsl(${hue},${sat+5}%,24%)' opacity='0.3'/>
     <circle cx='550' cy='500' r='80' fill='hsl(${(hue+30)%360},${sat}%,20%)' opacity='0.25'/>
-    <text x='400' y='420' text-anchor='middle' font-family='serif' font-size='18' fill='hsl(${hue},${sat}%,45%)' opacity='0.5'>${label || 'Your Artwork Here'}</text>
   </svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 };
 
-export const placeholderWide = (hue, label="") => {
+export const placeholderWide = (hue) => {
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'>
     <defs>
       <linearGradient id='a' x1='0%' y1='0%' x2='100%' y2='100%'>
@@ -40,28 +39,19 @@ export const placeholderWide = (hue, label="") => {
     </defs>
     <rect width='800' height='500' fill='url(%23a)'/>
     <rect width='800' height='500' fill='url(%23b)'/>
-    <text x='400' y='260' text-anchor='middle' font-family='serif' font-size='16' fill='hsl(${hue},25%,42%)' opacity='0.5'>${label}</text>
   </svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 };
 
-// ✎ WORKS — Replace `img` URLs with your artwork photos
+// ✎ WORKS — Slideshow; images from public/artwork/ (run npm run convert-artwork after updating attachments)
 export const WORKS = [
-  { id:1, title:"Midnight Bloom", sub:"Oil on linen · 30×40″ · 2025", img:"artwork/farfalla_1.jpg", hue:265 },
-  { id:2, title:"Golden Reverie", sub:"Acrylic on canvas · 24×36″ · 2025", img:"artwork/farfalla_2.jpg", hue:42 },
-  { id:3, title:"Cerulean Drift", sub:"Watercolor · 18×24″ · 2024", img:"artwork/farfalla_3.jpg", hue:200 },
-  { id:4, title:"Ember & Ash", sub:"Mixed media · 36×48″ · 2024", img:"artwork/farfalla_4.jpg", hue:10 },
-  { id:5, title:"Lavender Sigh", sub:"Oil on linen · 20×30″ · 2024", img:"artwork/farfalla_5.jpg", hue:275 },
-  { id:6, title:"Sunlit Fragment", sub:"Gouache · 16×20″ · 2023", img:"artwork/farfalla_6.jpg", hue:48, rotate: "-1.7deg" },
-  { id:7, title:"Velvet Whisper", sub:"Charcoal & ink · 22×28″", img:"artwork/farfalla_7.jpg", hue:240 },
-  { id:8, title:"Aurora Petal", sub:"Oil on panel · 24×24″ · 2023", img:"artwork/farfalla_1.jpg", hue:175 },
-];
-
-// ✎ PROCESS — Replace `img` URLs with your process photos
-export const STEPS = [
-  { title:"Intention", text:"Before a single stroke — sitting with the blank canvas, feeling what wants to emerge. Sometimes for hours. Sometimes for days.", img:"artwork/farfalla_2.jpg" },
-  { title:"Underpainting", text:"Thin washes of burnt sienna and raw umber map the soul of the composition. This layer never fully disappears.", img:"artwork/farfalla_3.jpg" },
-  { title:"Revelation", text:"The moment the painting tells you what it wants to be. You stop leading. You start listening.", img:"artwork/farfalla_4.jpg" },
+  { id: 1, img: "artwork/work-01.jpg", hue: 200 },
+  { id: 2, img: "artwork/work-02.jpg", hue: 42 },
+  { id: 3, img: "artwork/work-03.jpg", hue: 48 },
+  { id: 4, img: "artwork/work-04.jpg", hue: 265 },
+  { id: 5, img: "artwork/work-05.jpg", hue: 175 },
+  { id: 6, img: "artwork/work-06.jpg", hue: 15 },
+  { id: 7, img: "artwork/work-07.jpg", hue: 220 },
 ];
 
 // ✎ TOOLS — Update names, notes, prices, and affiliate links
@@ -73,11 +63,11 @@ export const KIT = [
   { name:"Richeson Lyptus Easel", note:"Solid as the work demands", price:"$189", link:"#" },
 ];
 
-// ✎ SOCIALS — Your social links
+// ✎ SOCIALS — Use full https URLs; `#` entries show as disabled until URLs are set
 export const SOCIALS = [
-  { label:"Instagram", href:"#" },
+  { label:"Instagram", href:"https://www.instagram.com/emilia.it21/" },
   { label:"YouTube", href:"#" },
-  { label:"TikTok", href:"#" },
+  { label:"TikTok", href:"https://www.tiktok.com/@milly.ita" },
   { label:"Pinterest", href:"#" },
 ];
 

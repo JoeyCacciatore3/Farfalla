@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
+import { isValidExternalHref } from "../../utils/links";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export const Nav = ({ isDark, toggleTheme, th }) => {
   const [open, setOpen] = useState(false);
@@ -13,7 +16,6 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
   
   const sections = [
     { label:"Works", id:"works" }, 
-    { label:"Process", id:"process" },
     { label:"Studio Kit", id:"kit" }, 
     { label:"Connect", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },
@@ -21,21 +23,23 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
 
   return (
     <>
-      {/* Logo */}
-      <a href="#top" aria-label="Back to top"
+      {/* Logo — Link home so /sicilia returns to portfolio; scroll top on click */}
+      <Link to="/" aria-label="Back to top"
+        onClick={() => window.scrollTo(0, 0)}
         onMouseEnter={() => setHLogo(true)}
         onMouseLeave={() => setHLogo(false)}
         style={{
         position:"fixed", top:22, left:24, zIndex:10003,
         textDecoration:"none", display:"flex", alignItems:"center", gap:9,
         transition:"all 0.5s ease",
+        color:"inherit",
         transform: hLogo ? "scale(1.02)" : "scale(1)",
       }}>
         <Wing size={20} c1={th.accent} c2={th.accent2} style={{ color:th.textDim, filter: hLogo ? `drop-shadow(0 0 8px ${th.accent}80)` : "none", transition:"filter 0.4s ease" }} />
         <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:17, fontWeight:600, color:th.text, letterSpacing:"0.04em", textShadow: hLogo ? `0 0 15px ${th.accent}90` : "none", transition:"text-shadow 0.4s ease" }}>
           Farfalla
         </span>
-      </a>
+      </Link>
 
       {/* Top-right controls */}
       <div style={{
@@ -107,20 +111,31 @@ export const Nav = ({ isDark, toggleTheme, th }) => {
           if (s.path) {
             return <Link key={s.label} to={s.path} onClick={() => setOpen(false)} style={linkStyle} {...handlers}>{num}{s.label}</Link>;
           }
-          const href = isHome ? `#${s.id}` : `/#${s.id}`;
+          const href = isHome ? `#${s.id}` : `${basePath}/#${s.id}`;
           return <a key={s.id} href={href} onClick={() => setOpen(false)} style={linkStyle} {...handlers}>{num}{s.label}</a>;
         })}
         <div style={{ marginTop:36, display:"flex", gap:20, flexWrap:"wrap", justifyContent:"center" }}>
-          {SOCIALS.map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={{
+          {SOCIALS.map(l => {
+            const socialStyle = {
               fontFamily:"'Outfit',sans-serif", fontSize:10, color:th.textDim, textDecoration:"none",
               letterSpacing:"0.15em", textTransform:"uppercase", transition:"color 0.3s",
-            }}
-            onMouseEnter={e => e.target.style.color = th.accent}
-            onMouseLeave={e => e.target.style.color = th.textDim}>
-              {l.label}
-            </a>
-          ))}
+            };
+            if (isValidExternalHref(l.href)) {
+              return (
+                <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" style={socialStyle}
+                  onMouseEnter={e => { e.currentTarget.style.color = th.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = th.textDim; }}>
+                  {l.label}
+                </a>
+              );
+            }
+            return (
+              <span key={l.label} aria-disabled="true" style={{ ...socialStyle, cursor:"default", opacity:0.45 }}
+                title="Link coming soon">
+                {l.label}
+              </span>
+            );
+          })}
         </div>
       </div>
     </>
