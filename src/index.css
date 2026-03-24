@@ -57,6 +57,16 @@ input::placeholder {
   }
 }
 
+/* Gallery carousel controls — keyboard focus */
+#works button:focus-visible {
+  outline: 2px solid #8a6d2b;
+  outline-offset: 3px;
+}
+
+html[data-theme="dark"] #works button:focus-visible {
+  outline-color: #c9a84c;
+}
+
 @keyframes gentleFloat {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   33% { transform: translateY(-8px) rotate(2deg); }

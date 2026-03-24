@@ -38,6 +38,17 @@ Gallery entries are defined in `src/data/content.js` as **`WORKS`** (each item: 
 
 ## Deployment and links
 
+### Live site (GitHub Pages)
+
+Pushing to **`main` does not update the public site by itself**. The site is published from the **`gh-pages`** branch (built output).
+
+- **Manual:** after `git push`, run **`npm run deploy`** (runs `vite build` then publishes `dist/` to `gh-pages`).
+- **Automatic:** pushes to `main` also run [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml), which builds and deploys the same way.
+
+In **GitHub → Settings → Pages**, source should be **Deploy from a branch** → **`gh-pages`** → **`/(root)`**.
+
+Live URL: [https://joeycacciatore3.github.io/Farfalla/](https://joeycacciatore3.github.io/Farfalla/) — hard-refresh or use a private window if you still see an old build (cached JS).
+
 - **`import.meta.env.BASE_URL`** comes from [vite.config.js](vite.config.js) (`base`). Production builds use `/Farfalla/` so the app is served under that path (e.g. GitHub Pages). In-app section links from other routes use this base so hashes resolve to `/Farfalla/#works`, not `/#works`.
 - **`KIT` and `SOCIALS` in `content.js`:** use full `https://` URLs for external links. Placeholder `#` entries render as disabled (no `target="_blank"` junk tabs). Instagram/TikTok are set; add YouTube/Pinterest when you have URLs.
 

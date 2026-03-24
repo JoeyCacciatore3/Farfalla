@@ -13,7 +13,7 @@ export const SicilyPage = ({ th, isDark }) => {
         const patched = text.replace('<svg class="map"', '<svg class="sicily-map"');
         setSvgContent(patched);
       })
-      .catch(console.error);
+      .catch(() => setSvgContent(""));
   }, []);
 
   // Touch tooltip toggling

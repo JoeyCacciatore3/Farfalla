@@ -70,7 +70,7 @@ export default function App() {
       <PaintCanvas />
       <Spine scrollP={p} th={th} />
       <ProgressBar scrollP={p} th={th} />
-      <Nav scrollY={y} isDark={isDark} toggleTheme={toggleTheme} th={th} />
+      <Nav isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
       <Routes>
         <Route path="/" element={
