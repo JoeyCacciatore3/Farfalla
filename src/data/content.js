@@ -11,6 +11,8 @@ export const WORKS = [
   { id: 9, img: "artwork/work-09.jpg", hue: 195 },
   { id: 10, img: "artwork/work-10.jpg", hue: 280 },
   { id: 11, img: "artwork/work-11.jpg", hue: 55 },
+  { id: 12, img: "artwork/work-12.jpg", hue: 125 },
+  { id: 13, img: "artwork/work-13.jpg", hue: 310 },
 ];
 
 // ✎ TOOLS — Update names, notes, prices, and affiliate links
