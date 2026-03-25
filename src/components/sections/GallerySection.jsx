@@ -2,10 +2,16 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useInView } from "../../hooks/useInView";
 import { WORKS } from "../../data/content";
 
+const assetBase = import.meta.env.BASE_URL;
+const AUTOPLAY_MS = 5500;
+
 export const GallerySection = ({ th, isDark }) => {
   const [ref, vis] = useInView({ t: 0.1 });
   const [idx, setIdx] = useState(0);
+  const [hovering, setHovering] = useState(false);
+  const [focusInside, setFocusInside] = useState(false);
   const touchStartX = useRef(null);
+  const wrapRef = useRef(null);
 
   const n = WORKS.length;
   const go = useCallback((d) => {
@@ -21,7 +27,29 @@ export const GallerySection = ({ th, isDark }) => {
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
+  const pauseAutoplay = hovering || focusInside;
+
+  useEffect(() => {
+    if (n <= 1) return;
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
+    if (pauseAutoplay) return;
+
+    const id = setInterval(() => go(1), AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [n, go, pauseAutoplay]);
+
+  const onWrapBlurCapture = useCallback(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    queueMicrotask(() => {
+      if (!el.contains(document.activeElement)) setFocusInside(false);
+    });
+  }, []);
+
   const current = WORKS[idx];
+  const imgSrc = `${assetBase}${current.img}`;
 
   return (
     <section id="works" style={{ padding:"60px 0 48px" }}>
@@ -32,7 +60,14 @@ export const GallerySection = ({ th, isDark }) => {
         </span>
       </div>
 
-      <div style={{ padding:"0 20px", maxWidth:1100, margin:"0 auto" }}>
+      <div
+        ref={wrapRef}
+        style={{ padding:"0 20px", maxWidth:1100, margin:"0 auto" }}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+        onFocusCapture={() => setFocusInside(true)}
+        onBlurCapture={onWrapBlurCapture}
+      >
         <div
           role="region"
           aria-roledescription="carousel"
@@ -65,7 +100,8 @@ export const GallerySection = ({ th, isDark }) => {
             background:`linear-gradient(180deg, ${th.bg} 0%, ${th.bg2} 100%)`,
           }}>
             <img
-              src={current.img}
+              key={current.img}
+              src={imgSrc}
               alt={`Artwork ${idx + 1} of ${n}`}
               loading="lazy"
               draggable={false}
