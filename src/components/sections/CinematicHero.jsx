@@ -99,7 +99,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
       id="top" 
       onMouseMove={handleMouseMove}
       style={{
-        height: "100vh", 
+        height: "80vh", 
         display: "flex", 
         flexDirection: "column",
         alignItems: "center", 
@@ -137,7 +137,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
             top: "0",
             left: "0",
             width: "100vw", 
-            height: "100vh", 
+            height: "80vh", 
             objectFit: "contain",
             objectPosition: "center center", // Center the complete image within viewport
             transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
