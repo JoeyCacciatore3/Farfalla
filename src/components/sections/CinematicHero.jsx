@@ -243,12 +243,17 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         
         {/* Animated title with stagger effect */}
         <h1 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Poppins', 'Inter', 'Playfair Display', serif",
           fontSize: "clamp(3rem, 7vw, 6rem)",
-          fontWeight: 600,
+          fontWeight: 500,
           margin: 0,
           marginBottom: 32,
-          lineHeight: 0.9,
+          lineHeight: 1.15,
+          letterSpacing: "0.015em",
+          fontFeatureSettings: "'kern' 1, 'liga' 1, 'calt' 1",
+          textRendering: "optimizeLegibility",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
           background: isDark 
             ? "linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFE4E1 100%)"
             : "linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%)",
