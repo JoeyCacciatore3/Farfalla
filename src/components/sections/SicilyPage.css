@@ -189,16 +189,9 @@
   filter: brightness(1.08) drop-shadow(0 2px 4px rgba(44,38,31,.25));
 }
 
-/* Tooltip (glassmorphism) */
+/* Tooltip (hidden - replaced with dedicated section) */
 .sicily-page .loc .tip {
-  opacity: 0;
-  transform: translateY(8px) scale(.96);
-  transition: opacity .35s var(--ease-spring), transform .35s var(--ease-spring);
-  pointer-events: none;
-}
-.sicily-page .loc:hover .tip {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  display: none !important;
 }
 
 @keyframes sicilyPinDrop {
@@ -325,6 +318,90 @@
 .sicily-bio .sicily-sg:hover { opacity: 1; }
 .sicily-bio .sicily-sg:hover::after { width: 100%; }
 
+/* ── Town Information Section ── */
+.town-info-section {
+  max-width: 640px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  animation: sicilyRevealUp .6s var(--ease-spring) both;
+}
+
+.town-info-card {
+  background: rgba(255,255,255,.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  border: 1px solid rgba(255,255,255,.6);
+  box-shadow: 
+    0 4px 20px rgba(44,38,31,.06), 
+    0 12px 40px rgba(44,38,31,.04),
+    0 0 0 1px rgba(44,38,31,.02);
+  position: relative;
+  transition: transform .3s var(--ease-spring), box-shadow .3s ease;
+}
+
+.town-info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 25px rgba(44,38,31,.08), 
+    0 16px 48px rgba(44,38,31,.06);
+}
+
+.town-info-header {
+  margin-bottom: 1.2rem;
+}
+
+.town-info-header h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  margin: 0 0 .3rem 0;
+  letter-spacing: .02em;
+}
+
+.town-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  margin: 0;
+  opacity: .8;
+  letter-spacing: .02em;
+}
+
+.town-description {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.8;
+  margin: 0;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.town-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s var(--ease-spring);
+}
+
+.town-close:hover {
+  background: rgba(0,0,0,.05) !important;
+  transform: scale(1.05);
+}
+
+.town-close:active {
+  transform: scale(0.95);
+}
+
 /* ── Back link ── */
 .sicily-back {
   position: fixed;
@@ -352,6 +429,19 @@
   .sicily-hdr h1 { letter-spacing: .04em; }
   .sicily-frame, .sicily-frame::after { border-radius: 12px; }
   .sicily-leg { gap: .7rem 1rem; }
+  
+  .town-info-card {
+    padding: 1.5rem 1.8rem;
+    border-radius: 14px;
+  }
+  
+  .town-close {
+    top: 1rem;
+    right: 1rem;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -363,6 +453,27 @@
   .sicily-leg span { font-size: .78rem; }
   .sicily-leg { gap: .5rem .8rem; }
   .sicily-frame, .sicily-frame::after { border-radius: 10px; }
+  
+  .town-info-section {
+    margin-top: 1.5rem;
+  }
+  
+  .town-info-card {
+    padding: 1.2rem 1.4rem;
+    border-radius: 12px;
+  }
+  
+  .town-info-header {
+    margin-bottom: 1rem;
+  }
+  
+  .town-close {
+    top: .8rem;
+    right: .8rem;
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
 }
 
 /* Touch devices */
