@@ -99,13 +99,13 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
       id="top" 
       onMouseMove={handleMouseMove}
       style={{
-        minHeight: "100vh", 
+        height: "100vh", 
         display: "flex", 
         flexDirection: "column",
         alignItems: "center", 
         justifyContent: "center", 
         position: "relative",
-        padding: "60px 24px", 
+        padding: "0px", 
         overflow: "hidden",
         cursor: "none" // Use custom paint cursor
       }}
@@ -136,7 +136,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
             position: "absolute",
             top: "0",
             left: "0",
-            width: "100%", 
+            width: "100vw", 
             height: "100vh", 
             objectFit: "contain",
             objectPosition: "center center", // Center the complete image within viewport
@@ -158,33 +158,33 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           mixBlendMode: "overlay"
         }} />
         
-        {/* Tone wash with cinematic gradient */}
+        {/* Light tone wash for text legibility only */}
         <div style={{
           position: "absolute",
           inset: 0,
           background: isDark
             ? `linear-gradient(to bottom, 
-                rgba(0,0,0,0.1) 0%, 
-                rgba(0,0,0,0.2) 50%,
-                var(--bg) 95%)`
+                rgba(0,0,0,0.05) 0%, 
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.05) 100%)`
             : `linear-gradient(to bottom, 
-                rgba(255,255,255,0.4) 0%, 
-                rgba(255,255,255,0.6) 40%,
-                var(--bg) 95%)`,
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.15) 40%,
+                rgba(255,255,255,0.1) 100%)`,
         }} />
         
-        {/* Center vignette for text legibility */}
+        {/* Subtle center focus for text legibility */}
         <div style={{
           position: "absolute", 
           inset: 0,
           background: isDark
-            ? `radial-gradient(ellipse 80% 50% at 50% 40%, 
-                rgba(0,0,0,0.3) 0%, 
-                rgba(0,0,0,0.1) 40%,
+            ? `radial-gradient(ellipse 60% 40% at 50% 45%, 
+                rgba(0,0,0,0.15) 0%, 
+                rgba(0,0,0,0.05) 40%,
                 transparent 70%)`
-            : `radial-gradient(ellipse 75% 45% at 50% 38%, 
-                rgba(0,0,0,0.25) 0%, 
-                rgba(0,0,0,0.08) 35%,
+            : `radial-gradient(ellipse 55% 35% at 50% 42%, 
+                rgba(0,0,0,0.12) 0%, 
+                rgba(0,0,0,0.04) 35%,
                 transparent 65%)`,
         }} />
 
