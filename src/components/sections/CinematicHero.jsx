@@ -134,12 +134,12 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           alt="Cinematic Sicilian landscape — original painting" 
           style={{
             position: "absolute",
-            top: "-15%",
-            left: "-5%",
-            width: "110%", 
-            height: "130%", 
+            top: "-20%",
+            left: "-10%",
+            width: "120%", 
+            height: "140%", 
             objectFit: "cover",
-            objectPosition: "center 40%", // Show more of the top landscape
+            objectPosition: "center 30%", // Show full landscape including sky and mountains
             transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
             filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
             transition: "filter 0.3s ease"
