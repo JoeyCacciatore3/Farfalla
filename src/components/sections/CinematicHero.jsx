@@ -270,12 +270,19 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           fontFamily: "'Caveat', cursive",
           fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)",
           fontWeight: 600,
-          color: th.textSoft,
+          background: isDark 
+            ? "linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFE4E1 100%)"
+            : "linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%)",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
           margin: 0,
           marginBottom: 48,
           lineHeight: 1.4,
           letterSpacing: "0.02em",
-          textShadow: `0 2px 12px ${dominantColors[2]}15`,
+          textShadow: isDark 
+            ? "0 2px 12px rgba(255, 182, 193, 0.2)"
+            : "0 2px 12px rgba(255, 105, 180, 0.2)",
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s, transform 1.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s"

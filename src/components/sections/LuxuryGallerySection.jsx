@@ -34,8 +34,10 @@ export const LuxuryGallerySection = ({ th, isDark }) => {
     if (isTransitioning) return; // Prevent rapid clicks
     
     setIsTransitioning(true);
+    const newIdx = (idx + direction + n) % n;
+    
     setPrevIdx(idx);
-    setIdx((i) => (i + direction + n) % n);
+    setIdx(newIdx);
     
     // Clear any existing timeout
     if (transitionTimeoutRef.current) {
@@ -45,7 +47,7 @@ export const LuxuryGallerySection = ({ th, isDark }) => {
     // Reset transition state after animation
     transitionTimeoutRef.current = setTimeout(() => {
       setIsTransitioning(false);
-    }, 800);
+    }, 500); // Optimized transition timing
   }, [idx, n, isTransitioning]);
 
   const goTo = useCallback((targetIdx) => {
@@ -61,7 +63,7 @@ export const LuxuryGallerySection = ({ th, isDark }) => {
     
     transitionTimeoutRef.current = setTimeout(() => {
       setIsTransitioning(false);
-    }, 800);
+    }, 500); // Optimized transition timing
   }, [idx, isTransitioning]);
 
   // Keyboard navigation
@@ -328,9 +330,10 @@ export const LuxuryGallerySection = ({ th, isDark }) => {
               lineHeight: 1, 
               transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
               opacity: hovering ? 1 : 0.7,
-              transform: hovering ? "translateY(-50%) scale(1.05)" : "translateY(-50%) scale(1)",
+              transform: `translateY(-50%) scale(${hovering ? 1.05 : 1})`,
               boxShadow: `0 8px 32px ${th.accent}15`,
-              fontWeight: "300"
+              fontWeight: "300",
+              zIndex: 10
             }}
           >
             ‹
@@ -361,9 +364,10 @@ export const LuxuryGallerySection = ({ th, isDark }) => {
               lineHeight: 1,
               transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
               opacity: hovering ? 1 : 0.7,
-              transform: hovering ? "translateY(-50%) scale(1.05)" : "translateY(-50%) scale(1)",
+              transform: `translateY(-50%) scale(${hovering ? 1.05 : 1})`,
               boxShadow: `0 8px 32px ${th.accent}15`,
-              fontWeight: "300"
+              fontWeight: "300",
+              zIndex: 10
             }}
           >
             ›
