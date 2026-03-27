@@ -2,6 +2,10 @@ import { useState, useCallback, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
+import { SecurityErrorBoundary } from "./components/security/ErrorBoundary.jsx";
+import { useSEO, StructuredData, CanonicalLink, PreloadCriticalResources } from "./components/seo/SEOOptimizer.jsx";
+import { usePerformanceOptimizer } from "./components/effects/PerformanceOptimizer.jsx";
+import { PaintBrushCursor } from "./components/ui/SignatureInteraction.jsx";
 
 import { AmbientBg } from "./components/effects/AmbientBg";
 import { Grain } from "./components/effects/Grain";
@@ -24,6 +28,16 @@ export default function App() {
   const { y, p } = useScroll();
   const th = isDark ? THEMES.dark : THEMES.light;
   const toggleTheme = useCallback(() => setIsDark(d => !d), []);
+
+  // SEO and Performance Optimization
+  useSEO({
+    title: 'Farfalla Portfolio - Sicilian Artist | Original Paintings',
+    description: 'Discover the vibrant artwork of a Sicilian artist. Original oil paintings capturing the beauty, spirit, and luminous landscapes of Sicily.',
+    image: '/hero-landscape.jpg',
+    url: 'https://joeycacciatore3.github.io/Farfalla/'
+  });
+  
+  usePerformanceOptimizer();
 
   useEffect(() => {
     const scheme = isDark ? 'dark' : 'light';
@@ -72,18 +86,32 @@ export default function App() {
       <ProgressBar scrollP={p} th={th} />
       <Nav isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
-      <Routes>
-        <Route path="/" element={
-          <main style={{ position:"relative", zIndex:2 }}>
-            <Hero scrollY={y} th={th} isDark={isDark} />
-            <Statement th={th} />
-            <GallerySection th={th} isDark={isDark} />
-            <KitSection th={th} />
-            <Connect th={th} />
-          </main>
-        } />
-        <Route path="/sicilia" element={<SicilyPage th={th} isDark={isDark} />} />
-      </Routes>
+      <PaintBrushCursor />
+      
+      <SecurityErrorBoundary componentName="App">
+        <StructuredData />
+        <CanonicalLink url="https://joeycacciatore3.github.io/Farfalla/" />
+        <PreloadCriticalResources />
+        
+        <Routes>
+          <Route path="/" element={
+            <SecurityErrorBoundary componentName="HomePage">
+              <main style={{ position:"relative", zIndex:2 }}>
+                <Hero scrollY={y} th={th} isDark={isDark} />
+                <Statement th={th} />
+                <GallerySection th={th} isDark={isDark} />
+                <KitSection th={th} />
+                <Connect th={th} />
+              </main>
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/sicilia" element={
+            <SecurityErrorBoundary componentName="SicilyPage">
+              <SicilyPage th={th} isDark={isDark} />
+            </SecurityErrorBoundary>
+          } />
+        </Routes>
+      </SecurityErrorBoundary>
       <Footer th={th} />
     </div>
   );

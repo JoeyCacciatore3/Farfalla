@@ -1,19 +1,30 @@
 import { useEffect, useRef, useState } from "react";
+import { sanitizeSVG, secureFetch } from "../../utils/security.js";
 import "./SicilyPage.css";
 
 export const SicilyPage = ({ th, isDark }) => {
   const mapRef = useRef(null);
   const [svgContent, setSvgContent] = useState("");
 
-  // Load SVG map
+  // Load SVG map with enterprise-grade security
   useEffect(() => {
-    fetch(import.meta.env.BASE_URL + "sicily-map.svg")
-      .then(r => r.text())
-      .then(text => {
+    const loadSecureMap = async () => {
+      try {
+        const response = await secureFetch(import.meta.env.BASE_URL + "sicily-map.svg");
+        const text = await response.text();
+        
+        // Apply security transformations
         const patched = text.replace('<svg class="map"', '<svg class="sicily-map"');
-        setSvgContent(patched);
-      })
-      .catch(() => setSvgContent(""));
+        const sanitized = sanitizeSVG(patched);
+        
+        setSvgContent(sanitized);
+      } catch (error) {
+        console.error('🚨 Failed to load Sicily map securely:', error);
+        setSvgContent("");
+      }
+    };
+    
+    loadSecureMap();
   }, []);
 
   // Touch tooltip toggling
