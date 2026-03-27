@@ -13,10 +13,10 @@ import { PaintCanvas } from "./components/effects/PaintCanvas";
 import { Spine } from "./components/effects/Spine";
 import { ProgressBar } from "./components/effects/ProgressBar";
 
-import { Nav } from "./components/layout/Nav";
+import { CinematicNav } from "./components/layout/CinematicNav";
 import { Footer } from "./components/layout/Footer";
 
-import { Hero } from "./components/sections/Hero";
+import { CinematicHero } from "./components/sections/CinematicHero";
 import { Statement } from "./components/sections/Statement";
 import { LuxuryGallerySection } from "./components/sections/LuxuryGallerySection";
 import { KitSection } from "./components/sections/KitSection";
@@ -84,7 +84,7 @@ export default function App() {
       <PaintCanvas />
       <Spine scrollP={p} th={th} />
       <ProgressBar scrollP={p} th={th} />
-      <Nav isDark={isDark} toggleTheme={toggleTheme} th={th} />
+      <CinematicNav isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
       <PaintBrushCursor />
       
@@ -97,7 +97,7 @@ export default function App() {
           <Route path="/" element={
             <SecurityErrorBoundary componentName="HomePage">
               <main style={{ position:"relative", zIndex:2 }}>
-                <Hero scrollY={y} th={th} isDark={isDark} />
+                <CinematicHero scrollY={y} th={th} isDark={isDark} />
                 <Statement th={th} />
                 <LuxuryGallerySection th={th} isDark={isDark} />
                 <KitSection th={th} />
