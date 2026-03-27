@@ -31,8 +31,8 @@ export default function App() {
 
   // SEO and Performance Optimization
   useSEO({
-    title: 'Farfalla Portfolio - Sicilian Artist | Original Paintings',
-    description: 'Discover the vibrant artwork of a Sicilian artist. Original oil paintings capturing the beauty, spirit, and luminous landscapes of Sicily.',
+    title: 'Milly Farfalla - Sicilian Artist | Original Oil Paintings',
+    description: 'Discover the vibrant artwork of Milly Farfalla, a talented Sicilian artist. Original oil paintings capturing the beauty, spirit, and luminous landscapes of Sicily.',
     image: '/hero-landscape.jpg',
     url: 'https://joeycacciatore3.github.io/Farfalla/'
   });

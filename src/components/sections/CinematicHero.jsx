@@ -128,18 +128,19 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           transition: "background 2s ease"
         }} />
         
-        {/* Hero artwork (medium parallax) */}
+        {/* Hero artwork (medium parallax) - Fixed scaling */}
         <img 
           src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
           alt="Cinematic Sicilian landscape — original painting" 
           style={{
             position: "absolute",
-            top: "-25%",
+            top: "-15%",
             left: "-5%",
             width: "110%", 
-            height: "150%", 
-            objectFit: "cover", 
-            transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.0001})`,
+            height: "130%", 
+            objectFit: "cover",
+            objectPosition: "center 40%", // Show more of the top landscape
+            transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
             filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
             transition: "filter 0.3s ease"
           }} 
@@ -243,18 +244,25 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         {/* Animated title with stagger effect */}
         <h1 style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: "clamp(3.5rem, 8vw, 7rem)",
+          fontSize: "clamp(3rem, 7vw, 6rem)",
           fontWeight: 600,
           margin: 0,
           marginBottom: 32,
           lineHeight: 0.9,
-          color: th.text,
-          textShadow: `0 4px 20px ${dominantColors[0]}20, 0 0 40px ${dominantColors[1]}10`,
+          background: isDark 
+            ? "linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFE4E1 100%)"
+            : "linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%)",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          textShadow: isDark 
+            ? "0 4px 20px rgba(255, 182, 193, 0.3), 0 0 40px rgba(255, 192, 203, 0.2)"
+            : "0 4px 20px rgba(255, 105, 180, 0.3), 0 0 40px rgba(255, 182, 193, 0.2)",
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0)" : "translateY(40px)",
           transition: "opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, transform 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s"
         }}>
-          Farfalla
+          Milly Farfalla
         </h1>
 
         {/* Subtitle with elegant fade-in */}

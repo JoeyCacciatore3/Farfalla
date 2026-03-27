@@ -51,8 +51,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           padding: "12px 20px",
           borderRadius: 24,
           background: hLogo 
-            ? `${th.navBg}F8`
-            : `${th.navBg}E5`,
+            ? `${th.navBg}FA`
+            : `${th.navBg}F0`,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           border: `1px solid ${hLogo ? th.borderHover : th.border}`,
@@ -73,14 +73,19 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
         </div>
         <span style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: 600,
-          color: th.text,
+          background: isDark 
+            ? "linear-gradient(135deg, #FFB6C1, #FFC0CB)"
+            : "linear-gradient(135deg, #FF69B4, #FFB6C1)",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
           letterSpacing: "0.02em",
           opacity: hLogo ? 1 : 0.9,
           transition: "opacity 0.3s ease"
         }}>
-          Farfalla
+          Milly Farfalla
         </span>
       </Link>
 
@@ -99,8 +104,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           borderRadius: 24,
           border: `1px solid ${hTheme ? th.borderHover : th.border}`,
           background: hTheme 
-            ? `${th.navBg}F8`
-            : `${th.navBg}E5`,
+            ? `${th.navBg}FA`
+            : `${th.navBg}F0`,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           color: th.text,
@@ -138,8 +143,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           borderRadius: 24,
           border: `1px solid ${hMenu || open ? th.borderHover : th.border}`,
           background: hMenu || open 
-            ? `${th.navBg}F8`
-            : `${th.navBg}E5`,
+            ? `${th.navBg}FA`
+            : `${th.navBg}F0`,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           color: th.text,
@@ -206,7 +211,9 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
         right: 0,
         width: 280,
         height: "100vh",
-        background: `${th.overlayBg}F5`,
+        background: isDark 
+          ? "rgba(10, 9, 8, 0.98)" 
+          : "rgba(247, 244, 238, 0.98)",
         backdropFilter: "blur(40px)",
         WebkitBackdropFilter: "blur(40px)",
         borderLeft: `1px solid ${th.border}`,
@@ -255,9 +262,16 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                       {item.label}
                     </Link>
                   ) : (
-                    <ColorReactiveLink
+                    <a
                       href={`#${item.id}`}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpen(false);
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
                       style={{
                         display: "block",
                         padding: "12px 20px",
@@ -265,11 +279,26 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                         fontFamily: "'Outfit', sans-serif",
                         fontSize: 16,
                         fontWeight: 500,
-                        transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
+                        color: th.text,
+                        textDecoration: "none",
+                        background: "transparent",
+                        border: `1px solid transparent`,
+                        transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
+                        cursor: "pointer"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = `${th.accent}12`;
+                        e.target.style.borderColor = `${th.accent}40`;
+                        e.target.style.color = isDark ? '#FFB6C1' : '#FF69B4';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                        e.target.style.borderColor = "transparent";
+                        e.target.style.color = th.text;
                       }}
                     >
                       {item.label}
-                    </ColorReactiveLink>
+                    </a>
                   )}
                 </li>
               );

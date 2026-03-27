@@ -78,11 +78,11 @@ export const StructuredData = () => {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "VisualArtwork",
-      "name": "Farfalla Portfolio",
-      "description": "Original paintings by a Sicilian artist capturing the beauty and spirit of Sicily",
+      "name": "Milly Farfalla Portfolio",
+      "description": "Original paintings by Milly Farfalla, a talented Sicilian artist capturing the beauty and spirit of Sicily",
       "creator": {
         "@type": "Person",
-        "name": "Farfalla Artist",
+        "name": "Milly Farfalla",
         "nationality": "Italian",
         "birthPlace": "Sicily, Italy"
       },
