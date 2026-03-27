@@ -18,7 +18,7 @@ import { Footer } from "./components/layout/Footer";
 
 import { Hero } from "./components/sections/Hero";
 import { Statement } from "./components/sections/Statement";
-import { GallerySection } from "./components/sections/GallerySection";
+import { LuxuryGallerySection } from "./components/sections/LuxuryGallerySection";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 import { SicilyPage } from "./components/sections/SicilyPage";
@@ -99,7 +99,7 @@ export default function App() {
               <main style={{ position:"relative", zIndex:2 }}>
                 <Hero scrollY={y} th={th} isDark={isDark} />
                 <Statement th={th} />
-                <GallerySection th={th} isDark={isDark} />
+                <LuxuryGallerySection th={th} isDark={isDark} />
                 <KitSection th={th} />
                 <Connect th={th} />
               </main>

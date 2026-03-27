@@ -1,18 +1,18 @@
 // ✎ WORKS — Slideshow; images under public/artwork/ (npm run convert-artwork after updating attachments)
 export const WORKS = [
-  { id: 1, img: "artwork/work-01.jpg", hue: 200 },
-  { id: 2, img: "artwork/work-02.jpg", hue: 42 },
-  { id: 3, img: "artwork/work-03.jpg", hue: 48 },
-  { id: 4, img: "artwork/work-04.jpg", hue: 265 },
-  { id: 5, img: "artwork/work-05.jpg", hue: 175 },
-  { id: 6, img: "artwork/work-06.jpg", hue: 15 },
-  { id: 7, img: "artwork/work-07.jpg", hue: 220 },
-  { id: 8, img: "artwork/work-08.jpg", hue: 32 },
-  { id: 9, img: "artwork/work-09.jpg", hue: 195 },
-  { id: 10, img: "artwork/work-10.jpg", hue: 280 },
-  { id: 11, img: "artwork/work-11.jpg", hue: 55 },
-  { id: 12, img: "artwork/work-12.jpg", hue: 125 },
-  { id: 13, img: "artwork/work-13.jpg", hue: 310 },
+  { id: 1, img: "artwork/work-01.jpg", hue: 200, title: "Mediterranean Dawn", medium: "Oil on Canvas, 24\" × 36\"" },
+  { id: 2, img: "artwork/work-02.jpg", hue: 42, title: "Sicilian Afternoon", medium: "Oil on Canvas, 18\" × 24\"" },
+  { id: 3, img: "artwork/work-03.jpg", hue: 48, title: "Golden Coast", medium: "Oil on Canvas, 30\" × 40\"" },
+  { id: 4, img: "artwork/work-04.jpg", hue: 265, title: "Evening Reflections", medium: "Oil on Canvas, 16\" × 20\"" },
+  { id: 5, img: "artwork/work-05.jpg", hue: 175, title: "Coastal Winds", medium: "Oil on Canvas, 22\" × 28\"" },
+  { id: 6, img: "artwork/work-06.jpg", hue: 15, title: "Sunset Embrace", medium: "Oil on Canvas, 20\" × 24\"" },
+  { id: 7, img: "artwork/work-07.jpg", hue: 220, title: "Azure Dreams", medium: "Oil on Canvas, 18\" × 22\"" },
+  { id: 8, img: "artwork/work-08.jpg", hue: 32, title: "Warm Horizon", medium: "Oil on Canvas, 24\" × 30\"" },
+  { id: 9, img: "artwork/work-09.jpg", hue: 195, title: "Oceanic Memory", medium: "Oil on Canvas, 16\" × 24\"" },
+  { id: 10, img: "artwork/work-10.jpg", hue: 280, title: "Twilight Serenity", medium: "Oil on Canvas, 20\" × 30\"" },
+  { id: 11, img: "artwork/work-11.jpg", hue: 55, title: "Island Light", medium: "Oil on Canvas, 18\" × 28\"" },
+  { id: 12, img: "artwork/work-12.jpg", hue: 125, title: "Emerald Shores", medium: "Oil on Canvas, 22\" × 32\"" },
+  { id: 13, img: "artwork/work-13.jpg", hue: 310, title: "Mystic Evening", medium: "Oil on Canvas, 24\" × 36\"" },
 ];
 
 // ✎ TOOLS — Update names, notes, prices, and affiliate links
