@@ -44,6 +44,21 @@ export default function App() {
     document.documentElement.style.setProperty('color-scheme', scheme);
     document.documentElement.setAttribute('data-theme', scheme);
 
+    // Set CSS custom properties on :root for global access
+    const root = document.documentElement;
+    Object.entries(th).forEach(([key, value]) => {
+      // Convert camelCase to kebab-case (textSoft -> text-soft)
+      const cssVar = `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}-color`;
+      root.style.setProperty(cssVar, value);
+    });
+
+    // Also set the main ones for backward compatibility
+    root.style.setProperty('--bg-color', th.bg);
+    root.style.setProperty('--text-color', th.text);
+    root.style.setProperty('--selection-color', th.selection);
+    root.style.setProperty('--scroll-thumb-color', th.scrollThumb);
+    root.style.setProperty('--text-ghost-color', th.textGhost);
+
     let colorSchemeMeta = document.getElementById('color-scheme-meta') ?? document.querySelector('meta[name="color-scheme"]');
     if (!colorSchemeMeta) {
       colorSchemeMeta = document.createElement('meta');
@@ -62,15 +77,39 @@ export default function App() {
       document.head.appendChild(themeColorMeta);
     }
     themeColorMeta.setAttribute('content', themeColor);
-  }, [isDark]);
+  }, [isDark, th]);
 
   return (
     <div style={{
+      // Core colors
       "--bg-color": th.bg,
+      "--bg2-color": th.bg2,
       "--text-color": th.text,
+      "--text-soft-color": th.textSoft,
+      "--text-dim-color": th.textDim,
+      "--text-ghost-color": th.textGhost,
+      
+      // Accents
+      "--accent-color": th.accent,
+      "--accent2-color": th.accent2,
+      "--accent-glow": th.accentGlow,
+      
+      // Interactive elements
+      "--border-color": th.border,
+      "--border-hover-color": th.borderHover,
+      "--surface-color": th.surface,
+      "--surface-hover-color": th.surfaceHover,
+      
+      // UI feedback
       "--selection-color": th.selection,
       "--scroll-thumb-color": th.scrollThumb,
-      "--text-ghost-color": th.textGhost,
+      
+      // Effects
+      "--img-filter": th.imgFilter,
+      "--card-shadow": th.cardShadow,
+      "--nav-bg": th.navBg,
+      "--overlay-bg": th.overlayBg,
+      
       minHeight:"100vh", position:"relative", overflowX:"hidden",
       background: isDark
         ? `linear-gradient(180deg, ${THEMES.dark.bg}, ${THEMES.dark.bg2}, ${THEMES.dark.bg})`
