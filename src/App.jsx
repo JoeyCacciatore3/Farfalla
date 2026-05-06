@@ -9,7 +9,6 @@ import { usePerformanceOptimizer } from "./components/effects/PerformanceOptimiz
 import { PaintBrushCursor } from "./components/ui/SignatureInteraction.jsx";
 
 import { AmbientBg } from "./components/effects/AmbientBg";
-import { BrushReveal } from "./components/effects/BrushReveal";
 import { Grain } from "./components/effects/Grain";
 import { PaintCanvas } from "./components/effects/PaintCanvas";
 import { Spine } from "./components/effects/Spine";
@@ -161,10 +160,10 @@ export default function App() {
             <SecurityErrorBoundary componentName="HomePage">
               <main style={{ position:"relative", zIndex:2 }}>
                 <CinematicHero scrollY={y} th={th} isDark={isDark} />
-                <BrushReveal><Statement th={th} /></BrushReveal>
+                <Statement th={th} />
                 <MarqueeGallery th={th} isDark={isDark} />
-                <BrushReveal direction="rtl"><KitSection th={th} /></BrushReveal>
-                <BrushReveal><Connect th={th} /></BrushReveal>
+                <KitSection th={th} />
+                <Connect th={th} />
               </main>
             </SecurityErrorBoundary>
           } />
