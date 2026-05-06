@@ -16,8 +16,11 @@ export const Connect = ({ th }) => {
         <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.7rem,4vw,2.6rem)", fontWeight:400, color:th.text, margin:"18px 0 10px" }}>
           Enter the Studio
         </h3>
-        <p style={{ fontFamily:"'Outfit',sans-serif", fontSize:13, color:th.textDim, lineHeight:1.8, marginBottom:32 }}>
+        <p style={{ fontFamily:"'Outfit',sans-serif", fontSize:13, color:th.textDim, lineHeight:1.8, marginBottom:8 }}>
           New works, process films, and studio dispatches — arriving like a quiet letter.
+        </p>
+        <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:13, color:`${th.accent}c0`, marginBottom:32 }}>
+          benvenuti nello studio.
         </p>
         {sent ? (
           <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:17, color:th.accent, fontStyle:"italic" }}>You&apos;re in. Welcome to the studio.</p>

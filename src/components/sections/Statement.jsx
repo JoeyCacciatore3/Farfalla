@@ -25,6 +25,15 @@ export const Statement = ({ th }) => {
         }}>
           Working from a sun-flooded studio, Farfalla builds each piece through dozens of translucent layers — a slow, meditative process that can span weeks. The work lives at the intersection of abstraction and memory, inviting viewers to find their own stories within the color.
         </p>
+        <span aria-hidden="true" style={{
+          display:"inline-block", marginTop:24,
+          fontFamily:"'Caveat',cursive", fontSize:"clamp(1.5rem,3vw,2rem)",
+          color:th.accent, opacity:vis?0.9:0,
+          transition:"opacity 1.4s cubic-bezier(0.16,1,0.3,1) 0.6s",
+          transform:"rotate(-3deg)",
+        }}>
+          — Milly
+        </span>
       </div>
     </section>
   );
