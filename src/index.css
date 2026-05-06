@@ -96,6 +96,17 @@ html[data-theme="dark"] #works button:focus-visible {
   100% { transform: scale(1.045); }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="animation: marquee"], [style*="animation:marquee"] {
+    animation-play-state: paused !important;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

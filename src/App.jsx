@@ -9,6 +9,7 @@ import { usePerformanceOptimizer } from "./components/effects/PerformanceOptimiz
 import { PaintBrushCursor } from "./components/ui/SignatureInteraction.jsx";
 
 import { AmbientBg } from "./components/effects/AmbientBg";
+import { BrushReveal } from "./components/effects/BrushReveal";
 import { Grain } from "./components/effects/Grain";
 import { PaintCanvas } from "./components/effects/PaintCanvas";
 import { Spine } from "./components/effects/Spine";
@@ -19,7 +20,7 @@ import { Footer } from "./components/layout/Footer";
 
 import { CinematicHero } from "./components/sections/CinematicHero";
 import { Statement } from "./components/sections/Statement";
-import { LuxuryGallerySection } from "./components/sections/LuxuryGallerySection";
+import { MarqueeGallery } from "./components/sections/MarqueeGallery";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 import { SicilyPage } from "./components/sections/SicilyPage";
@@ -154,10 +155,10 @@ export default function App() {
             <SecurityErrorBoundary componentName="HomePage">
               <main style={{ position:"relative", zIndex:2 }}>
                 <CinematicHero scrollY={y} th={th} isDark={isDark} />
-                <Statement th={th} />
-                <LuxuryGallerySection th={th} isDark={isDark} />
-                <KitSection th={th} />
-                <Connect th={th} />
+                <BrushReveal><Statement th={th} /></BrushReveal>
+                <MarqueeGallery th={th} isDark={isDark} />
+                <BrushReveal direction="rtl"><KitSection th={th} /></BrushReveal>
+                <BrushReveal><Connect th={th} /></BrushReveal>
               </main>
             </SecurityErrorBoundary>
           } />

@@ -9,9 +9,14 @@
  * - Professional fade and scale effects
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
 import { useInView } from "../../hooks/useInView";
 import { Wing } from "../effects/Wing";
+
+// WebGL displacement is heavy (R3F + Three.js). Lazy-load it so it doesn't
+// block first paint of the hero image; the static <img> shows immediately
+// underneath while this initializes.
+const PaintDisplacement = lazy(() => import("../effects/PaintDisplacement").then(m => ({ default: m.PaintDisplacement })));
 
 export const CinematicHero = ({ scrollY, th, isDark }) => {
   const [ref, vis] = useInView({ t: 0.05 });
@@ -153,6 +158,11 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
               transition: "filter 0.3s ease",
             }}
           />
+          {/* WebGL paint-displacement — slow swimming motion over the photo.
+              Lazy-loaded; the <img> above is the always-visible fallback. */}
+          <Suspense fallback={null}>
+            <PaintDisplacement src={`${import.meta.env.BASE_URL}hero-landscape.jpg`} />
+          </Suspense>
         </div>
         
         {/* Interactive color overlay */}

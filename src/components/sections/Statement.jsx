@@ -3,7 +3,7 @@ import { useInView } from "../../hooks/useInView";
 export const Statement = ({ th }) => {
   const [ref, vis] = useInView({ t: 0.2 });
   return (
-    <section ref={ref} style={{ padding:"100px 28px 80px", maxWidth:880, margin:"0 auto", display:"flex", gap:36, alignItems:"flex-start", flexWrap:"wrap" }}>
+    <section ref={ref} style={{ padding:"72px 28px 56px", maxWidth:880, margin:"0 auto", display:"flex", gap:36, alignItems:"flex-start", flexWrap:"wrap" }}>
       <div style={{ flex:"0 0 auto", width:50, paddingTop:10, opacity:vis?1:0, transition:"opacity 1s ease 0.2s" }}>
         <div style={{ width:36, height:1, background:`${th.accent}30` }}/>
       </div>

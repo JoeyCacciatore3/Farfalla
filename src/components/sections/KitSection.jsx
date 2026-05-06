@@ -31,7 +31,7 @@ const KitItem = ({ item, i, th }) => {
 export const KitSection = ({ th }) => {
   const [ref, vis] = useInView({ t: 0.1 });
   return (
-    <section id="kit" style={{ padding:"60px 0 90px" }}>
+    <section id="kit" style={{ padding:"56px 0 72px" }}>
       <div ref={ref} style={{ padding:"0 28px", marginBottom:36 }}>
         <div style={{ display:"flex", alignItems:"center", gap:14 }}>
           <div style={{ width:vis?36:0, height:1, background:`${th.accent}35`, transition:"width 0.8s ease" }}/>

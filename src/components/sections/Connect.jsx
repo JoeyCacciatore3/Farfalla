@@ -6,7 +6,7 @@ export const Connect = ({ th }) => {
   const [ref, vis] = useInView({ t: 0.15 });
 
   return (
-    <section ref={ref} id="connect" style={{ padding:"90px 28px 110px", maxWidth:540, margin:"0 auto", textAlign:"center" }}>
+    <section ref={ref} id="connect" style={{ padding:"72px 28px 56px", maxWidth:540, margin:"0 auto", textAlign:"center" }}>
       <div style={{ opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(35px)", transition:"all 1.2s cubic-bezier(0.16,1,0.3,1)" }}>
         <Wing size={30} c1={`${th.accent}20`} c2={`${th.accent2}14`} style={{ opacity:0.45, color:th.textDim }} />
         <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.7rem,4vw,2.6rem)", fontWeight:400, color:th.text, margin:"18px 0 10px" }}>
