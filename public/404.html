@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Milly Farfalla</title>
+    <script>
+      // SPA redirect for GitHub Pages — see https://github.com/rafgraph/spa-github-pages
+      // Rewrites a deep-link path into a query string the boot script in index.html
+      // restores via history.replaceState before React Router mounts.
+      (function () {
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/?p=/' + l.pathname.slice(1).split('/').map(encodeURIComponent).join('/') +
+          (l.search ? '&q=' + l.search.slice(1).split('&').map(encodeURIComponent).join('&') : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -178,6 +178,7 @@ export const SicilyPage = ({ th, isDark }) => {
         <header className="sicily-hdr">
           <h1 style={{ color: th.text }}>La Mia <em>Sicilia</em></h1>
           <p className="sicily-sub">dove tutto è cominciato</p>
+          <p className="sicily-eyebrow">where it all began</p>
         </header>
 
         <div className="sicily-frame">

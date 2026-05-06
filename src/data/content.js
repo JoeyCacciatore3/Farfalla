@@ -15,22 +15,25 @@ export const WORKS = [
   { id: 13, img: "artwork/work-13.jpg", hue: 310, title: "Mystic Evening", medium: "Oil on Canvas, 24\" × 36\"", artist: "Milly Farfalla" },
 ];
 
-// ✎ TOOLS — Update names, notes, prices, and affiliate links
+// ✎ KIT — Studio inventory. The list is curatorial — what she keeps coming back to.
+// Add `link` (full https URL) on any item to turn it into a hover-revealed buy link with price.
 export const KIT = [
-  { name:"Winsor & Newton Artist Oils", note:"My daily palette foundation", price:"$42", link:"#" },
-  { name:"Rosemary & Co. Ivory Filberts", note:"Nothing else feels right", price:"$65", link:"#" },
-  { name:"Arches Oil Paper 300gsm", note:"For studies that deserve permanence", price:"$28", link:"#" },
-  { name:"Gamblin Cold Wax Medium", note:"The secret texture ingredient", price:"$22", link:"#" },
-  { name:"Richeson Lyptus Easel", note:"Solid as the work demands", price:"$189", link:"#" },
+  { name: "Winsor & Newton Artist Oils", note: "My daily palette foundation." },
+  { name: "Rosemary & Co. Ivory Filberts", note: "Nothing else feels right." },
+  { name: "Arches Oil Paper 300gsm", note: "For studies that deserve permanence." },
+  { name: "Gamblin Cold Wax Medium", note: "The secret texture ingredient." },
+  { name: "Richeson Lyptus Easel", note: "Solid as the work demands." },
 ];
 
-// ✎ SOCIALS — Use full https URLs; `#` entries show as disabled until URLs are set
+// ✎ SOCIALS — Only real, live profiles. Add new ones with full https URL.
 export const SOCIALS = [
-  { label:"Instagram", href:"https://www.instagram.com/emilia.it21/" },
-  { label:"YouTube", href:"#" },
-  { label:"TikTok", href:"https://www.tiktok.com/@milly.ita" },
-  { label:"Pinterest", href:"#" },
+  { label: "Instagram", href: "https://www.instagram.com/emilia.it21/" },
+  { label: "TikTok",    href: "https://www.tiktok.com/@milly.ita" },
 ];
+
+// ✎ CONTACT — Where the studio inbox actually lives.
+// When she has a real email, replace this; the Connect button uses it as a mailto:.
+export const STUDIO_EMAIL = "hello@millyfarfalla.com";
 
 // ═══════════════════════════════════════════════════════
 // DESIGN TOKENS — Dark & Light palettes

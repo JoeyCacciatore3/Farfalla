@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
 import { MagneticButton, ColorReactiveLink } from "../ui/MicroInteractions";
-import { isValidExternalHref } from "../../utils/links";
 
 export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   const [open, setOpen] = useState(false);
@@ -330,8 +329,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
               <ColorReactiveLink
                 key={social.label}
                 href={social.href}
-                target={isValidExternalHref(social.href) ? "_blank" : undefined}
-                rel={isValidExternalHref(social.href) ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   padding: "8px 16px",
                   borderRadius: 20,
@@ -340,8 +339,6 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                   fontWeight: 500,
                   background: `${th.surface}80`,
                   border: `1px solid ${th.border}`,
-                  opacity: isValidExternalHref(social.href) ? 1 : 0.5,
-                  pointerEvents: isValidExternalHref(social.href) ? "auto" : "none",
                   transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
                 }}
               >

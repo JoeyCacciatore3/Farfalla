@@ -23,7 +23,7 @@ export const Statement = ({ th }) => {
           opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(20px)",
           transition:"all 1s cubic-bezier(0.16,1,0.3,1) 0.2s",
         }}>
-          Working from a sun-flooded studio, Farfalla builds each piece through dozens of translucent layers — a slow, meditative process that can span weeks. The work lives at the intersection of abstraction and memory, inviting viewers to find their own stories within the color.
+          I work from a sun-flooded studio, building each piece through dozens of translucent layers — a slow, patient process that can span weeks. The work lives in the space between abstraction and memory, where I leave room for you to find your own story in the color.
         </p>
         <span aria-hidden="true" style={{
           display:"inline-block", marginTop:24,

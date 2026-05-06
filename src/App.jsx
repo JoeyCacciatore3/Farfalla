@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import Lenis from "lenis";
 import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
 import { SecurityErrorBoundary } from "./components/security/ErrorBoundary.jsx";
@@ -38,6 +39,22 @@ export default function App() {
   });
   
   usePerformanceOptimizer();
+
+  // Buttery momentum scroll — disabled when the user prefers reduced motion.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    });
+    let rafId;
+    const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
+    rafId = requestAnimationFrame(raf);
+    return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
+  }, []);
 
   useEffect(() => {
     const scheme = isDark ? 'dark' : 'light';
