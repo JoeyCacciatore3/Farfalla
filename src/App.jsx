@@ -41,15 +41,21 @@ export default function App() {
   
   usePerformanceOptimizer();
 
-  // Buttery momentum scroll — disabled when the user prefers reduced motion.
+  // Buttery momentum scroll — desktop only. On touch devices native scroll
+  // is faster, smoother, and respects the OS overscroll/refresh gestures.
+  // Hijacking touch with Lenis was the #1 'janky on Android' contributor.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      // touch handling is OFF — the matchMedia gate above means we never
+      // construct Lenis on touch primaries, but if a hybrid device hot-swaps
+      // pointer types we still don't want Lenis to grab touch events.
+      smoothTouch: false,
     });
     let rafId;
     const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };

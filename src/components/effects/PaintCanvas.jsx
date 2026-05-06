@@ -65,9 +65,17 @@ export const PaintCanvas = () => {
   const mouse = useRef({ x: -100, y: -100, isDown: false, phase: 0 });
 
   useEffect(() => {
-    const c = ref.current; 
+    // The butterfly trail is a *cursor* effect — there is no cursor on touch
+    // devices. Mounting the canvas + RAF loop + spawning butterflies on every
+    // touchmove was a meaningful battery / perf cost on Android for zero
+    // visible payoff (no cursor to follow). Skip entirely on touch primaries.
+    if (typeof window !== "undefined" &&
+        window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+    const c = ref.current;
     if (!c) return;
-    
+
     const ctx = c.getContext("2d");
     let w, h;
     

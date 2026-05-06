@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property -- R3F's JSX (`mesh`, `primitive`, `geometry`, `attach`) is custom but valid. */
-import { useRef, useMemo, Suspense } from "react";
+import { useEffect, useRef, useMemo, useState, Suspense } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader, ShaderMaterial, PlaneGeometry } from "three";
 
@@ -92,12 +92,40 @@ const HeroPlane = ({ src, intensity = 0.012 }) => {
   );
 };
 
+/**
+ * Reactive enable-gate. The shader is desktop-only:
+ *   - prefers-reduced-motion → off
+ *   - pointer: coarse (touch-primary) → off — phones don't need it, GPU cost is wasted
+ *   - viewport < 768px → off
+ *
+ * Why reactive (useState + matchMedia listener) and not a one-shot inline check:
+ * the previous gate ran once at first render. If the headless/SSR/initial paint
+ * had a stale window.innerWidth, the gate let the canvas through and never
+ * re-evaluated. matchMedia listeners flip the gate on resize/orientation change.
+ */
+const useShouldRenderShader = () => {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mqls = [
+      window.matchMedia("(prefers-reduced-motion: reduce)"),
+      window.matchMedia("(pointer: coarse)"),
+      window.matchMedia("(max-width: 767px)"),
+    ];
+    const recompute = () => {
+      const blocked = mqls.some(m => m.matches);
+      setEnabled(!blocked);
+    };
+    recompute();
+    mqls.forEach(m => m.addEventListener("change", recompute));
+    return () => mqls.forEach(m => m.removeEventListener("change", recompute));
+  }, []);
+  return enabled;
+};
+
 export const PaintDisplacement = ({ src }) => {
-  // Skip on reduced-motion + on tiny screens where the perf cost isn't worth it.
-  if (typeof window !== "undefined") {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
-    if (window.innerWidth < 640) return null;
-  }
+  const enabled = useShouldRenderShader();
+  if (!enabled) return null;
   return (
     <Canvas
       orthographic

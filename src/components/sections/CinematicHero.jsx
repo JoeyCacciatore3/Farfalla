@@ -104,15 +104,19 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
       id="top" 
       onMouseMove={handleMouseMove}
       style={{
-        height: "100vh", 
-        display: "flex", 
+        // 100dvh tracks the dynamic viewport (URL bar collapsed/expanded), 100vh
+        // is the static fallback for browsers without dvh. Without dvh the hero
+        // jumps when Android Chrome's URL bar autohides on scroll.
+        height: "100vh",
+        minHeight: "100dvh",
+        display: "flex",
         flexDirection: "column",
-        alignItems: "center", 
-        justifyContent: "center", 
+        alignItems: "center",
+        justifyContent: "center",
         position: "relative",
-        padding: "0px", 
+        padding: "0px",
         overflow: "hidden",
-        cursor: "none" // Use custom paint cursor
+        cursor: "none",
       }}
     >
       {/* Hidden canvas for color extraction */}
