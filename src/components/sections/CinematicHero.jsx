@@ -128,23 +128,32 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           transition: "background 2s ease"
         }} />
         
-        {/* Hero artwork (medium parallax) - Fixed scaling */}
-        <img 
-          src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
-          alt="Cinematic Sicilian landscape — original painting" 
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            width: "100vw", 
-            height: "100vh", 
-            objectFit: "cover",
-            objectPosition: "center center", // Center the complete image within viewport
-            transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
-            filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
-            transition: "filter 0.3s ease"
-          }} 
-        />
+        {/* Hero artwork — wrapper does slow breath (28s), img does parallax. Two transforms,
+            two elements; combining them on one node would let inline style override the keyframe. */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          animation: "heroBreath 28s ease-in-out infinite alternate",
+          transformOrigin: "center center",
+          willChange: "transform",
+        }}>
+          <img
+            src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
+            alt="Sicilian landscape — original oil painting by Milly Farfalla"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              objectFit: "cover",
+              objectPosition: "center center",
+              transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
+              filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
+              transition: "filter 0.3s ease",
+            }}
+          />
+        </div>
         
         {/* Interactive color overlay */}
         <div style={{
@@ -213,100 +222,94 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         ))}
       </div>
 
-      {/* Decorative oversized mark with color harmony */}
-      <span aria-hidden="true" style={{
-        position: "absolute", 
-        top: "10%", 
-        right: "8%", 
-        zIndex: 1,
-        fontFamily: "'Cormorant Garamond', serif", 
-        fontSize: "clamp(80px, 18vw, 220px)",
-        fontWeight: 300, 
-        color: `${dominantColors[0]}08`, 
-        lineHeight: 1, 
-        pointerEvents: "none",
-        transform: `translateY(${parallaxFast * 0.3}px) rotate(${scrollY * 0.01}deg)`,
-        transition: "color 2s ease"
-      }}>
-        ✧
-      </span>
-
-      {/* Main Content with Cinematic Animation */}
+      {/* Main Content — restrained typography, brand colors, word-stagger reveal */}
       <div ref={ref} style={{
-        textAlign: "center", 
-        zIndex: 3, 
+        textAlign: "center",
+        zIndex: 3,
         position: "relative",
         opacity: fade,
         transform: `translateY(${scrollY * 0.1}px) scale(${0.98 + fade * 0.02})`,
         transition: "transform 0.1s ease-out"
       }}>
-        
-        {/* Animated title with stagger effect */}
+
+        {/* Hairline divider that draws in from center */}
+        <span aria-hidden="true" style={{
+          display: "block",
+          width: vis ? 64 : 0,
+          height: 1,
+          margin: "0 auto 26px",
+          background: th.accent,
+          opacity: 0.5,
+          transition: "width 1.6s cubic-bezier(0.16,1,0.3,1) 0.1s",
+        }} />
+
+        {/* Title — solid theme color (no bg-clip:text), word-by-word stagger reveal */}
         <h1 style={{
-          fontFamily: "'Poppins', 'Inter', 'Playfair Display', serif",
+          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
           fontSize: "clamp(3rem, 7vw, 6rem)",
-          fontWeight: 500,
+          fontWeight: 400,
           margin: 0,
-          marginBottom: 32,
-          lineHeight: 1.15,
-          letterSpacing: "0.015em",
-          fontFeatureSettings: "'kern' 1, 'liga' 1, 'calt' 1",
+          marginBottom: 28,
+          lineHeight: 1.05,
+          letterSpacing: "0.01em",
+          fontFeatureSettings: "'kern' 1, 'liga' 1",
           textRendering: "optimizeLegibility",
           WebkitFontSmoothing: "antialiased",
           MozOsxFontSmoothing: "grayscale",
-          background: isDark 
-            ? "linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFE4E1 100%)"
-            : "linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%)",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          textShadow: isDark 
-            ? "0 4px 20px rgba(255, 182, 193, 0.3), 0 0 40px rgba(255, 192, 203, 0.2)"
-            : "0 4px 20px rgba(255, 105, 180, 0.3), 0 0 40px rgba(255, 182, 193, 0.2)",
-          opacity: vis ? 1 : 0,
-          transform: vis ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, transform 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s"
+          color: th.text,
+          fontStyle: "italic",
         }}>
-          Milly Farfalla
+          {["Milly", "Farfalla"].map((word, i) => (
+            <span key={word} style={{
+              display: "inline-block",
+              marginRight: i === 0 ? "0.3em" : 0,
+              opacity: vis ? 1 : 0,
+              transform: vis ? "translateY(0)" : "translateY(28px)",
+              transition: `opacity 1.1s cubic-bezier(0.16,1,0.3,1) ${0.35 + i * 0.18}s, transform 1.1s cubic-bezier(0.16,1,0.3,1) ${0.35 + i * 0.18}s`,
+            }}>{word}</span>
+          ))}
         </h1>
 
-        {/* Subtitle with elegant fade-in */}
+        {/* Bilingual subtitle — Italian primary in Caveat, English eyebrow in Outfit */}
         <p style={{
           fontFamily: "'Caveat', cursive",
-          fontSize: "clamp(1.1rem, 2.5vw, 1.8rem)",
-          fontWeight: 600,
-          background: isDark 
-            ? "linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFE4E1 100%)"
-            : "linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%)",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          margin: 0,
-          marginBottom: 48,
-          lineHeight: 1.4,
+          fontSize: "clamp(1.2rem, 2.6vw, 1.9rem)",
+          fontWeight: 500,
+          color: th.accent,
+          margin: "0 0 8px",
+          lineHeight: 1.3,
           letterSpacing: "0.02em",
-          textShadow: isDark 
-            ? "0 2px 12px rgba(255, 182, 193, 0.2)"
-            : "0 2px 12px rgba(255, 105, 180, 0.2)",
-          opacity: vis ? 1 : 0,
-          transform: vis ? "translateY(0)" : "translateY(30px)",
-          transition: "opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s, transform 1.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s"
+          opacity: vis ? 0.9 : 0,
+          transform: vis ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1) 0.85s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.85s",
         }}>
-          Painting the soul of Sicily
+          dipingo l&apos;anima della Sicilia
         </p>
 
-        {/* Decorative wing with color harmony */}
+        <p style={{
+          fontFamily: "'Outfit', sans-serif",
+          fontSize: "clamp(0.7rem, 0.9vw, 0.78rem)",
+          fontWeight: 400,
+          letterSpacing: "0.32em",
+          textTransform: "uppercase",
+          color: th.textDim,
+          margin: "0 0 36px",
+          opacity: vis ? 0.7 : 0,
+          transform: vis ? "translateY(0)" : "translateY(16px)",
+          transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1) 1.05s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 1.05s",
+        }}>
+          painting the soul of Sicily
+        </p>
+
         <div style={{
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
-          transition: "opacity 1.6s cubic-bezier(0.23, 1, 0.32, 1) 0.6s, transform 1.6s cubic-bezier(0.23, 1, 0.32, 1) 0.6s"
+          transition: "opacity 1.6s cubic-bezier(0.16,1,0.3,1) 1.25s, transform 1.6s cubic-bezier(0.16,1,0.3,1) 1.25s"
         }}>
-          <Wing 
-            color={dominantColors[0]} 
+          <Wing
+            color={dominantColors[0]}
             isDark={isDark}
-            style={{
-              filter: `drop-shadow(0 4px 12px ${dominantColors[0]}20)`
-            }}
+            style={{ filter: `drop-shadow(0 4px 12px ${dominantColors[0]}20)` }}
           />
         </div>
       </div>

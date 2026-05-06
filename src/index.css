@@ -91,6 +91,11 @@ html[data-theme="dark"] #works button:focus-visible {
   50% { transform: translateX(135%) translateY(75%) translateZ(0); }
 }
 
+@keyframes heroBreath {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.045); }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

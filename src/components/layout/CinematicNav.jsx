@@ -67,18 +67,14 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           <Wing color={th.accent} size={22} />
         </div>
         <span style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
           fontSize: 14,
-          fontWeight: 600,
-          background: isDark 
-            ? "linear-gradient(135deg, #FFB6C1, #FFC0CB)"
-            : "linear-gradient(135deg, #FF69B4, #FFB6C1)",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          letterSpacing: "0.02em",
-          opacity: hLogo ? 1 : 0.9,
-          transition: "opacity 0.3s ease"
+          fontWeight: 500,
+          fontStyle: "italic",
+          color: th.text,
+          letterSpacing: "0.04em",
+          opacity: hLogo ? 1 : 0.85,
+          transition: "opacity 0.3s ease, color 0.6s ease",
         }}>
           Milly Farfalla
         </span>

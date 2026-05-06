@@ -33,3 +33,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          # Each deploy replaces gh-pages with a single fresh commit.
+          # Old build artifacts don't accumulate; the branch always reflects current dist/.
+          force_orphan: true
