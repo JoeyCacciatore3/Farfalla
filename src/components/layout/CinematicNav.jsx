@@ -10,22 +10,18 @@
  */
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
 import { MagneticButton, ColorReactiveLink } from "../ui/MicroInteractions";
 import { isValidExternalHref } from "../../utils/links";
-
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   const [open, setOpen] = useState(false);
   const [hLogo, setHLogo] = useState(false);
   const [hTheme, setHTheme] = useState(false);
   const [hMenu, setHMenu] = useState(false);
-  const location = useLocation();
-  const isHome = location.pathname === "/" || location.pathname === "";
-  
+
   const sections = [
     { label:"Works", id:"works" }, 
     { label:"Milly's Art Room", id:"kit" }, 
@@ -330,7 +326,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
             flexWrap: "wrap",
             gap: 12
           }}>
-            {SOCIALS.map((social, i) => (
+            {SOCIALS.map((social) => (
               <ColorReactiveLink
                 key={social.label}
                 href={social.href}

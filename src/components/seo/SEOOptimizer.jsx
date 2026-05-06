@@ -1,198 +1,139 @@
 /**
- * SEO Optimizer - World-class SEO for FarfallaArt
- * 
- * Features:
- * - Dynamic meta tags
- * - Open Graph optimization
- * - Schema.org structured data
- * - Performance tracking
+ * Runtime SEO helpers.
+ *
+ * Static foundation (title, description, OG, Twitter, canonical, Person + WebSite
+ * structured data) lives in index.html so crawlers and social previews see it
+ * without executing JS. The hooks here update meta tags client-side when route
+ * or content changes, and inject an ImageGallery JSON-LD for the works.
  */
 
 import { useEffect } from 'react';
+import { WORKS } from '../../data/content';
 
-export const useSEO = ({
-  title = 'Farfalla Portfolio - Sicilian Artist',
-  description = 'Discover the vibrant artwork of a Sicilian artist. Original paintings capturing the beauty and spirit of Sicily.',
-  image = '/hero-landscape.jpg',
-  url = 'https://joeycacciatore3.github.io/Farfalla/',
-  type = 'website'
-} = {}) => {
-  
-  useEffect(() => {
-    // Update document title
-    document.title = title;
+const SITE_URL = 'https://millyfarfalla.com';
+const SITE_NAME = 'Milly Farfalla';
 
-    // Update meta tags
-    const updateMetaTag = (name, content) => {
-      let meta = document.querySelector(`meta[name="${name}"]`) || 
-                 document.querySelector(`meta[property="${name}"]`);
-      
-      if (!meta) {
-        meta = document.createElement('meta');
-        if (name.startsWith('og:') || name.startsWith('twitter:')) {
-          meta.setAttribute('property', name);
-        } else {
-          meta.setAttribute('name', name);
-        }
-        document.head.appendChild(meta);
-      }
-      meta.setAttribute('content', content);
-    };
-
-    // Basic SEO tags
-    updateMetaTag('description', description);
-    updateMetaTag('keywords', 'art, sicily, painting, portfolio, artist, italian art');
-
-    // Open Graph tags
-    updateMetaTag('og:title', title);
-    updateMetaTag('og:description', description);
-    updateMetaTag('og:image', `${url}${image}`);
-    updateMetaTag('og:url', url);
-    updateMetaTag('og:type', type);
-    updateMetaTag('og:site_name', 'Farfalla Portfolio');
-    updateMetaTag('og:locale', 'en_US');
-
-    // Twitter Card tags
-    updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', title);
-    updateMetaTag('twitter:description', description);
-    updateMetaTag('twitter:image', `${url}${image}`);
-
-    // Additional meta tags
-    updateMetaTag('author', 'Farfalla Artist');
-    updateMetaTag('robots', 'index, follow');
-    updateMetaTag('viewport', 'width=device-width, initial-scale=1.0');
-
-  }, [title, description, image, url, type]);
+const setMeta = (key, content) => {
+  const isProperty = key.startsWith('og:') || key.startsWith('article:');
+  const selector = isProperty
+    ? `meta[property="${key}"]`
+    : `meta[name="${key}"]`;
+  let el = document.querySelector(selector);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(isProperty ? 'property' : 'name', key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
 };
 
-export const StructuredData = () => {
+export const useSEO = ({
+  title,
+  description,
+  image = '/hero-landscape.jpg',
+  path = '/',
+  type = 'website',
+} = {}) => {
   useEffect(() => {
-    // Remove existing structured data
-    const existingScript = document.querySelector('#structured-data');
-    if (existingScript) {
-      existingScript.remove();
+    if (title) document.title = title;
+    if (description) {
+      setMeta('description', description);
+      setMeta('og:description', description);
+      setMeta('twitter:description', description);
     }
+    if (title) {
+      setMeta('og:title', title);
+      setMeta('twitter:title', title);
+    }
+    const fullUrl = `${SITE_URL}${path}`;
+    const fullImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+    setMeta('og:url', fullUrl);
+    setMeta('og:image', fullImage);
+    setMeta('og:site_name', SITE_NAME);
+    setMeta('og:type', type);
+    setMeta('twitter:image', fullImage);
+    setMeta('twitter:card', 'summary_large_image');
+  }, [title, description, image, path, type]);
+};
 
-    // Create new structured data
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "VisualArtwork",
-      "name": "Milly Farfalla Portfolio",
-      "description": "Original paintings by Milly Farfalla, a talented Sicilian artist capturing the beauty and spirit of Sicily",
-      "creator": {
-        "@type": "Person",
-        "name": "Milly Farfalla",
-        "nationality": "Italian",
-        "birthPlace": "Sicily, Italy"
-      },
-      "artform": "Painting",
-      "artMedium": "Oil on Canvas",
-      "contentLocation": {
-        "@type": "Place",
-        "name": "Sicily, Italy"
-      },
-      "image": [
-        "https://joeycacciatore3.github.io/Farfalla/hero-landscape.jpg",
-        "https://joeycacciatore3.github.io/Farfalla/artwork/work-01.jpg",
-        "https://joeycacciatore3.github.io/Farfalla/artwork/work-02.jpg"
-      ],
-      "url": "https://joeycacciatore3.github.io/Farfalla/",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://joeycacciatore3.github.io/Farfalla/"
-      },
-      "dateCreated": "2026",
-      "inLanguage": "en-US",
-      "genre": "Landscape Art",
-      "artworkSurface": "Canvas"
-    };
-
-    const script = document.createElement('script');
-    script.id = 'structured-data';
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-
-    return () => {
-      const scriptToRemove = document.querySelector('#structured-data');
-      if (scriptToRemove) {
-        scriptToRemove.remove();
-      }
-    };
-  }, []);
-
+export const CanonicalLink = ({ path = '/' }) => {
+  useEffect(() => {
+    const href = `${SITE_URL}${path}`;
+    let el = document.querySelector('link[rel="canonical"]');
+    if (!el) {
+      el = document.createElement('link');
+      el.rel = 'canonical';
+      document.head.appendChild(el);
+    }
+    el.href = href;
+  }, [path]);
   return null;
 };
 
-export const CanonicalLink = ({ url }) => {
+/**
+ * Inject an ImageGallery + per-artwork VisualArtwork structured data block.
+ * Person + WebSite are already declared statically in index.html.
+ */
+export const StructuredData = () => {
   useEffect(() => {
-    // Remove existing canonical link
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    if (existingCanonical) {
-      existingCanonical.remove();
-    }
+    const id = 'structured-data-gallery';
+    const existing = document.getElementById(id);
+    if (existing) existing.remove();
 
-    // Add new canonical link
-    const canonical = document.createElement('link');
-    canonical.rel = 'canonical';
-    canonical.href = url;
-    document.head.appendChild(canonical);
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'ImageGallery',
+      name: 'Milly Farfalla — Works',
+      url: `${SITE_URL}/`,
+      author: { '@id': `${SITE_URL}/#person` },
+      image: WORKS.map((w) => ({
+        '@type': 'VisualArtwork',
+        '@id': `${SITE_URL}/#${w.img}`,
+        name: w.title,
+        creator: { '@id': `${SITE_URL}/#person` },
+        artform: 'Painting',
+        artMedium: 'Oil paint',
+        artworkSurface: 'Canvas',
+        artEdition: w.medium,
+        contentUrl: `${SITE_URL}/${w.img}`,
+        thumbnailUrl: `${SITE_URL}/${w.img}`,
+      })),
+    };
+
+    const script = document.createElement('script');
+    script.id = id;
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
 
     return () => {
-      const canonicalToRemove = document.querySelector('link[rel="canonical"]');
-      if (canonicalToRemove) {
-        canonicalToRemove.remove();
-      }
+      const toRemove = document.getElementById(id);
+      if (toRemove) toRemove.remove();
     };
-  }, [url]);
-
+  }, []);
   return null;
 };
 
 export const PreloadCriticalResources = () => {
   useEffect(() => {
-    const criticalResources = [
-      { href: '/hero-landscape.jpg', as: 'image', type: 'image/jpeg' },
+    const resources = [
+      { href: '/hero-landscape.jpg', as: 'image', type: 'image/jpeg', fetchpriority: 'high' },
       { href: '/artwork/work-01.jpg', as: 'image', type: 'image/jpeg' },
-      { href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap', as: 'style' }
     ];
-
-    criticalResources.forEach(resource => {
+    const added = [];
+    resources.forEach((r) => {
+      if (document.querySelector(`link[rel="preload"][href="${r.href}"]`)) return;
       const link = document.createElement('link');
       link.rel = 'preload';
-      link.href = resource.href;
-      link.as = resource.as;
-      if (resource.type) link.type = resource.type;
-      if (resource.crossorigin) link.crossOrigin = resource.crossorigin;
+      link.href = r.href;
+      link.as = r.as;
+      if (r.type) link.type = r.type;
+      if (r.fetchpriority) link.setAttribute('fetchpriority', r.fetchpriority);
       document.head.appendChild(link);
+      added.push(link);
     });
-
-    // Cleanup function
-    return () => {
-      criticalResources.forEach(resource => {
-        const linkToRemove = document.querySelector(`link[href="${resource.href}"]`);
-        if (linkToRemove) {
-          linkToRemove.remove();
-        }
-      });
-    };
+    return () => added.forEach((l) => l.remove());
   }, []);
-
-  return null;
-};
-
-export const SitemapGenerator = () => {
-  useEffect(() => {
-    // Generate dynamic sitemap data (for static site this would be build-time)
-    const pages = [
-      { url: '/', priority: '1.0', changefreq: 'weekly' },
-      { url: '/sicilia', priority: '0.8', changefreq: 'monthly' }
-    ];
-
-    console.log('Sitemap data generated:', pages);
-  }, []);
-
   return null;
 };
 

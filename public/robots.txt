@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Be friendly to image crawlers — these works ARE the content
+User-agent: Googlebot-Image
+Allow: /artwork/
+Allow: /hero-landscape.jpg
+
+Sitemap: https://millyfarfalla.com/sitemap.xml

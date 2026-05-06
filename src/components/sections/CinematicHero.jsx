@@ -342,24 +342,6 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         </p>
       </div>
 
-      <style jsx>{`
-        @keyframes float0 {
-          0%, 100% { transform: translateX(20%) translateY(30%) translateZ(0); }
-          50% { transform: translateX(25%) translateY(25%) translateZ(0); }
-        }
-        @keyframes float1 {
-          0%, 100% { transform: translateX(80%) translateY(55%) translateZ(0); }
-          50% { transform: translateX(75%) translateY(60%) translateZ(0); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translateX(140%) translateY(80%) translateZ(0); }
-          50% { transform: translateX(135%) translateY(75%) translateZ(0); }
-        }
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.4; transform: translateY(0); }
-          50% { opacity: 1; transform: translateY(8px); }
-        }
-      `}</style>
     </section>
   );
 };

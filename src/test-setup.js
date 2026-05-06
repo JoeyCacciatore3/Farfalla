@@ -17,10 +17,10 @@ Object.defineProperty(navigator, 'userAgent', {
 })
 
 // Mock fetch
-global.fetch = vi.fn()
+globalThis.fetch = vi.fn()
 
 // Mock console methods for cleaner test output
-global.console = {
+globalThis.console = {
   ...console,
   warn: vi.fn(),
   error: vi.fn(),

@@ -89,7 +89,7 @@ export class SecurityErrorBoundary extends Component {
           margin: '1rem'
         }}>
           <h3>🎨 Oops! Something went wrong</h3>
-          <p>We're working on fixing this. Please refresh the page or try again later.</p>
+          <p>We&apos;re working on fixing this. Please refresh the page or try again later.</p>
           <button 
             onClick={() => window.location.reload()}
             style={{

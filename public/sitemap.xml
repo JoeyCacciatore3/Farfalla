@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://millyfarfalla.com/</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-01.jpg</image:loc>
+      <image:title>Mediterranean Dawn</image:title>
+      <image:caption>Oil on Canvas, 24" × 36" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-02.jpg</image:loc>
+      <image:title>Sicilian Afternoon</image:title>
+      <image:caption>Oil on Canvas, 18" × 24" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-03.jpg</image:loc>
+      <image:title>Golden Coast</image:title>
+      <image:caption>Oil on Canvas, 30" × 40" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-04.jpg</image:loc>
+      <image:title>Evening Reflections</image:title>
+      <image:caption>Oil on Canvas, 16" × 20" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-05.jpg</image:loc>
+      <image:title>Coastal Winds</image:title>
+      <image:caption>Oil on Canvas, 22" × 28" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-06.jpg</image:loc>
+      <image:title>Sunset Embrace</image:title>
+      <image:caption>Oil on Canvas, 20" × 24" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-07.jpg</image:loc>
+      <image:title>Azure Dreams</image:title>
+      <image:caption>Oil on Canvas, 18" × 22" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-08.jpg</image:loc>
+      <image:title>Warm Horizon</image:title>
+      <image:caption>Oil on Canvas, 24" × 30" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-09.jpg</image:loc>
+      <image:title>Oceanic Memory</image:title>
+      <image:caption>Oil on Canvas, 16" × 24" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-10.jpg</image:loc>
+      <image:title>Twilight Serenity</image:title>
+      <image:caption>Oil on Canvas, 20" × 30" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-11.jpg</image:loc>
+      <image:title>Island Light</image:title>
+      <image:caption>Oil on Canvas, 18" × 28" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-12.jpg</image:loc>
+      <image:title>Emerald Shores</image:title>
+      <image:caption>Oil on Canvas, 22" × 32" — by Milly Farfalla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://millyfarfalla.com/artwork/work-13.jpg</image:loc>
+      <image:title>Mystic Evening</image:title>
+      <image:caption>Oil on Canvas, 24" × 36" — by Milly Farfalla</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://millyfarfalla.com/sicilia</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

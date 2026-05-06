@@ -2,28 +2,108 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" id="color-scheme-meta" content="light" />
     <meta name="theme-color" id="theme-color-meta" content="#f7f4ee" />
-    
-    <!-- LEGENDARY SECURITY HEADERS (production headers via _headers file) -->
-    <meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self'; 
-                   script-src 'self' 'unsafe-inline'; 
-                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
-                   font-src 'self' https://fonts.gstatic.com data:; 
-                   img-src 'self' data: https: blob:; 
-                   connect-src 'self' https:; 
-                   base-uri 'self'; 
-                   object-src 'none';">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <title>Farfalla Portfolio</title>
+
+    <title>Milly Farfalla — Sicilian Oil Paintings &amp; Mediterranean Art</title>
+    <meta name="description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment — collected works, studio notes, and contact." />
+    <meta name="author" content="Milly Farfalla" />
+    <meta name="keywords" content="Milly Farfalla, Sicilian artist, Italian oil painter, Mediterranean art, original oil paintings, Sicily landscape painting, contemporary Italian art" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <link rel="canonical" href="https://millyfarfalla.com/" />
+
+    <!-- Favicon set (replace with branded mark; vite.svg is placeholder) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Milly Farfalla" />
+    <meta property="og:title" content="Milly Farfalla — Sicilian Oil Paintings" />
+    <meta property="og:description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment." />
+    <meta property="og:url" content="https://millyfarfalla.com/" />
+    <meta property="og:image" content="https://millyfarfalla.com/hero-landscape.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mediterranean landscape, oil on canvas — Milly Farfalla" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="it_IT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Milly Farfalla — Sicilian Oil Paintings" />
+    <meta name="twitter:description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, the slow craft of canvas and pigment." />
+    <meta name="twitter:image" content="https://millyfarfalla.com/hero-landscape.jpg" />
+    <meta name="twitter:image:alt" content="Mediterranean landscape, oil on canvas — Milly Farfalla" />
+
+    <!-- Performance: preconnect to font hosts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Security headers (production headers also applied via public/_headers) -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' 'unsafe-inline';
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src 'self' https://fonts.gstatic.com data:;
+                   img-src 'self' data: https: blob:;
+                   connect-src 'self' https:;
+                   base-uri 'self';
+                   object-src 'none';
+                   frame-ancestors 'none';
+                   form-action 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+    <!-- Structured data: artist + website (per-artwork list injected at runtime by SEOOptimizer) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://millyfarfalla.com/#person",
+          "name": "Milly Farfalla",
+          "alternateName": "Emilia",
+          "jobTitle": "Painter",
+          "description": "Italian oil painter working in Sicilian and Mediterranean landscape traditions.",
+          "nationality": "Italian",
+          "url": "https://millyfarfalla.com/",
+          "image": "https://millyfarfalla.com/hero-landscape.jpg",
+          "sameAs": [
+            "https://www.instagram.com/emilia.it21/",
+            "https://www.tiktok.com/@milly.ita"
+          ],
+          "knowsAbout": ["Oil painting", "Landscape painting", "Sicilian art", "Mediterranean art"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://millyfarfalla.com/#website",
+          "url": "https://millyfarfalla.com/",
+          "name": "Milly Farfalla",
+          "description": "Original oil paintings by Milly Farfalla.",
+          "publisher": { "@id": "https://millyfarfalla.com/#person" },
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;font-family:Georgia,serif;max-width:40rem;margin:4rem auto;color:#1c1a16;">
+        <h1>Milly Farfalla</h1>
+        <p>This portfolio uses JavaScript to render. To view Milly's oil paintings, please enable JavaScript or visit her work on
+          <a href="https://www.instagram.com/emilia.it21/">Instagram</a> or
+          <a href="https://www.tiktok.com/@milly.ita">TikTok</a>.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

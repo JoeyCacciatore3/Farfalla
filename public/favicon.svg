@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Milly Farfalla — brushstroke butterfly mark -->
+  <!-- Body: vertical brushstroke -->
+  <path d="M32 12 Q33 14 33 24 Q33 36 32 50 Q31 36 31 24 Q31 14 32 12 Z"
+        fill="#1c1a16"/>
+  <!-- Upper-left wing: thick brushstroke -->
+  <path d="M30 22 Q18 12 9 16 Q4 22 8 30 Q14 36 24 32 Q30 28 30 22 Z"
+        fill="#8a6d2b" stroke="#1c1a16" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Upper-right wing -->
+  <path d="M34 22 Q46 12 55 16 Q60 22 56 30 Q50 36 40 32 Q34 28 34 22 Z"
+        fill="#8a6d2b" stroke="#1c1a16" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Lower-left wing: smaller -->
+  <path d="M30 32 Q22 36 16 44 Q14 50 20 52 Q28 50 30 42 Z"
+        fill="#b49450" stroke="#1c1a16" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Lower-right wing -->
+  <path d="M34 32 Q42 36 48 44 Q50 50 44 52 Q36 50 34 42 Z"
+        fill="#b49450" stroke="#1c1a16" stroke-width="0.8" stroke-linejoin="round"/>
+  <!-- Antennae: subtle -->
+  <path d="M32 13 Q28 7 25 6" stroke="#1c1a16" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+  <path d="M32 13 Q36 7 39 6" stroke="#1c1a16" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+</svg>

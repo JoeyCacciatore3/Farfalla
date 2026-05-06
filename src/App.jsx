@@ -29,12 +29,12 @@ export default function App() {
   const th = isDark ? THEMES.dark : THEMES.light;
   const toggleTheme = useCallback(() => setIsDark(d => !d), []);
 
-  // SEO and Performance Optimization
+  // Runtime SEO update — static foundation lives in index.html.
   useSEO({
-    title: 'Milly Farfalla - Sicilian Artist | Original Oil Paintings',
-    description: 'Discover the vibrant artwork of Milly Farfalla, a talented Sicilian artist. Original oil paintings capturing the beauty, spirit, and luminous landscapes of Sicily.',
+    title: 'Milly Farfalla — Sicilian Oil Paintings & Mediterranean Art',
+    description: "Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment — collected works, studio notes, and contact.",
     image: '/hero-landscape.jpg',
-    url: 'https://joeycacciatore3.github.io/Farfalla/'
+    path: '/',
   });
   
   usePerformanceOptimizer();
@@ -129,7 +129,7 @@ export default function App() {
       
       <SecurityErrorBoundary componentName="App">
         <StructuredData />
-        <CanonicalLink url="https://joeycacciatore3.github.io/Farfalla/" />
+        <CanonicalLink path="/" />
         <PreloadCriticalResources />
         
         <Routes>

@@ -23,11 +23,12 @@ export const MagneticButton = ({ children, onClick, className = '', style = {}, 
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    const deltaX = (e.clientX - centerX) * 0.15;
-    const deltaY = (e.clientY - centerY) * 0.15;
+    const factor = strength / 130; // strength=20 → ~0.154 (preserves prior feel)
+    const deltaX = (e.clientX - centerX) * factor;
+    const deltaY = (e.clientY - centerY) * factor;
     
     setPosition({ x: deltaX, y: deltaY });
-  }, []);
+  }, [strength]);
 
   const handleMouseLeave = useCallback(() => {
     setPosition({ x: 0, y: 0 });
@@ -118,15 +119,6 @@ export const RippleButton = ({ children, onClick, color = '#c9a84c', className =
           }}
         />
       ))}
-      
-      <style jsx>{`
-        @keyframes rippleEffect {
-          to {
-            transform: scale(2);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </button>
   );
 };
@@ -189,14 +181,7 @@ export const LoadingSpinner = ({ size = 24, color = '#c9a84c', thickness = 3 }) 
         borderRadius: '50%',
         animation: 'spin 1s linear infinite'
       }}
-    >
-      <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-    </div>
+    />
   );
 };
 
