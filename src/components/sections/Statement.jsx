@@ -8,22 +8,20 @@ export const Statement = ({ th }) => {
         <div style={{ width:36, height:1, background:`${th.accent}30` }}/>
       </div>
       <div style={{ flex:"1 1 280px" }}>
-        {/* ✎ STATEMENT — Artist quote */}
-        <blockquote style={{
-          fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.3rem,3.2vw,2.2rem)",
-          color:th.text, fontWeight:300, lineHeight:1.55, margin:0, fontStyle:"italic",
+        {/*
+          ✎ STATEMENT — Emilia writes this in her own words.
+          Do NOT auto-generate or pre-fill an artist statement. The site's
+          credibility depends on this being her voice. Leave the placeholder
+          until she provides text via the daily-email loop.
+        */}
+        <p style={{
+          fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.05rem,2vw,1.3rem)",
+          color:th.textDim, fontWeight:300, lineHeight:1.55, margin:0, fontStyle:"italic",
           opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(40px)",
           transition:"all 1.2s cubic-bezier(0.16,1,0.3,1)",
+          letterSpacing:"0.02em",
         }}>
-          &quot;I paint the space between what you see and what you feel — that uncertain, luminous threshold where memory dissolves into color.&quot;
-        </blockquote>
-        {/* ✎ STATEMENT — Bio paragraph */}
-        <p style={{
-          fontFamily:"'Outfit',sans-serif", fontSize:14, color:th.textDim, lineHeight:1.9, marginTop:28, maxWidth:500,
-          opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(20px)",
-          transition:"all 1s cubic-bezier(0.16,1,0.3,1) 0.2s",
-        }}>
-          I work from a sun-flooded studio, building each piece through dozens of translucent layers — a slow, patient process that can span weeks. The work lives in the space between abstraction and memory, where I leave room for you to find your own story in the color.
+          — statement coming soon —
         </p>
         <span aria-hidden="true" style={{
           display:"inline-block", marginTop:24,

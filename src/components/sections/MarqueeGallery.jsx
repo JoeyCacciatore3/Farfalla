@@ -37,7 +37,9 @@ const TileImg = ({ work, th, isDark, onClick }) => (
   >
     <img
       src={`${assetBase}${work.img}`}
-      alt={`${work.title} — ${work.medium} by Milly Farfalla`}
+      alt={work.medium
+        ? `${work.title} — ${work.medium} by Milly Farfalla`
+        : `${work.title} by Milly Farfalla`}
       loading="lazy"
       draggable={false}
       style={{
@@ -100,11 +102,13 @@ const Lightbox = ({ work, th, isDark, onClose }) => {
           fontSize: "clamp(1.4rem, 3vw, 2rem)",
           color: th.text, margin: 0,
         }}>{work.title}</h3>
-        <p style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontSize: 13, color: th.textDim,
-          margin: "6px 0 0", letterSpacing: "0.04em",
-        }}>{work.medium}</p>
+        {work.medium ? (
+          <p style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 13, color: th.textDim,
+            margin: "6px 0 0", letterSpacing: "0.04em",
+          }}>{work.medium}</p>
+        ) : null}
       </div>
       <p style={{
         position: "absolute", top: 24, right: 32,
@@ -144,14 +148,14 @@ export const MarqueeGallery = ({ th, isDark }) => {
         </div>
         <p style={{
           fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic",
-          fontSize: "clamp(1rem, 1.7vw, 1.25rem)",
-          color: th.textSoft, margin: "12px 0 0",
+          fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
+          color: th.textDim, margin: "12px 0 0",
           maxWidth: 540, lineHeight: 1.5,
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0)" : "translateY(8px)",
           transition: "all 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s",
         }}>
-          un fiume di pittura <span style={{ color: th.textDim, fontStyle: "normal" }}>— a river of painting.</span> Hover to slow it, click any piece to look closer.
+          Hover to slow. Click to look closer.
         </p>
       </div>
 

@@ -10,7 +10,7 @@
  */
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Wing } from "../effects/Wing";
 import { SOCIALS } from "../../data/content";
 import { MagneticButton, ColorReactiveLink } from "../ui/MicroInteractions";
@@ -20,11 +20,31 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   const [hLogo, setHLogo] = useState(false);
   const [hTheme, setHTheme] = useState(false);
   const [hMenu, setHMenu] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Anchor click handler — needs to work from any route. If we're already on
+  // the homepage, scroll directly. If we're on /sicilia (or any other route),
+  // navigate home first then scroll once the section exists in the DOM.
+  const goToSection = (id) => {
+    setOpen(false);
+    if (location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    navigate('/');
+    // Wait one tick for the home route to render its sections, then scroll.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  };
 
   const sections = [
-    { label:"Works", id:"works" }, 
-    { label:"Milly's Art Room", id:"kit" }, 
-    { label:"Connect", id:"connect" },
+    { label:"Works", id:"works" },
+    { label:"Studio", id:"kit" },
+    { label:"Contact", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },
   ];
 
@@ -46,8 +66,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           padding: "12px 20px",
           borderRadius: 24,
           background: hLogo 
-            ? `${th.navBg}FA`
-            : `${th.navBg}F0`,
+            ? th.navBgHover
+            : th.navBg,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           border: `1px solid ${hLogo ? th.borderHover : th.border}`,
@@ -95,8 +115,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           borderRadius: 24,
           border: `1px solid ${hTheme ? th.borderHover : th.border}`,
           background: hTheme 
-            ? `${th.navBg}FA`
-            : `${th.navBg}F0`,
+            ? th.navBgHover
+            : th.navBg,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           color: th.text,
@@ -134,8 +154,8 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           borderRadius: 24,
           border: `1px solid ${hMenu || open ? th.borderHover : th.border}`,
           background: hMenu || open 
-            ? `${th.navBg}FA`
-            : `${th.navBg}F0`,
+            ? th.navBgHover
+            : th.navBg,
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           color: th.text,
@@ -254,14 +274,10 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                     </Link>
                   ) : (
                     <a
-                      href={`#${item.id}`}
+                      href={`/#${item.id}`}
                       onClick={(e) => {
                         e.preventDefault();
-                        setOpen(false);
-                        const element = document.getElementById(item.id);
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        goToSection(item.id);
                       }}
                       style={{
                         display: "block",
@@ -333,7 +349,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 13,
                   fontWeight: 500,
-                  background: `${th.surface}80`,
+                  background: th.surfaceStrong,
                   border: `1px solid ${th.border}`,
                   transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
                 }}

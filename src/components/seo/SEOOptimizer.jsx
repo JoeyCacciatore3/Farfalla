@@ -80,24 +80,31 @@ export const StructuredData = () => {
     const existing = document.getElementById(id);
     if (existing) existing.remove();
 
+    // Per-painting VisualArtwork JSON-LD. Fields are emitted ONLY when we have
+    // verified data. `artMedium` / `artworkSurface` were previously hardcoded
+    // to "Oil paint" / "Canvas" — that was AI-fabricated narrowing of Milly's
+    // practice and is now omitted until she confirms each piece. Search engines
+    // tolerate a sparse VisualArtwork; they do not tolerate fabricated facts.
     const data = {
       '@context': 'https://schema.org',
       '@type': 'ImageGallery',
       name: 'Milly Farfalla — Works',
       url: `${SITE_URL}/`,
       author: { '@id': `${SITE_URL}/#person` },
-      image: WORKS.map((w) => ({
-        '@type': 'VisualArtwork',
-        '@id': `${SITE_URL}/#${w.img}`,
-        name: w.title,
-        creator: { '@id': `${SITE_URL}/#person` },
-        artform: 'Painting',
-        artMedium: 'Oil paint',
-        artworkSurface: 'Canvas',
-        artEdition: w.medium,
-        contentUrl: `${SITE_URL}/${w.img}`,
-        thumbnailUrl: `${SITE_URL}/${w.img}`,
-      })),
+      image: WORKS.map((w) => {
+        const piece = {
+          '@type': 'VisualArtwork',
+          '@id': `${SITE_URL}/#${w.img}`,
+          name: w.title,
+          creator: { '@id': `${SITE_URL}/#person` },
+          artform: 'Painting',
+          contentUrl: `${SITE_URL}/${w.img}`,
+          thumbnailUrl: `${SITE_URL}/${w.img}`,
+        };
+        // Only emit medium/surface when the data file says so.
+        if (w.medium) piece.artMedium = w.medium;
+        return piece;
+      }),
     };
 
     const script = document.createElement('script');

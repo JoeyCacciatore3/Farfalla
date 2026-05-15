@@ -6,7 +6,9 @@ import { useScroll } from "./hooks/useScroll";
 import { SecurityErrorBoundary } from "./components/security/ErrorBoundary.jsx";
 import { useSEO, StructuredData, CanonicalLink, PreloadCriticalResources } from "./components/seo/SEOOptimizer.jsx";
 import { usePerformanceOptimizer } from "./components/effects/PerformanceOptimizer.jsx";
-import { PaintBrushCursor } from "./components/ui/SignatureInteraction.jsx";
+// PaintBrushCursor was the previous custom cursor — removed 2026-05-15 in
+// favor of the butterfly trail in <PaintCanvas/> (the namesake of the site).
+// The file `SignatureInteraction.jsx` still exports it; it's no longer mounted.
 
 import { AmbientBg } from "./components/effects/AmbientBg";
 import { Grain } from "./components/effects/Grain";
@@ -24,16 +26,48 @@ import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 import { SicilyPage } from "./components/sections/SicilyPage";
 
+// Initial theme — must agree with the pre-paint script in index.html so we
+// don't get a flash on hydrate. Reads localStorage first, falls back to OS.
+const readInitialTheme = () => {
+  if (typeof window === 'undefined') return false;
+  try {
+    const stored = window.localStorage.getItem('mf-theme');
+    if (stored === 'dark') return true;
+    if (stored === 'light') return false;
+  } catch { /* localStorage blocked (private mode) — fall through */ }
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(readInitialTheme);
   const { y, p } = useScroll();
   const th = isDark ? THEMES.dark : THEMES.light;
-  const toggleTheme = useCallback(() => setIsDark(d => !d), []);
+  const toggleTheme = useCallback(() => {
+    setIsDark((d) => {
+      const next = !d;
+      try { window.localStorage.setItem('mf-theme', next ? 'dark' : 'light'); } catch { /* ignore */ }
+      return next;
+    });
+  }, []);
+
+  // Live-respond to OS theme changes — only if the user hasn't manually chosen.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e) => {
+      try {
+        if (window.localStorage.getItem('mf-theme')) return; // user has overridden
+      } catch { return; }
+      setIsDark(e.matches);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // Runtime SEO update — static foundation lives in index.html.
   useSEO({
-    title: 'Milly Farfalla — Sicilian Oil Paintings & Mediterranean Art',
-    description: "Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment — collected works, studio notes, and contact.",
+    title: 'Milly Farfalla — Painter',
+    description: 'Paintings by Milly Farfalla. Born in Palermo, Sicily. Studio works, contact, and notes.',
     image: '/hero-landscape.jpg',
     path: '/',
   });
@@ -148,8 +182,6 @@ export default function App() {
       <ProgressBar scrollP={p} th={th} />
       <CinematicNav isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
-      <PaintBrushCursor />
-      
       <SecurityErrorBoundary componentName="App">
         <StructuredData />
         <CanonicalLink path="/" />

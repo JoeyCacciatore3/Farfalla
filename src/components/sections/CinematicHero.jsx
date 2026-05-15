@@ -148,7 +148,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         }}>
           <img
             src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
-            alt="Sicilian landscape — original oil painting by Milly Farfalla"
+            alt="A painting by Milly Farfalla"
             style={{
               position: "absolute",
               top: 0,
@@ -257,21 +257,27 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           transition: "width 1.6s cubic-bezier(0.16,1,0.3,1) 0.1s",
         }} />
 
-        {/* Title — solid theme color (no bg-clip:text), word-by-word stagger reveal */}
+        {/* Title — bolder weight + layered text-shadow for legibility against
+            the colorful hero painting. Was weight 400 italic and disappeared
+            into the painting's mid-tones; now 700 italic with a soft halo so
+            the name reads against any backdrop, light or dark. */}
         <h1 style={{
           fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-          fontSize: "clamp(3rem, 7vw, 6rem)",
-          fontWeight: 400,
+          fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)",
+          fontWeight: 700,
           margin: 0,
           marginBottom: 28,
           lineHeight: 1.05,
-          letterSpacing: "0.01em",
+          letterSpacing: "0.005em",
           fontFeatureSettings: "'kern' 1, 'liga' 1",
           textRendering: "optimizeLegibility",
           WebkitFontSmoothing: "antialiased",
           MozOsxFontSmoothing: "grayscale",
           color: th.text,
           fontStyle: "italic",
+          textShadow: isDark
+            ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)"
+            : "0 2px 28px rgba(255,255,255,0.55), 0 1px 4px rgba(0,0,0,0.25)",
         }}>
           {["Milly", "Farfalla"].map((word, i) => (
             <span key={word} style={{
@@ -284,41 +290,19 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           ))}
         </h1>
 
-        {/* Bilingual subtitle — Italian primary in Caveat, English eyebrow in Outfit */}
-        <p style={{
-          fontFamily: "'Caveat', cursive",
-          fontSize: "clamp(1.2rem, 2.6vw, 1.9rem)",
-          fontWeight: 500,
-          color: th.accent,
-          margin: "0 0 8px",
-          lineHeight: 1.3,
-          letterSpacing: "0.02em",
-          opacity: vis ? 0.9 : 0,
-          transform: vis ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1) 0.85s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.85s",
-        }}>
-          dipingo l&apos;anima della Sicilia
-        </p>
-
-        <p style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontSize: "clamp(0.7rem, 0.9vw, 0.78rem)",
-          fontWeight: 400,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-          color: th.textDim,
-          margin: "0 0 36px",
-          opacity: vis ? 0.7 : 0,
-          transform: vis ? "translateY(0)" : "translateY(16px)",
-          transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1) 1.05s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 1.05s",
-        }}>
-          painting the soul of Sicily
-        </p>
+        {/*
+          Subtitle / tagline intentionally omitted.
+          Prior copy ("dipingo l'anima della Sicilia / painting the soul of
+          Sicily") was AI-fabricated voice. Emilia will provide her own line —
+          or none — when ready. Reference: Cecily Brown / Olafur Eliasson, who
+          let the work and the name stand alone.
+        */}
 
         <div style={{
+          marginTop: 8,
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
-          transition: "opacity 1.6s cubic-bezier(0.16,1,0.3,1) 1.25s, transform 1.6s cubic-bezier(0.16,1,0.3,1) 1.25s"
+          transition: "opacity 1.6s cubic-bezier(0.16,1,0.3,1) 0.95s, transform 1.6s cubic-bezier(0.16,1,0.3,1) 0.95s"
         }}>
           <Wing
             color={dominantColors[0]}
@@ -328,35 +312,25 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         </div>
       </div>
 
-      {/* Scroll indicator with color accent */}
+      {/* Scroll indicator — a quiet hairline, no "SCROLL" caption.
+          The caption was loud chrome competing with the painting; the line
+          alone is enough cue and reads as part of the hero composition. */}
       <div style={{
         position: "absolute",
-        bottom: 48,
+        bottom: 40,
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 3,
-        opacity: fade * 0.8,
+        opacity: fade * 0.6,
         transition: "opacity 0.3s ease"
       }}>
         <div style={{
-          width: 2,
-          height: 40,
-          background: `linear-gradient(to bottom, ${dominantColors[0]}80, transparent)`,
-          margin: "0 auto 12px",
-          borderRadius: 2,
-          animation: "scrollPulse 2s ease-in-out infinite"
+          width: 1,
+          height: 36,
+          background: `linear-gradient(to bottom, ${dominantColors[0]}70, transparent)`,
+          margin: "0 auto",
+          animation: "scrollPulse 2.4s ease-in-out infinite",
         }} />
-        <p style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontSize: 11,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          color: th.textDim,
-          margin: 0,
-          textShadow: `0 1px 4px ${dominantColors[0]}10`
-        }}>
-          Scroll
-        </p>
       </div>
 
     </section>

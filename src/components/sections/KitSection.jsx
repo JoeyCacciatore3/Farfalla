@@ -30,31 +30,41 @@ const KitItem = ({ item, i, th }) => {
 
 export const KitSection = ({ th }) => {
   const [ref, vis] = useInView({ t: 0.1 });
+
+  // Honest empty state. The previous KIT array was AI-fabricated brand names
+  // for an oil-only painter; Milly works in many media (confirmed 2026-05-15)
+  // so the inventory stays blank until she lists what's actually on her table.
+  const hasKit = KIT.length > 0;
+
   return (
     <section id="kit" style={{ padding:"56px 0 72px" }}>
       <div ref={ref} style={{ padding:"0 28px", marginBottom:36 }}>
         <div style={{ display:"flex", alignItems:"center", gap:14 }}>
           <div style={{ width:vis?36:0, height:1, background:`${th.accent}35`, transition:"width 0.8s ease" }}/>
           <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", color:th.textDim, opacity:vis?1:0, transition:"opacity 0.6s ease 0.2s" }}>
-            Milly&apos;s Art Room
+            Studio
           </span>
         </div>
-        <p style={{
-          fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400,
-          fontSize:"clamp(0.95rem,1.6vw,1.15rem)", color:th.textSoft, margin:"14px 0 0",
-          maxWidth:520, lineHeight:1.5,
-          opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(8px)",
-          transition:"all 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s",
-        }}>
-          il tavolo della pittrice <span style={{ color:th.textDim, fontStyle:"normal" }}>— the painter&apos;s table.</span> The brushes, oils, and surfaces I keep coming back to.
-        </p>
+        {hasKit ? null : (
+          <p style={{
+            fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400,
+            fontSize:"clamp(0.95rem,1.4vw,1.05rem)", color:th.textDim, margin:"14px 0 0",
+            maxWidth:520, lineHeight:1.5,
+            opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(8px)",
+            transition:"all 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s",
+          }}>
+            — more soon —
+          </p>
+        )}
       </div>
-      <div style={{ display:"flex", gap:0, overflowX:"auto", scrollSnapType:"x mandatory", scrollbarWidth:"none", padding:"0 28px" }}>
-        {KIT.map((item, i) => (
-          <KitItem key={i} item={item} i={i} th={th} />
-        ))}
-        <div style={{ flex:"0 0 28px" }}/>
-      </div>
+      {hasKit && (
+        <div style={{ display:"flex", gap:0, overflowX:"auto", scrollSnapType:"x mandatory", scrollbarWidth:"none", padding:"0 28px" }}>
+          {KIT.map((item, i) => (
+            <KitItem key={i} item={item} i={i} th={th} />
+          ))}
+          <div style={{ flex:"0 0 28px" }}/>
+        </div>
+      )}
     </section>
   );
 };

@@ -6,10 +6,10 @@
     <meta name="color-scheme" id="color-scheme-meta" content="light" />
     <meta name="theme-color" id="theme-color-meta" content="#f7f4ee" />
 
-    <title>Milly Farfalla — Sicilian Oil Paintings &amp; Mediterranean Art</title>
-    <meta name="description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment — collected works, studio notes, and contact." />
+    <title>Milly Farfalla — Painter</title>
+    <meta name="description" content="Paintings by Milly Farfalla. Born in Palermo, Sicily. Studio works, contact, and notes." />
     <meta name="author" content="Milly Farfalla" />
-    <meta name="keywords" content="Milly Farfalla, Sicilian artist, Italian oil painter, Mediterranean art, original oil paintings, Sicily landscape painting, contemporary Italian art" />
+    <meta name="keywords" content="Milly Farfalla, Sicilian artist, Italian painter, contemporary Italian art, Palermo artist" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <link rel="canonical" href="https://millyfarfalla.com/" />
@@ -24,22 +24,22 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Milly Farfalla" />
-    <meta property="og:title" content="Milly Farfalla — Sicilian Oil Paintings" />
-    <meta property="og:description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, and the slow craft of canvas and pigment." />
+    <meta property="og:title" content="Milly Farfalla — Painter" />
+    <meta property="og:description" content="Paintings by Milly Farfalla. Born in Palermo, Sicily." />
     <meta property="og:url" content="https://millyfarfalla.com/" />
     <meta property="og:image" content="https://millyfarfalla.com/hero-landscape.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mediterranean landscape, oil on canvas — Milly Farfalla" />
+    <meta property="og:image:alt" content="A painting by Milly Farfalla" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="it_IT" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Milly Farfalla — Sicilian Oil Paintings" />
-    <meta name="twitter:description" content="Original oil paintings by Milly Farfalla. Sicilian light, Mediterranean coasts, the slow craft of canvas and pigment." />
+    <meta name="twitter:title" content="Milly Farfalla — Painter" />
+    <meta name="twitter:description" content="Paintings by Milly Farfalla. Born in Palermo, Sicily." />
     <meta name="twitter:image" content="https://millyfarfalla.com/hero-landscape.jpg" />
-    <meta name="twitter:image:alt" content="Mediterranean landscape, oil on canvas — Milly Farfalla" />
+    <meta name="twitter:image:alt" content="A painting by Milly Farfalla" />
 
     <!-- Performance: preconnect to font hosts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,22 +71,23 @@
           "name": "Milly Farfalla",
           "alternateName": "Emilia",
           "jobTitle": "Painter",
-          "description": "Italian oil painter working in Sicilian and Mediterranean landscape traditions.",
+          "description": "Italian painter, born in Palermo, Sicily.",
           "nationality": "Italian",
+          "birthPlace": { "@type": "Place", "name": "Palermo, Sicily, Italy" },
           "url": "https://millyfarfalla.com/",
           "image": "https://millyfarfalla.com/hero-landscape.jpg",
           "sameAs": [
             "https://www.instagram.com/emilia.it21/",
             "https://www.tiktok.com/@milly.ita"
           ],
-          "knowsAbout": ["Oil painting", "Landscape painting", "Sicilian art", "Mediterranean art"]
+          "knowsAbout": ["Painting", "Contemporary Italian art"]
         },
         {
           "@type": "WebSite",
           "@id": "https://millyfarfalla.com/#website",
           "url": "https://millyfarfalla.com/",
           "name": "Milly Farfalla",
-          "description": "Original oil paintings by Milly Farfalla.",
+          "description": "Paintings by Milly Farfalla.",
           "publisher": { "@id": "https://millyfarfalla.com/#person" },
           "inLanguage": "en-US"
         }
@@ -96,6 +97,30 @@
   </head>
   <body>
     <script>
+      // Theme pre-paint: read stored preference (or fall back to OS) and apply
+      // it to <html> + the theme-color meta BEFORE React mounts. Without this,
+      // Android Chrome shows a light-mode address bar + white background flash
+      // for ~120ms before the React useEffect runs and updates everything.
+      // CSP allows inline (script-src 'self' 'unsafe-inline').
+      (function () {
+        try {
+          var stored = localStorage.getItem('mf-theme');
+          var prefersDark = window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = stored ? stored === 'dark' : prefersDark;
+          var bg = dark ? '#0a0908' : '#f7f4ee';
+          var scheme = dark ? 'dark' : 'light';
+          var html = document.documentElement;
+          html.setAttribute('data-theme', scheme);
+          html.style.colorScheme = scheme;
+          html.style.background = bg;
+          var t = document.getElementById('theme-color-meta');
+          if (t) t.setAttribute('content', bg);
+          var c = document.getElementById('color-scheme-meta');
+          if (c) c.setAttribute('content', scheme);
+        } catch (e) { /* ignore — fall through to React-driven theme */ }
+      })();
+
       // SPA-redirect catch: paired with public/404.html. If the user landed
       // here via "/?p=/some/path", restore the original path before React
       // Router mounts so deep links and refreshes work on GitHub Pages.
@@ -117,7 +142,7 @@
     <noscript>
       <div style="padding:2rem;font-family:Georgia,serif;max-width:40rem;margin:4rem auto;color:#1c1a16;">
         <h1>Milly Farfalla</h1>
-        <p>This portfolio uses JavaScript to render. To view Milly's oil paintings, please enable JavaScript or visit her work on
+        <p>This portfolio uses JavaScript to render. To view Milly's work, please enable JavaScript or visit her on
           <a href="https://www.instagram.com/emilia.it21/">Instagram</a> or
           <a href="https://www.tiktok.com/@milly.ita">TikTok</a>.</p>
       </div>
