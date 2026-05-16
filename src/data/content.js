@@ -21,10 +21,17 @@ export const WORKS = [
 ];
 
 // ✎ KIT — Studio inventory. ONLY items Emilia confirms.
-// Brand names left as placeholders pending her confirmation. Notes blanked.
-// Joey confirmed 2026-05-15 that she works in many media; the oil-only kit was
-// AI-fabricated. Items here are guesses until she provides her actual kit.
-export const KIT = [];
+// Mediums confirmed by Emilia on 2026-05-15 via email (reply to daily nudge).
+// Brand names + per-item notes intentionally left blank until she provides
+// them — never invent. Crafting section is pending: she's sending more
+// info in a follow-up email.
+export const KIT = [
+  { name: "Acrilici",        note: "" },
+  { name: "Acquerelli",      note: "" },
+  { name: "Tecniche miste",  note: "" },
+  { name: "Markers",         note: "" },
+  { name: "Matite colorate", note: "" },
+];
 
 // ✎ SOCIALS — Only real, live profiles. Add new ones with full https URL.
 export const SOCIALS = [
