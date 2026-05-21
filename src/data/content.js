@@ -11,14 +11,21 @@
 //   work-08.jpg through work-13.jpg exist in public/artwork/ but are NOT
 //   confirmed as her work — pending verification with her before re-adding.
 export const WORKS = [
-  { id: 1, img: "artwork/work-01.jpg", hue: 200, title: "Plate I",   medium: "", artist: "Milly Farfalla" },
-  { id: 2, img: "artwork/work-02.jpg", hue: 42,  title: "Plate II",  medium: "", artist: "Milly Farfalla" },
-  { id: 3, img: "artwork/work-03.jpg", hue: 48,  title: "Plate III", medium: "", artist: "Milly Farfalla" },
-  { id: 4, img: "artwork/work-04.jpg", hue: 265, title: "Plate IV",  medium: "", artist: "Milly Farfalla" },
-  { id: 5, img: "artwork/work-05.jpg", hue: 175, title: "Plate V",   medium: "", artist: "Milly Farfalla" },
-  { id: 6, img: "artwork/work-06.jpg", hue: 15,  title: "Plate VI",  medium: "", artist: "Milly Farfalla" },
-  { id: 7, img: "artwork/work-07.jpg", hue: 220, title: "Plate VII", medium: "", artist: "Milly Farfalla" },
+  { id: 1, img: "artwork/work-01.jpg", gallery: "artwork/optimized/work-01-gallery", lightbox: "artwork/optimized/work-01-lightbox", hue: 200, title: "Plate I",   medium: "", artist: "Milly Farfalla" },
+  { id: 2, img: "artwork/work-02.jpg", gallery: "artwork/optimized/work-02-gallery", lightbox: "artwork/optimized/work-02-lightbox", hue: 42,  title: "Plate II",  medium: "", artist: "Milly Farfalla" },
+  { id: 3, img: "artwork/work-03.jpg", gallery: "artwork/optimized/work-03-gallery", lightbox: "artwork/optimized/work-03-lightbox", hue: 48,  title: "Plate III", medium: "", artist: "Milly Farfalla" },
+  { id: 4, img: "artwork/work-04.jpg", gallery: "artwork/optimized/work-04-gallery", lightbox: "artwork/optimized/work-04-lightbox", hue: 265, title: "Plate IV",  medium: "", artist: "Milly Farfalla" },
+  { id: 5, img: "artwork/work-05.jpg", gallery: "artwork/optimized/work-05-gallery", lightbox: "artwork/optimized/work-05-lightbox", hue: 175, title: "Plate V",   medium: "", artist: "Milly Farfalla" },
+  { id: 6, img: "artwork/work-06.jpg", gallery: "artwork/optimized/work-06-gallery", lightbox: "artwork/optimized/work-06-lightbox", hue: 15,  title: "Plate VI",  medium: "", artist: "Milly Farfalla" },
+  { id: 7, img: "artwork/work-07.jpg", gallery: "artwork/optimized/work-07-gallery", lightbox: "artwork/optimized/work-07-lightbox", hue: 220, title: "Plate VII", medium: "", artist: "Milly Farfalla" },
 ];
+
+// ✎ VIDEOS — Process videos, time-lapses, behind-the-scenes.
+// Same rules as WORKS: only real Emilia content. Add entries as she provides them.
+// Shape: { id, src: "video/filename.mp4", poster: "video/filename-poster.jpg",
+//          title, description, duration (seconds) }
+// Components consuming this: (none yet — structure is ready for when content arrives)
+export const VIDEOS = [];
 
 // ✎ KIT — Studio inventory. ONLY items Emilia confirms.
 // Mediums confirmed by Emilia on 2026-05-15 via email (reply to daily nudge).

@@ -92,7 +92,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         }
       };
       
-      img.src = `${import.meta.env.BASE_URL}hero-landscape.jpg`;
+      img.src = `${import.meta.env.BASE_URL}artwork/optimized/hero-gallery.jpg`;
     };
     
     extractColors();
@@ -146,26 +146,29 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           transformOrigin: "center center",
           willChange: "transform",
         }}>
-          <img
-            src={`${import.meta.env.BASE_URL}hero-landscape.jpg`}
-            alt="A painting by Milly Farfalla"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              objectFit: "cover",
-              objectPosition: "center center",
-              transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
-              filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
-              transition: "filter 0.3s ease",
-            }}
-          />
+          <picture>
+            <source srcSet={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.webp`} type="image/webp" />
+            <img
+              src={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.jpg`}
+              alt="A painting by Milly Farfalla"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                objectFit: "cover",
+                objectPosition: "center center",
+                transform: `translateY(${parallaxMedium}px) scale(${1 + scrollY * 0.00005})`,
+                filter: `brightness(${0.9 + fade * 0.2}) saturate(${1.1 + fade * 0.1})`,
+                transition: "filter 0.3s ease",
+              }}
+            />
+          </picture>
           {/* WebGL paint-displacement — slow swimming motion over the photo.
               Lazy-loaded; the <img> above is the always-visible fallback. */}
           <Suspense fallback={null}>
-            <PaintDisplacement src={`${import.meta.env.BASE_URL}hero-landscape.jpg`} />
+            <PaintDisplacement src={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.jpg`} />
           </Suspense>
         </div>
         

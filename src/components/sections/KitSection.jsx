@@ -22,7 +22,7 @@ const KitItem = ({ item, i, th }) => {
       }}
     >
       <div style={{ position:"absolute", top:0, left:0, width:2, height:hov?"100%":"0%", background:`${th.accent}35`, transition:"height 0.5s cubic-bezier(0.16,1,0.3,1)" }}/>
-      <h4 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:18, fontWeight:500, color:hov?th.text:th.textSoft, margin:"0 0 7px", transition:"color 0.3s" }}>{item.name}</h4>
+      <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:18, fontWeight:500, color:hov?th.text:th.textSoft, margin:"0 0 7px", transition:"color 0.3s" }}>{item.name}</h3>
       <p style={{ fontFamily:"'Outfit',sans-serif", fontSize:12, color:th.textDim, lineHeight:1.6, margin:0, fontStyle:"italic" }}>{item.note}</p>
     </div>
   );
@@ -41,9 +41,9 @@ export const KitSection = ({ th }) => {
       <div ref={ref} style={{ padding:"0 28px", marginBottom:36 }}>
         <div style={{ display:"flex", alignItems:"center", gap:14 }}>
           <div style={{ width:vis?36:0, height:1, background:`${th.accent}35`, transition:"width 0.8s ease" }}/>
-          <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", color:th.textDim, opacity:vis?1:0, transition:"opacity 0.6s ease 0.2s" }}>
+          <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:10, letterSpacing:"0.28em", textTransform:"uppercase", color:th.textDim, opacity:vis?1:0, transition:"opacity 0.6s ease 0.2s", fontWeight:400, margin:0 }}>
             Studio
-          </span>
+          </h2>
         </div>
         {hasKit ? null : (
           <p style={{

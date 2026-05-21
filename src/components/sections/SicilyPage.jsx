@@ -1,104 +1,39 @@
 import { useEffect, useRef, useState } from "react";
-import { sanitizeSVG, secureFetch } from "../../utils/security.js";
+import { sanitizeSVG } from "../../utils/security.js";
 import "./SicilyPage.css";
+
+// Hoisted outside the component — stable identity prevents the map-click
+// useEffect from re-attaching event listeners every render.
+const TOWNS = [
+  { id: "palermo",   name: "Palermo",     subtitle: "My birthplace",         description: "Golden domes, Ballarò markets & arancini",                         color: "#C2654A" },
+  { id: "cefalu",    name: "Cefalù",      subtitle: "Norman Cathedral",      description: "Norman cathedral on golden sand, where mountains meet the sea",     color: "#3D7E99" },
+  { id: "agrigento", name: "Agrigento",    subtitle: "Valley of the Temples", description: "Valley of the Temples — ancient Greek columns guarding almond groves", color: "#C4A020" },
+  { id: "etna",      name: "Mount Etna",   subtitle: "Active Volcano",        description: "Europe's tallest active volcano — fire, snow & vineyards on its slopes", color: "#D4503A" },
+  { id: "taormina",  name: "Taormina",     subtitle: "Greek Theater",         description: "Ancient theater with Etna backdrop — pearls, terraces & eternal views", color: "#5E7A3A" },
+  { id: "trapani",   name: "Trapani",      subtitle: "Salt Windmill",         description: "Windmills & salt pans gleaming white, gateway to the Egadi Islands",  color: "#8B6B3A" },
+  { id: "marsala",   name: "Marsala",      subtitle: "Wine Country",          description: "Fortified wine & sunset coast facing Africa",                        color: "#8B2252" },
+  { id: "catania",   name: "Catania",      subtitle: "Elephant Fountain",     description: "Black lava stone city with the elephant fountain at its heart",      color: "#4A4A4A" },
+  { id: "siracusa",  name: "Siracusa",     subtitle: "Ancient Amphora",       description: "Greek theater, Ortigia & ancient stone",                             color: "#B8860B" },
+  { id: "messina",   name: "Messina",      subtitle: "Bell Tower",            description: "Gateway to the mainland with its astronomical clock tower",           color: "#5B7FA5" },
+];
 
 export const SicilyPage = ({ th, isDark }) => {
   const mapRef = useRef(null);
   const [svgContent, setSvgContent] = useState("");
   const [selectedTown, setSelectedTown] = useState(null);
 
-  // Town data for the information section
-  const towns = [
-    {
-      id: "palermo",
-      name: "Palermo",
-      subtitle: "My birthplace",
-      description: "Golden domes, Ballarò markets & arancini",
-      color: "#C2654A"
-    },
-    {
-      id: "cefalu", 
-      name: "Cefalù",
-      subtitle: "Norman Cathedral",
-      description: "Norman cathedral on golden sand, where mountains meet the sea",
-      color: "#3D7E99"
-    },
-    {
-      id: "agrigento",
-      name: "Agrigento", 
-      subtitle: "Valley of the Temples",
-      description: "Valley of the Temples — ancient Greek columns guarding almond groves",
-      color: "#C4A020"
-    },
-    {
-      id: "etna",
-      name: "Mount Etna",
-      subtitle: "Active Volcano", 
-      description: "Europe's tallest active volcano — fire, snow & vineyards on its slopes",
-      color: "#D4503A"
-    },
-    {
-      id: "taormina",
-      name: "Taormina",
-      subtitle: "Greek Theater",
-      description: "Ancient theater with Etna backdrop — pearls, terraces & eternal views",
-      color: "#5E7A3A"
-    },
-    {
-      id: "trapani",
-      name: "Trapani",
-      subtitle: "Salt Windmill", 
-      description: "Windmills & salt pans gleaming white, gateway to the Egadi Islands",
-      color: "#8B6B3A"
-    },
-    {
-      id: "marsala",
-      name: "Marsala",
-      subtitle: "Wine Country",
-      description: "Fortified wine & sunset coast facing Africa",
-      color: "#8B2252"
-    },
-    {
-      id: "catania",
-      name: "Catania",
-      subtitle: "Elephant Fountain",
-      description: "Black lava stone city with the elephant fountain at its heart",
-      color: "#4A4A4A"
-    },
-    {
-      id: "siracusa", 
-      name: "Siracusa",
-      subtitle: "Ancient Amphora",
-      description: "Greek theater, Ortigia & ancient stone",
-      color: "#B8860B"
-    },
-    {
-      id: "messina",
-      name: "Messina",
-      subtitle: "Bell Tower",
-      description: "Gateway to the mainland with its astronomical clock tower",
-      color: "#5B7FA5"
-    }
-  ];
-
   // Load SVG map 
   useEffect(() => {
     const loadMap = async () => {
       try {
-        // Use standard fetch for local development, fallback to secureFetch for production
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const fetchFn = isLocal ? fetch : secureFetch;
-        
-        const response = await fetchFn(import.meta.env.BASE_URL + "sicily-map.svg");
+        const response = await fetch(import.meta.env.BASE_URL + "sicily-map.svg");
         const text = await response.text();
-        
-        // Apply security transformations
         const patched = text.replace('<svg class="map"', '<svg class="sicily-map"');
-        const sanitized = isLocal ? patched : sanitizeSVG(patched);
-        
-        setSvgContent(sanitized);
+        // sanitizeSVG strips event handlers + script tags from the SVG before
+        // we feed it into dangerouslySetInnerHTML.
+        setSvgContent(sanitizeSVG(patched));
       } catch (error) {
-        console.error('🚨 Failed to load Sicily map:', error);
+        console.error('Failed to load Sicily map:', error);
         setSvgContent("");
       }
     };
@@ -126,7 +61,7 @@ export const SicilyPage = ({ th, isDark }) => {
       // Extract town name from aria-label and normalize for matching
       const townName = ariaLabel.split(" — ")[0].toLowerCase().trim();
       
-      const matchedTown = towns.find(town => {
+      const matchedTown = TOWNS.find(town => {
         const normalizedTownName = town.name.toLowerCase();
         
         // Direct name matches
@@ -170,7 +105,7 @@ export const SicilyPage = ({ th, isDark }) => {
       container.removeEventListener("click", handleLocationClick);
       container.removeEventListener("touchend", handleLocationClick);
     };
-  }, [svgContent, towns]);
+  }, [svgContent]);
 
   return (
     <div className="sicily-page">
@@ -195,10 +130,14 @@ export const SicilyPage = ({ th, isDark }) => {
           background: isDark ? "rgba(30,28,24,.55)" : "rgba(255,255,255,.35)",
           borderColor: isDark ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.5)",
         }}>
+          {/*
+            ✎ BIO — placeholder until Emilia provides her own words about Sicily.
+            The previous copy was AI-fabricated voice. Do NOT rewrite it — wait
+            for her input. Open question in the Emilia queue.
+          */}
           <div className="sicily-dv" aria-hidden="true">✦</div>
           <p style={{ color: th.textSoft }}>
-            Born under Palermo&apos;s golden domes, raised on arancini and sea salt.<br/>
-            From the markets of Ballarò to Etna&apos;s shadow — here&apos;s where my story started.
+            Palermo, Sicilia.
           </p>
           <span className="sicily-sg">— con amore, dalla Sicilia</span>
         </div>

@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="color-scheme" id="color-scheme-meta" content="light" />
+    <!-- Declaring "light dark" prevents Samsung Internet's forced-dark algorithm
+         from mangling our light theme. The pre-paint script + React effect override
+         this to the active scheme for native browser chrome (scrollbar, inputs). -->
+    <meta name="color-scheme" id="color-scheme-meta" content="light dark" />
     <meta name="theme-color" id="theme-color-meta" content="#f7f4ee" />
 
     <title>Milly Farfalla — Painter</title>
@@ -47,6 +50,10 @@
     <!-- Performance: preconnect to font hosts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts: only the 4 families used (Poppins + Inter removed — zero usage).
+         Loaded via <link> instead of CSS @import to avoid render-blocking. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" />
 
     <!-- Security headers (production headers also applied via public/_headers) -->
     <meta http-equiv="Content-Security-Policy"

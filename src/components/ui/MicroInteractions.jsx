@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-export const MagneticButton = ({ children, onClick, className = '', style = {}, strength = 20 }) => {
+export const MagneticButton = ({ children, onClick, className = '', style = {}, strength = 20, onMouseEnter: onEnterProp, onMouseLeave: onLeaveProp, ...rest }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const buttonRef = useRef(null);
@@ -14,12 +14,16 @@ export const MagneticButton = ({ children, onClick, className = '', style = {}, 
     setPosition({ x: (e.clientX - centerX) * factor, y: (e.clientY - centerY) * factor });
   }, [strength]);
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = useCallback((e) => {
     setPosition({ x: 0, y: 0 });
     setIsHovering(false);
-  }, []);
+    onLeaveProp?.(e);
+  }, [onLeaveProp]);
 
-  const handleMouseEnter = useCallback(() => setIsHovering(true), []);
+  const handleMouseEnter = useCallback((e) => {
+    setIsHovering(true);
+    onEnterProp?.(e);
+  }, [onEnterProp]);
 
   return (
     <button
@@ -35,6 +39,7 @@ export const MagneticButton = ({ children, onClick, className = '', style = {}, 
         cursor: 'none',
         ...style,
       }}
+      {...rest}
     >
       {children}
     </button>

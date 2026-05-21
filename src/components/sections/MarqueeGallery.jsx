@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInView } from "../../hooks/useInView";
 import { WORKS } from "../../data/content";
 
@@ -35,22 +35,25 @@ const TileImg = ({ work, th, isDark, onClick }) => (
         : "0 18px 40px rgba(0,0,0,0.10)",
     }}
   >
-    <img
-      src={`${assetBase}${work.img}`}
-      alt={work.medium
-        ? `${work.title} — ${work.medium} by Milly Farfalla`
-        : `${work.title} by Milly Farfalla`}
-      loading="lazy"
-      draggable={false}
-      style={{
-        width: "100%", height: "100%",
-        objectFit: "cover", display: "block",
-        filter: isDark ? "brightness(0.96)" : th.imgFilter,
-        transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
-      }}
-      onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = "scale(1.0)"; }}
-    />
+    <picture>
+      <source srcSet={`${assetBase}${work.gallery}.webp`} type="image/webp" />
+      <img
+        src={`${assetBase}${work.gallery}.jpg`}
+        alt={work.medium
+          ? `${work.title} — ${work.medium} by Milly Farfalla`
+          : `${work.title} by Milly Farfalla`}
+        loading="lazy"
+        draggable={false}
+        style={{
+          width: "100%", height: "100%",
+          objectFit: "cover", display: "block",
+          filter: isDark ? "brightness(0.96)" : th.imgFilter,
+          transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = "scale(1.0)"; }}
+      />
+    </picture>
     <div style={{
       position: "absolute", left: 14, bottom: 12, right: 14,
       fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic",
@@ -64,6 +67,14 @@ const TileImg = ({ work, th, isDark, onClick }) => (
 );
 
 const Lightbox = ({ work, th, isDark, onClose }) => {
+  // Escape key closes the lightbox
+  useEffect(() => {
+    if (!work) return;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [work, onClose]);
+
   if (!work) return null;
   return (
     <div
@@ -83,18 +94,21 @@ const Lightbox = ({ work, th, isDark, onClose }) => {
         cursor: "none",
       }}
     >
-      <img
-        src={`${assetBase}${work.img}`}
-        alt={work.title}
-        style={{
-          maxWidth: "100%", maxHeight: "78vh",
-          objectFit: "contain",
+      <picture>
+        <source srcSet={`${assetBase}${work.lightbox}.webp`} type="image/webp" />
+        <img
+          src={`${assetBase}${work.lightbox}.jpg`}
+          alt={work.title}
+          style={{
+            maxWidth: "100%", maxHeight: "78vh",
+            objectFit: "contain",
           boxShadow: isDark
             ? "0 30px 80px rgba(0,0,0,0.6)"
             : "0 30px 80px rgba(0,0,0,0.2)",
           borderRadius: 4,
         }}
-      />
+        />
+      </picture>
       <div style={{ marginTop: 20, textAlign: "center" }}>
         <h3 style={{
           fontFamily: "'Cormorant Garamond', serif",
@@ -110,15 +124,21 @@ const Lightbox = ({ work, th, isDark, onClose }) => {
           }}>{work.medium}</p>
         ) : null}
       </div>
-      <p style={{
-        position: "absolute", top: 24, right: 32,
-        fontFamily: "'Outfit', sans-serif", fontSize: 11,
-        letterSpacing: "0.24em", textTransform: "uppercase",
-        color: th.textDim, opacity: 0.7,
-        pointerEvents: "none",
-      }}>
-        click anywhere to close
-      </p>
+      <button
+        onClick={onClose}
+        aria-label="Close lightbox"
+        style={{
+          position: "absolute", top: 24, right: 32,
+          background: "transparent", border: `1px solid ${th.textDim}40`,
+          borderRadius: 20, padding: "8px 20px",
+          fontFamily: "'Outfit', sans-serif", fontSize: 11,
+          letterSpacing: "0.16em", textTransform: "uppercase",
+          color: th.textDim, cursor: "pointer",
+          transition: "all 0.3s ease",
+        }}
+      >
+        Close ✕
+      </button>
     </div>
   );
 };
@@ -137,14 +157,15 @@ export const MarqueeGallery = ({ th, isDark }) => {
       <div ref={ref} style={{ padding: "0 28px 32px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div style={{ width: vis ? 36 : 0, height: 1, background: `${th.accent}50`, transition: "width 0.8s ease" }}/>
-          <span style={{
+          <h2 style={{
             fontFamily: "'Outfit', sans-serif", fontSize: 10,
             letterSpacing: "0.32em", textTransform: "uppercase",
             color: th.textDim, opacity: vis ? 1 : 0,
             transition: "opacity 0.6s ease 0.2s",
+            fontWeight: 400, margin: 0,
           }}>
             Works · {WORKS.length} pieces
-          </span>
+          </h2>
         </div>
         <p style={{
           fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic",

@@ -98,8 +98,8 @@ export const StructuredData = () => {
           name: w.title,
           creator: { '@id': `${SITE_URL}/#person` },
           artform: 'Painting',
-          contentUrl: `${SITE_URL}/${w.img}`,
-          thumbnailUrl: `${SITE_URL}/${w.img}`,
+          contentUrl: `${SITE_URL}/${w.lightbox}.webp`,
+          thumbnailUrl: `${SITE_URL}/${w.gallery}.webp`,
         };
         // Only emit medium/surface when the data file says so.
         if (w.medium) piece.artMedium = w.medium;
@@ -124,8 +124,8 @@ export const StructuredData = () => {
 export const PreloadCriticalResources = () => {
   useEffect(() => {
     const resources = [
-      { href: '/hero-landscape.jpg', as: 'image', type: 'image/jpeg', fetchpriority: 'high' },
-      { href: '/artwork/work-01.jpg', as: 'image', type: 'image/jpeg' },
+      { href: '/artwork/optimized/hero-lightbox.webp', as: 'image', type: 'image/webp', fetchpriority: 'high' },
+      { href: '/artwork/optimized/work-01-gallery.webp', as: 'image', type: 'image/webp' },
     ];
     const added = [];
     resources.forEach((r) => {

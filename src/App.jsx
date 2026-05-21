@@ -5,10 +5,9 @@ import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
 import { SecurityErrorBoundary } from "./components/security/ErrorBoundary.jsx";
 import { useSEO, StructuredData, CanonicalLink, PreloadCriticalResources } from "./components/seo/SEOOptimizer.jsx";
-import { usePerformanceOptimizer } from "./components/effects/PerformanceOptimizer.jsx";
 // PaintBrushCursor was the previous custom cursor — removed 2026-05-15 in
 // favor of the butterfly trail in <PaintCanvas/> (the namesake of the site).
-// The file `SignatureInteraction.jsx` still exports it; it's no longer mounted.
+// SignatureInteraction.jsx deleted — zero consumers.
 
 import { AmbientBg } from "./components/effects/AmbientBg";
 import { Grain } from "./components/effects/Grain";
@@ -72,8 +71,6 @@ export default function App() {
     path: '/',
   });
   
-  usePerformanceOptimizer();
-
   // Buttery momentum scroll — desktop only. On touch devices native scroll
   // is faster, smoother, and respects the OS overscroll/refresh gestures.
   // Hijacking touch with Lenis was the #1 'janky on Android' contributor.
