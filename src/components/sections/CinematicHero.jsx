@@ -181,34 +181,17 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           mixBlendMode: "overlay"
         }} />
         
-        {/* Light tone wash for text legibility only */}
+        {/* Text legibility scrim — identical in both themes so Emilia's
+            painting looks the same regardless of dark/light mode. The h1
+            already has strong text-shadow; this just adds a gentle center
+            vignette to keep the name readable over any backdrop. */}
         <div style={{
           position: "absolute",
           inset: 0,
-          background: isDark
-            ? `linear-gradient(to bottom, 
-                rgba(0,0,0,0.05) 0%, 
-                rgba(0,0,0,0.1) 50%,
-                rgba(0,0,0,0.05) 100%)`
-            : `linear-gradient(to bottom, 
-                rgba(255,255,255,0.1) 0%, 
-                rgba(255,255,255,0.15) 40%,
-                rgba(255,255,255,0.1) 100%)`,
-        }} />
-        
-        {/* Subtle center focus for text legibility */}
-        <div style={{
-          position: "absolute", 
-          inset: 0,
-          background: isDark
-            ? `radial-gradient(ellipse 60% 40% at 50% 45%, 
-                rgba(0,0,0,0.15) 0%, 
-                rgba(0,0,0,0.05) 40%,
-                transparent 70%)`
-            : `radial-gradient(ellipse 55% 35% at 50% 42%, 
-                rgba(0,0,0,0.12) 0%, 
-                rgba(0,0,0,0.04) 35%,
-                transparent 65%)`,
+          background: `radial-gradient(ellipse 60% 40% at 50% 45%,
+            rgba(0,0,0,0.12) 0%,
+            rgba(0,0,0,0.04) 40%,
+            transparent 70%)`,
         }} />
 
         {/* Floating color particles */}

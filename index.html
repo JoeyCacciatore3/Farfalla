@@ -41,6 +41,9 @@
     <meta name="twitter:image" content="https://millyfarfalla.com/hero-landscape.jpg" />
     <meta name="twitter:image:alt" content="A painting by Milly Farfalla" />
 
+    <!-- Analytics: Umami Cloud (privacy-first, no cookies, GDPR compliant) -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="938f39ee-71ce-4987-8657-061b1b18e680"></script>
+
     <!-- Performance: preconnect to font hosts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,7 +51,7 @@
     <!-- Security headers (production headers also applied via public/_headers) -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'unsafe-inline';
+                   script-src 'self' 'unsafe-inline' https://cloud.umami.is;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com data:;
                    img-src 'self' data: https: blob:;
