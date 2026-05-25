@@ -48,13 +48,10 @@
     <!-- Analytics: Umami Cloud (privacy-first, no cookies, GDPR compliant) -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="938f39ee-71ce-4987-8657-061b1b18e680"></script>
 
-    <!-- Behavior: Microsoft Clarity (heatmaps, session recordings, free forever) -->
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window,document,"clarity","script","wuq64clwk0");
-    </script>
+    <!-- Clarity removed 2026-05-25: sets 8 third-party cookies (CLID, MUID,
+         MR, SM, SRM_B, ANONCHK) that tank Lighthouse Best Practices to 77.
+         Umami provides analytics without cookies. Clarity heatmaps weren't
+         being reviewed — cost (BP score) exceeded value. -->
 
     <!-- Performance: preconnect to font hosts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,7 +68,7 @@
     <!-- Security headers (production headers also applied via public/_headers) -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'unsafe-inline' https://cloud.umami.is https://www.clarity.ms https://scripts.clarity.ms;
+                   script-src 'self' 'unsafe-inline' https://cloud.umami.is;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com data:;
                    img-src 'self' data: https: blob:;
