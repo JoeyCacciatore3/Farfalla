@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "slug": "how-painting-heals-the-art-of-slowing-down",
+    "title": "How Painting Heals — The Art of Slowing Down",
+    "date": "2026-05-25",
+    "excerpt": "Why picking up a brush is one of the most powerful things you can do for your mind. The science behind art and well-being, and what I've learned from years at the easel.",
+    "tags": ["art", "technique", "wellness"]
+  },
+  {
+    "slug": "the-sicilian-table-olive-oil-and-the-secret-to-living-well",
+    "title": "The Sicilian Table — Olive Oil and the Secret to Living Well",
+    "date": "2026-05-23",
+    "excerpt": "Sicily has one of the highest concentrations of centenarians in Europe. The secret is not a supplement — it is a way of eating that begins and ends with olive oil.",
+    "tags": ["recipe", "culture", "wellness"]
+  },
+  {
+    "slug": "hands-in-the-earth-growing-a-mediterranean-herb-garden",
+    "title": "Hands in the Earth — Growing a Mediterranean Herb Garden",
+    "date": "2026-05-21",
+    "excerpt": "Rosemary, basil, oregano, lavender — the herbs of the Mediterranean are medicine, flavor, and therapy in one. How to grow them anywhere, and why your hands in the soil matters more than you think.",
+    "tags": ["garden", "wellness", "culture"]
+  },
+  {
+    "slug": "color-as-language-what-sicilian-light-teaches-a-painter",
+    "title": "Color as Language — What Sicilian Light Teaches a Painter",
+    "date": "2026-05-19",
+    "excerpt": "Sicilian light is not like any other light in the world. It changes how colors behave, how shadows fall, and how a painter sees. A reflection on place, palette, and the art of looking.",
+    "tags": ["art", "technique", "sicilia"]
+  },
+  {
+    "slug": "caponata-di-melanzane-a-bowl-of-sicilian-summer",
+    "title": "Caponata di Melanzane — A Bowl of Sicilian Summer",
+    "date": "2026-05-17",
+    "excerpt": "Sweet, sour, rich, and layered — caponata is Sicily in a bowl. The dish that connects the garden to the table, and the table to well-being.",
+    "tags": ["recipe", "culture", "sicilia", "garden"]
+  }
+]
