@@ -121,10 +121,11 @@ export const StructuredData = () => {
   return null;
 };
 
+// Hero preload is now static in index.html for immediate LCP benefit.
+// This component preloads the first gallery image (below the fold).
 export const PreloadCriticalResources = () => {
   useEffect(() => {
     const resources = [
-      { href: '/artwork/optimized/hero-lightbox.webp', as: 'image', type: 'image/webp', fetchpriority: 'high' },
       { href: '/artwork/optimized/work-01-gallery.webp', as: 'image', type: 'image/webp' },
     ];
     const added = [];
@@ -135,7 +136,6 @@ export const PreloadCriticalResources = () => {
       link.href = r.href;
       link.as = r.as;
       if (r.type) link.type = r.type;
-      if (r.fetchpriority) link.setAttribute('fetchpriority', r.fetchpriority);
       document.head.appendChild(link);
       added.push(link);
     });

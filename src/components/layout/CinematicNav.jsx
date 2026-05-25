@@ -44,6 +44,9 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   const sections = [
     { label:"Works", id:"works" },
     { label:"Studio", id:"kit" },
+    { label:"Cucina", id:"cucina" },
+    { label:"Giardino", id:"giardino" },
+    { label:"Blog", path:"/blog" },
     { label:"Contact", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },
   ];
@@ -51,7 +54,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   return (
     <>
       {/* Enhanced Logo with magnetic effect */}
-      <Link to="/" aria-label="Back to top"
+      <Link to="/" aria-label="Milly Farfalla — Back to top"
         onClick={() => window.scrollTo(0, 0)}
         onMouseEnter={() => setHLogo(true)}
         onMouseLeave={() => setHLogo(false)}
@@ -87,13 +90,13 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
           <Wing color={th.accent} size={22} />
         </div>
         <span style={{
-          fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: 14,
           fontWeight: 500,
           fontStyle: "italic",
           color: th.text,
           letterSpacing: "0.04em",
-          opacity: hLogo ? 1 : 0.85,
+          opacity: 1,
           transition: "opacity 0.3s ease, color 0.6s ease",
         }}>
           Milly Farfalla

@@ -11,6 +11,14 @@ export default defineConfig(() => ({
         entryFileNames: `assets/[name]-[hash].js`,
         chunkFileNames: `assets/[name]-[hash].js`,
         assetFileNames: `assets/[name]-[hash].[ext]`,
+        manualChunks(id) {
+          if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/') || id.includes('node_modules/react-router')) {
+            return 'vendor';
+          }
+          if (id.includes('node_modules/three') || id.includes('node_modules/@react-three')) {
+            return 'three';
+          }
+        },
       },
     },
     // Security optimizations
@@ -23,6 +31,7 @@ export default defineConfig(() => ({
     },
     sourcemap: false, // Disable sourcemaps in production for security
     reportCompressedSize: true,
+    chunkSizeWarningLimit: 900, // three.js is 868KB but lazy-loaded on desktop only
   },
   // Development security
   server: {

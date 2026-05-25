@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Sitemap rebuilt 2026-05-15: trimmed from a fabricated 13-work list to the 7
-  real source images per README. Image titles + captions removed pending
-  Emilia's actual titles. Image entries are still helpful for Google Images
-  even without titles — the file URLs are honest, that's what matters.
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://millyfarfalla.com/</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-01.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-01-lightbox.jpg</image:loc>
+      <image:caption>Plate I — Painting by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-02.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-02-lightbox.jpg</image:loc>
+      <image:caption>Plate II — Painting by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-03.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-03-lightbox.jpg</image:loc>
+      <image:caption>Plate III — Painting by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-04.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-04-lightbox.jpg</image:loc>
+      <image:caption>Cats Heaven — Acrylics on canvas by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-05.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-05-lightbox.jpg</image:loc>
+      <image:caption>Plate V — Painting by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-06.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-06-lightbox.jpg</image:loc>
+      <image:caption>Plate VI — Painting by Milly Farfalla</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://millyfarfalla.com/artwork/work-07.jpg</image:loc>
+      <image:loc>https://millyfarfalla.com/artwork/optimized/work-07-lightbox.jpg</image:loc>
+      <image:caption>Plate VII — Painting by Milly Farfalla</image:caption>
     </image:image>
   </url>
   <url>
+    <loc>https://millyfarfalla.com/blog</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://millyfarfalla.com/sicilia</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { THEMES } from "./data/content";
 import { useScroll } from "./hooks/useScroll";
@@ -12,7 +12,6 @@ import { useSEO, StructuredData, CanonicalLink, PreloadCriticalResources } from 
 import { AmbientBg } from "./components/effects/AmbientBg";
 import { Grain } from "./components/effects/Grain";
 import { PaintCanvas } from "./components/effects/PaintCanvas";
-import { Spine } from "./components/effects/Spine";
 import { ProgressBar } from "./components/effects/ProgressBar";
 
 import { CinematicNav } from "./components/layout/CinematicNav";
@@ -23,6 +22,9 @@ import { Statement } from "./components/sections/Statement";
 import { MarqueeGallery } from "./components/sections/MarqueeGallery";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
+import { CucinaSection } from "./components/sections/CucinaSection";
+import { GiardinoSection } from "./components/sections/GiardinoSection";
+import { BlogIndex, BlogPost } from "./components/sections/BlogPage";
 import { SicilyPage } from "./components/sections/SicilyPage";
 
 // Initial theme — must agree with the pre-paint script in index.html so we
@@ -41,6 +43,7 @@ export default function App() {
   const [isDark, setIsDark] = useState(readInitialTheme);
   const { y, p } = useScroll();
   const th = isDark ? THEMES.dark : THEMES.light;
+  const location = useLocation();
   const toggleTheme = useCallback(() => {
     setIsDark((d) => {
       const next = !d;
@@ -63,13 +66,14 @@ export default function App() {
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
-  // Runtime SEO update — static foundation lives in index.html.
-  useSEO({
+  // Runtime SEO update — only on homepage. Sub-pages (/blog, /sicilia) set
+  // their own title via useSEO. Running this on every route overwrites them.
+  useSEO(location.pathname === '/' ? {
     title: 'Milly Farfalla — Painter',
     description: 'Paintings by Milly Farfalla. Born in Palermo, Sicily. Studio works, contact, and notes.',
     image: '/hero-landscape.jpg',
     path: '/',
-  });
+  } : {});
   
   // Buttery momentum scroll — desktop only. On touch devices native scroll
   // is faster, smoother, and respects the OS overscroll/refresh gestures.
@@ -175,7 +179,6 @@ export default function App() {
       <AmbientBg scrollY={y} isDark={isDark} th={th} />
       <Grain isDark={isDark} />
       <PaintCanvas />
-      <Spine scrollP={p} th={th} />
       <ProgressBar scrollP={p} th={th} />
       <CinematicNav isDark={isDark} toggleTheme={toggleTheme} th={th} />
 
@@ -192,8 +195,20 @@ export default function App() {
                 <Statement th={th} />
                 <MarqueeGallery th={th} isDark={isDark} />
                 <KitSection th={th} />
+                <CucinaSection th={th} />
+                <GiardinoSection th={th} />
                 <Connect th={th} />
               </main>
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/blog" element={
+            <SecurityErrorBoundary componentName="BlogIndex">
+              <BlogIndex th={th} />
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/blog/:slug" element={
+            <SecurityErrorBoundary componentName="BlogPost">
+              <BlogPost th={th} />
             </SecurityErrorBoundary>
           } />
           <Route path="/sicilia" element={

@@ -1,6 +1,6 @@
 /* Fonts loaded via <link> in index.html to avoid render-blocking @import.
-   Only the 4 families actually used: Caveat, Cormorant Garamond, Outfit, Playfair Display.
-   Poppins and Inter were removed — zero usage in the codebase. */
+   3 families: Caveat (signature), Cormorant Garamond (body/headings), Outfit (UI).
+   Playfair Display removed — was only a fallback, never primary. */
 
 *,*::before,*::after {
   margin: 0;
@@ -61,12 +61,6 @@ input::placeholder {
   height: 0;
 }
 
-@media(max-width: 640px) {
-  .fn-spine {
-    display: none !important;
-  }
-}
-
 /* Gallery carousel controls — keyboard focus */
 #works button:focus-visible {
   outline: 2px solid #8a6d2b;
@@ -83,24 +77,6 @@ html[data-theme="dark"] #works button:focus-visible {
   66% { transform: translateY(4px) rotate(-1deg); }
 }
 
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(8px); }
-}
-
-@keyframes float0 {
-  0%, 100% { transform: translateX(20%) translateY(30%) translateZ(0); }
-  50% { transform: translateX(25%) translateY(25%) translateZ(0); }
-}
-@keyframes float1 {
-  0%, 100% { transform: translateX(80%) translateY(55%) translateZ(0); }
-  50% { transform: translateX(75%) translateY(60%) translateZ(0); }
-}
-@keyframes float2 {
-  0%, 100% { transform: translateX(140%) translateY(80%) translateZ(0); }
-  50% { transform: translateX(135%) translateY(75%) translateZ(0); }
-}
-
 @keyframes heroBreath {
   0% { transform: scale(1.0); }
   100% { transform: scale(1.045); }
@@ -109,6 +85,16 @@ html[data-theme="dark"] #works button:focus-visible {
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* Respect user motion preferences — disable all animations/transitions */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

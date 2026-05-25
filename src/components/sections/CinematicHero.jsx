@@ -9,37 +9,28 @@
  * - Professional fade and scale effects
  */
 
-import { useState, useEffect, useRef, useCallback, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { useInView } from "../../hooks/useInView";
-import { Wing } from "../effects/Wing";
 
-// WebGL displacement is heavy (R3F + Three.js). Lazy-load it so it doesn't
-// block first paint of the hero image; the static <img> shows immediately
-// underneath while this initializes.
-const PaintDisplacement = lazy(() => import("../effects/PaintDisplacement").then(m => ({ default: m.PaintDisplacement })));
+// Desktop-only: WebGL displacement is heavy (R3F + Three.js ~226KB gzipped).
+// Only import on devices wide enough to see the effect. Touch devices and
+// narrow viewports skip the download entirely.
+const isDesktop = typeof window !== 'undefined' &&
+  window.matchMedia('(min-width: 1024px) and (hover: hover)').matches;
+const PaintDisplacement = isDesktop
+  ? lazy(() => import("../effects/PaintDisplacement").then(m => ({ default: m.PaintDisplacement })))
+  : null;
 
 export const CinematicHero = ({ scrollY, th, isDark }) => {
   const [ref, vis] = useInView({ t: 0.05 });
   const [dominantColors, setDominantColors] = useState(['#c9a84c', '#40e0ff', '#ff6b6b']);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
   const canvasRef = useRef(null);
 
   // Cinematic fade and parallax calculations
   const fade = Math.max(0, 1 - scrollY / 800);
-  const parallaxSlow = scrollY * 0.15;  // Background layers
-  const parallaxMedium = scrollY * 0.25; // Mid layers  
-  const parallaxFast = scrollY * 0.4;   // Foreground elements
-
-  // Mouse position for interactive effects
-  const handleMouseMove = useCallback((e) => {
-    if (!heroRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height
-    });
-  }, []);
+  const parallaxSlow = scrollY * 0.15;
+  const parallaxMedium = scrollY * 0.25;
 
   // Color extraction from hero image
   useEffect(() => {
@@ -101,8 +92,7 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
   return (
     <section 
       ref={heroRef}
-      id="top" 
-      onMouseMove={handleMouseMove}
+      id="top"
       style={{
         // 100dvh tracks the dynamic viewport (URL bar collapsed/expanded), 100vh
         // is the static fallback for browsers without dvh. Without dvh the hero
@@ -147,10 +137,14 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           willChange: "transform",
         }}>
           <picture>
-            <source srcSet={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.webp`} type="image/webp" />
+            {/* Mobile: 800px gallery image (~107KB). Desktop: 1439px lightbox (~388KB). */}
+            <source srcSet={`${import.meta.env.BASE_URL}artwork/optimized/hero-gallery.webp`} type="image/webp" media="(max-width: 1023px)" />
+            <source srcSet={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.webp`} type="image/webp" media="(min-width: 1024px)" />
+            <source srcSet={`${import.meta.env.BASE_URL}artwork/optimized/hero-gallery.jpg`} type="image/jpeg" media="(max-width: 1023px)" />
             <img
               src={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.jpg`}
               alt="A painting by Milly Farfalla"
+              fetchPriority="high"
               style={{
                 position: "absolute",
                 top: 0,
@@ -165,61 +159,14 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
               }}
             />
           </picture>
-          {/* WebGL paint-displacement — slow swimming motion over the photo.
-              Lazy-loaded; the <img> above is the always-visible fallback. */}
-          <Suspense fallback={null}>
-            <PaintDisplacement src={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.jpg`} />
-          </Suspense>
+          {/* WebGL paint-displacement — desktop only. Mobile skips the import entirely. */}
+          {PaintDisplacement && (
+            <Suspense fallback={null}>
+              <PaintDisplacement src={`${import.meta.env.BASE_URL}artwork/optimized/hero-lightbox.jpg`} />
+            </Suspense>
+          )}
         </div>
         
-        {/* Interactive color overlay */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
-            ${dominantColors[0]}08 0%, 
-            ${dominantColors[1]}05 30%, 
-            transparent 60%)`,
-          transition: "background 0.6s ease",
-          mixBlendMode: "overlay"
-        }} />
-        
-        {/* Text legibility scrim — identical in both themes so Emilia's
-            painting looks the same regardless of dark/light mode. The h1
-            already has strong text-shadow; this just adds a gentle center
-            vignette to keep the name readable over any backdrop. */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(ellipse 60% 40% at 50% 45%,
-            rgba(0,0,0,0.12) 0%,
-            rgba(0,0,0,0.04) 40%,
-            transparent 70%)`,
-        }} />
-
-        {/* Floating color particles */}
-        {dominantColors.map((color, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              width: 120 + i * 40,
-              height: 120 + i * 40,
-              borderRadius: "50%",
-              background: `${color}06`,
-              transform: `
-                translateX(${20 + i * 60}%) 
-                translateY(${30 + i * 25}%) 
-                translateZ(0) 
-                translate3d(${parallaxFast * (i + 1)}px, ${parallaxFast * 0.5}px, 0)
-              `,
-              filter: "blur(60px)",
-              mixBlendMode: "overlay",
-              animation: `float${i} ${8 + i * 2}s ease-in-out infinite`,
-              opacity: fade * 0.6
-            }}
-          />
-        ))}
       </div>
 
       {/* Main Content — restrained typography, brand colors, word-stagger reveal */}
@@ -232,23 +179,12 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
         transition: "transform 0.1s ease-out"
       }}>
 
-        {/* Hairline divider that draws in from center */}
-        <span aria-hidden="true" style={{
-          display: "block",
-          width: vis ? 64 : 0,
-          height: 1,
-          margin: "0 auto 26px",
-          background: th.accent,
-          opacity: 0.5,
-          transition: "width 1.6s cubic-bezier(0.16,1,0.3,1) 0.1s",
-        }} />
-
         {/* Title — bolder weight + layered text-shadow for legibility against
             the colorful hero painting. Was weight 400 italic and disappeared
             into the painting's mid-tones; now 700 italic with a soft halo so
             the name reads against any backdrop, light or dark. */}
         <h1 style={{
-          fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)",
           fontWeight: 700,
           margin: 0,
@@ -262,8 +198,8 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           color: th.text,
           fontStyle: "italic",
           textShadow: isDark
-            ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)"
-            : "0 2px 28px rgba(255,255,255,0.55), 0 1px 4px rgba(0,0,0,0.25)",
+            ? "0 1px 3px rgba(0,0,0,0.7), 0 0 8px rgba(0,0,0,0.4)"
+            : "0 1px 3px rgba(255,255,255,0.7), 0 0 8px rgba(255,255,255,0.4)",
         }}>
           {["Milly", "Farfalla"].map((word, i) => (
             <span key={word} style={{
@@ -284,39 +220,6 @@ export const CinematicHero = ({ scrollY, th, isDark }) => {
           let the work and the name stand alone.
         */}
 
-        <div style={{
-          marginTop: 8,
-          opacity: vis ? 1 : 0,
-          transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
-          transition: "opacity 1.6s cubic-bezier(0.16,1,0.3,1) 0.95s, transform 1.6s cubic-bezier(0.16,1,0.3,1) 0.95s"
-        }}>
-          <Wing
-            color={dominantColors[0]}
-            isDark={isDark}
-            style={{ filter: `drop-shadow(0 4px 12px ${dominantColors[0]}20)` }}
-          />
-        </div>
-      </div>
-
-      {/* Scroll indicator — a quiet hairline, no "SCROLL" caption.
-          The caption was loud chrome competing with the painting; the line
-          alone is enough cue and reads as part of the hero composition. */}
-      <div style={{
-        position: "absolute",
-        bottom: 40,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 3,
-        opacity: fade * 0.6,
-        transition: "opacity 0.3s ease"
-      }}>
-        <div style={{
-          width: 1,
-          height: 36,
-          background: `linear-gradient(to bottom, ${dominantColors[0]}70, transparent)`,
-          margin: "0 auto",
-          animation: "scrollPulse 2.4s ease-in-out infinite",
-        }} />
       </div>
 
     </section>

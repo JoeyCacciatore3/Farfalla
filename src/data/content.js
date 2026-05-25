@@ -8,16 +8,18 @@
 //   per-piece detail.
 // - Never invent dimensions. Leave blank.
 // - Never expand the array past the count of real Emilia paintings on disk.
-//   work-08.jpg through work-13.jpg exist in public/artwork/ but are NOT
-//   confirmed as her work — pending verification with her before re-adding.
+//   work-08 through work-13 are confirmed as her work (2026-05-21 email)
+//   but not yet added to the gallery — titles/media pending from Emilia.
+//   Originals live in artwork-originals/ (not deployed). Optimized versions
+//   in public/artwork/optimized/ are what the site actually serves.
 export const WORKS = [
-  { id: 1, img: "artwork/work-01.jpg", gallery: "artwork/optimized/work-01-gallery", lightbox: "artwork/optimized/work-01-lightbox", hue: 200, title: "Plate I",   medium: "", artist: "Milly Farfalla" },
-  { id: 2, img: "artwork/work-02.jpg", gallery: "artwork/optimized/work-02-gallery", lightbox: "artwork/optimized/work-02-lightbox", hue: 42,  title: "Plate II",  medium: "", artist: "Milly Farfalla" },
-  { id: 3, img: "artwork/work-03.jpg", gallery: "artwork/optimized/work-03-gallery", lightbox: "artwork/optimized/work-03-lightbox", hue: 48,  title: "Plate III", medium: "", artist: "Milly Farfalla" },
-  { id: 4, img: "artwork/work-04.jpg", gallery: "artwork/optimized/work-04-gallery", lightbox: "artwork/optimized/work-04-lightbox", hue: 265, title: "Plate IV",  medium: "", artist: "Milly Farfalla" },
-  { id: 5, img: "artwork/work-05.jpg", gallery: "artwork/optimized/work-05-gallery", lightbox: "artwork/optimized/work-05-lightbox", hue: 175, title: "Plate V",   medium: "", artist: "Milly Farfalla" },
-  { id: 6, img: "artwork/work-06.jpg", gallery: "artwork/optimized/work-06-gallery", lightbox: "artwork/optimized/work-06-lightbox", hue: 15,  title: "Plate VI",  medium: "", artist: "Milly Farfalla" },
-  { id: 7, img: "artwork/work-07.jpg", gallery: "artwork/optimized/work-07-gallery", lightbox: "artwork/optimized/work-07-lightbox", hue: 220, title: "Plate VII", medium: "", artist: "Milly Farfalla" },
+  { id: 1, img: "artwork/optimized/work-01-lightbox.jpg", gallery: "artwork/optimized/work-01-gallery", lightbox: "artwork/optimized/work-01-lightbox", hue: 200, title: "Plate I",   medium: "", artist: "Milly Farfalla" },
+  { id: 2, img: "artwork/optimized/work-02-lightbox.jpg", gallery: "artwork/optimized/work-02-gallery", lightbox: "artwork/optimized/work-02-lightbox", hue: 42,  title: "Plate II",  medium: "", artist: "Milly Farfalla" },
+  { id: 3, img: "artwork/optimized/work-03-lightbox.jpg", gallery: "artwork/optimized/work-03-gallery", lightbox: "artwork/optimized/work-03-lightbox", hue: 48,  title: "Plate III", medium: "", artist: "Milly Farfalla" },
+  { id: 4, img: "artwork/optimized/work-04-lightbox.jpg", gallery: "artwork/optimized/work-04-gallery", lightbox: "artwork/optimized/work-04-lightbox", hue: 265, title: "Cats Heaven",  medium: "Acrylics on canvas", artist: "Milly Farfalla" },
+  { id: 5, img: "artwork/optimized/work-05-lightbox.jpg", gallery: "artwork/optimized/work-05-gallery", lightbox: "artwork/optimized/work-05-lightbox", hue: 175, title: "Plate V",   medium: "", artist: "Milly Farfalla" },
+  { id: 6, img: "artwork/optimized/work-06-lightbox.jpg", gallery: "artwork/optimized/work-06-gallery", lightbox: "artwork/optimized/work-06-lightbox", hue: 15,  title: "Plate VI",  medium: "", artist: "Milly Farfalla" },
+  { id: 7, img: "artwork/optimized/work-07-lightbox.jpg", gallery: "artwork/optimized/work-07-gallery", lightbox: "artwork/optimized/work-07-lightbox", hue: 220, title: "Plate VII", medium: "", artist: "Milly Farfalla" },
 ];
 
 // ✎ VIDEOS — Process videos, time-lapses, behind-the-scenes.
@@ -40,6 +42,25 @@ export const KIT = [
   { name: "Matite colorate", note: "" },
 ];
 
+// ✎ CUCINA — Emilia's Sicilian recipes and dishes.
+// RULES: Only recipes she provides. Never invent ingredients, steps, or photos.
+// Shape: { id, title, description, image (optional — path in public/cucina/),
+//          ingredients (array), steps (array), category ("primo"|"secondo"|"dolce"|"contorno") }
+export const CUCINA = [];
+
+// ✎ GIARDINO — Emilia's garden: plants, tips, seasonal notes.
+// RULES: Only real plants/tips she provides. Never invent content.
+// Shape: { id, title, description, image (optional — path in public/giardino/),
+//          season ("spring"|"summer"|"autumn"|"winter"|"all"), category ("plants"|"tips"|"harvest") }
+export const GIARDINO = [];
+
+// ✎ BLOG — Daily posts for SEO visibility and audience building.
+// Shape: { slug, title, date (ISO), excerpt, body (markdown or plain text),
+//          image (optional), tags (array), author: "Milly Farfalla" }
+// Blog posts live in public/blog/ as individual JSON files loaded on demand.
+// This array is the index — lightweight for fast listing without loading bodies.
+export const BLOG_INDEX_PATH = "/blog/index.json";
+
 // ✎ SOCIALS — Only real, live profiles. Add new ones with full https URL.
 export const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/emilia.it21/" },
@@ -59,7 +80,7 @@ export const STUDIO_EMAIL = "amatoemilia94@gmail.com";
 export const THEMES = {
   dark: {
     bg:"#0a0908", bg2:"#0f0e0b",
-    text:"#e2dace", textSoft:"#b0a490", textDim:"#6a6050", textGhost:"#3a3530",
+    text:"#e2dace", textSoft:"#d0c8b8", textDim:"#8a8070", textGhost:"#3a3530",
     accent:"#c9a84c", accent2:"#a08c6a", accentGlow:"rgba(201,168,76,0.08)",
     border:"rgba(255,255,255,0.05)", borderHover:"rgba(201,168,76,0.2)",
     surface:"rgba(255,255,255,0.02)", surfaceHover:"rgba(201,168,76,0.04)",
@@ -77,7 +98,7 @@ export const THEMES = {
   },
   light: {
     bg:"#f7f4ee", bg2:"#eee9df",
-    text:"#1c1a16", textSoft:"#5a5548", textDim:"#9a9488", textGhost:"#d0cbc2",
+    text:"#1c1a16", textSoft:"#3a3530", textDim:"#7a7468", textGhost:"#d0cbc2",
     accent:"#8a6d2b", accent2:"#b49450", accentGlow:"rgba(138,109,43,0.06)",
     border:"rgba(0,0,0,0.06)", borderHover:"rgba(138,109,43,0.18)",
     surface:"rgba(0,0,0,0.02)", surfaceHover:"rgba(138,109,43,0.04)",

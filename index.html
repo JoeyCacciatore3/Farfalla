@@ -14,6 +14,7 @@
     <meta name="author" content="Milly Farfalla" />
     <meta name="keywords" content="Milly Farfalla, Sicilian artist, Italian painter, contemporary Italian art, Palermo artist" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="google-site-verification" content="qtuOgriX126KQKYZtnY2iuFwHmE49c6R_M15iWL2vp0" />
 
     <link rel="canonical" href="https://millyfarfalla.com/" />
 
@@ -47,25 +48,36 @@
     <!-- Analytics: Umami Cloud (privacy-first, no cookies, GDPR compliant) -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="938f39ee-71ce-4987-8657-061b1b18e680"></script>
 
+    <!-- Behavior: Microsoft Clarity (heatmaps, session recordings, free forever) -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","wuq64clwk0");
+    </script>
+
     <!-- Performance: preconnect to font hosts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts: only the 4 families used (Poppins + Inter removed — zero usage).
-         Loaded via <link> instead of CSS @import to avoid render-blocking. -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" />
+    <!-- Performance: preload hero image so LCP doesn't wait for JS -->
+    <link rel="preload" href="/artwork/optimized/hero-gallery.webp" as="image" type="image/webp" fetchpriority="high" />
+
+    <!-- Fonts: 3 families (non-render-blocking via media swap).
+         Cormorant Garamond trimmed from 10 to 7 variants. Caveat 400 only. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" /></noscript>
 
     <!-- Security headers (production headers also applied via public/_headers) -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-                   script-src 'self' 'unsafe-inline' https://cloud.umami.is;
+                   script-src 'self' 'unsafe-inline' https://cloud.umami.is https://www.clarity.ms https://scripts.clarity.ms;
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                    font-src 'self' https://fonts.gstatic.com data:;
                    img-src 'self' data: https: blob:;
                    connect-src 'self' https:;
                    base-uri 'self';
                    object-src 'none';
-                   frame-ancestors 'none';
                    form-action 'self';" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -152,9 +164,19 @@
     <noscript>
       <div style="padding:2rem;font-family:Georgia,serif;max-width:40rem;margin:4rem auto;color:#1c1a16;">
         <h1>Milly Farfalla</h1>
-        <p>This portfolio uses JavaScript to render. To view Milly's work, please enable JavaScript or visit her on
-          <a href="https://www.instagram.com/emilia.it21/">Instagram</a> or
-          <a href="https://www.tiktok.com/@milly.ita">TikTok</a>.</p>
+        <p>Painter from Palermo, Sicily.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:2rem 0;">
+          <img src="/artwork/optimized/work-01-gallery.jpg" alt="Plate I by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-02-gallery.jpg" alt="Plate II by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-03-gallery.jpg" alt="Plate III by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-04-gallery.jpg" alt="Cats Heaven by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-05-gallery.jpg" alt="Plate V by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-06-gallery.jpg" alt="Plate VI by Milly Farfalla" width="800" height="1000" loading="lazy" />
+          <img src="/artwork/optimized/work-07-gallery.jpg" alt="Plate VII by Milly Farfalla" width="800" height="1000" loading="lazy" />
+        </div>
+        <p><a href="mailto:amatoemilia94@gmail.com">Contact</a> ·
+          <a href="https://www.instagram.com/emilia.it21/">Instagram</a> ·
+          <a href="https://www.tiktok.com/@milly.ita">TikTok</a></p>
       </div>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>

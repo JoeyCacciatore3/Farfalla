@@ -50,7 +50,7 @@
 }
 
 .sicily-hdr h1 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 400;
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   letter-spacing: .06em;
@@ -335,7 +335,7 @@
 }
 
 .town-info-header h3 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   font-weight: 600;
   margin: 0 0 .3rem 0;

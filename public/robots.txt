@@ -1,9 +1,13 @@
 User-agent: *
 Allow: /
 
-# Be friendly to image crawlers — these works ARE the content
+# Image crawlers — artwork is the content
 User-agent: Googlebot-Image
 Allow: /artwork/
 Allow: /hero-landscape.jpg
+
+# Blog content for indexing
+User-agent: Googlebot
+Allow: /blog/
 
 Sitemap: https://millyfarfalla.com/sitemap.xml
