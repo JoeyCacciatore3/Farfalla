@@ -42,10 +42,10 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   };
 
   const sections = [
-    { label:"Works", id:"works" },
+    { label:"Gallery", path:"/gallery" },
     { label:"Studio", id:"kit" },
-    { label:"Cucina", id:"cucina" },
-    { label:"Giardino", id:"giardino" },
+    { label:"Cucina", path:"/cucina" },
+    { label:"Giardino", path:"/giardino" },
     { label:"Blog", path:"/blog" },
     { label:"Contact", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },

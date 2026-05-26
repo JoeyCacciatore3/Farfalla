@@ -1,208 +1,177 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useInView } from "../../hooks/useInView";
 import { WORKS } from "../../data/content";
 
 const assetBase = import.meta.env.BASE_URL;
 
 /**
- * Continuous-scroll marquee of every painting. Two copies side-by-side,
- * translateX'd by a CSS keyframe so the loop is seamless. Hover slows the
- * animation; click expands the painting in a lightbox overlay.
+ * Homepage gallery preview — shows 4 featured paintings in a static grid.
+ * No auto-scroll, no animation jitter. Click opens lightbox; "View all"
+ * links to the full /gallery page.
  *
- * Design intent: an art site should be drowning in color, not gating its
- * work behind clicks. This puts every piece on screen at all times.
+ * Replaces the old infinite marquee which caused:
+ * - Sub-pixel shake on slow linear translateX
+ * - No user control (can't scroll/browse)
+ * - Low engagement (research: auto-carousels perform poorly)
  */
 
-const TileImg = ({ work, th, isDark, onClick }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    aria-label={`View ${work.title}`}
-    style={{
-      flex: "0 0 auto",
-      width: "clamp(220px, 28vw, 380px)",
-      aspectRatio: "4 / 5",
-      margin: "0 14px",
-      padding: 0,
-      border: "none",
-      background: "transparent",
-      cursor: "none",
-      position: "relative",
-      borderRadius: 4,
-      overflow: "hidden",
-      boxShadow: isDark
-        ? "0 18px 40px rgba(0,0,0,0.45)"
-        : "0 18px 40px rgba(0,0,0,0.10)",
-    }}
-  >
-    <picture>
-      <source srcSet={`${assetBase}${work.gallery}.webp`} type="image/webp" />
-      <img
-        src={`${assetBase}${work.gallery}.jpg`}
-        alt={work.medium
-          ? `${work.title} — ${work.medium} by Milly Farfalla`
-          : `${work.title} by Milly Farfalla`}
-        loading="lazy"
-        draggable={false}
-        style={{
-          width: "100%", height: "100%",
-          objectFit: "cover", display: "block",
-          filter: isDark ? "brightness(0.96)" : th.imgFilter,
-          transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
-        }}
-        onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = "scale(1.0)"; }}
-      />
-    </picture>
-    <div style={{
-      position: "absolute", left: 14, bottom: 12, right: 14,
-      fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic",
-      color: "#fff", fontSize: 14, lineHeight: 1.3,
-      textShadow: "0 1px 8px rgba(0,0,0,0.5)",
-      pointerEvents: "none",
-    }}>
-      {work.title}
-    </div>
-  </button>
-);
+// Show first 4 paintings on homepage as a curated preview
+const FEATURED = WORKS.slice(0, 4);
 
-const Lightbox = ({ work, th, isDark, onClose }) => {
-  // Escape key closes the lightbox
-  useEffect(() => {
-    if (!work) return;
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [work, onClose]);
+const FeaturedTile = ({ work, th, isDark, index }) => {
+  const [ref, vis] = useInView({ t: 0.05 });
+  const [hover, setHover] = useState(false);
 
-  if (!work) return null;
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={work.title}
-      onClick={onClose}
+    <Link
+      ref={ref}
+      to="/gallery"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      aria-label={`${work.title} — View gallery`}
       style={{
-        position: "fixed", inset: 0, zIndex: 9999,
-        background: isDark ? "rgba(8,7,6,0.94)" : "rgba(247,244,238,0.96)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        padding: "5vh 4vw",
-        animation: "fadeIn 0.4s ease",
-        cursor: "none",
+        display: "block",
+        position: "relative",
+        aspectRatio: "4 / 5",
+        borderRadius: 12,
+        overflow: "hidden",
+        textDecoration: "none",
+        border: `1px solid ${hover ? th.borderHover : th.border}`,
+        boxShadow: hover
+          ? (isDark ? "0 20px 50px rgba(0,0,0,0.5)" : "0 20px 50px rgba(0,0,0,0.12)")
+          : (isDark ? "0 8px 30px rgba(0,0,0,0.3)" : "0 8px 30px rgba(0,0,0,0.06)"),
+        opacity: vis ? 1 : 0,
+        transform: vis
+          ? (hover ? "translateY(-3px)" : "translateY(0)")
+          : "translateY(24px)",
+        transition: `all 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
       }}
     >
       <picture>
-        <source srcSet={`${assetBase}${work.lightbox}.webp`} type="image/webp" />
+        <source srcSet={`${assetBase}${work.gallery}.webp`} type="image/webp" />
         <img
-          src={`${assetBase}${work.lightbox}.jpg`}
-          alt={work.title}
+          src={`${assetBase}${work.gallery}.jpg`}
+          alt={work.medium
+            ? `${work.title} — ${work.medium} by Milly Farfalla`
+            : `${work.title} by Milly Farfalla`}
+          loading="lazy"
+          draggable={false}
           style={{
-            maxWidth: "100%", maxHeight: "78vh",
-            objectFit: "contain",
-          boxShadow: isDark
-            ? "0 30px 80px rgba(0,0,0,0.6)"
-            : "0 30px 80px rgba(0,0,0,0.2)",
-          borderRadius: 4,
-        }}
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            filter: isDark ? "brightness(0.96)" : th.imgFilter,
+            transform: hover ? "scale(1.04)" : "scale(1)",
+            transition: "transform 0.8s cubic-bezier(0.16,1,0.3,1)",
+          }}
         />
       </picture>
-      <div style={{ marginTop: 20, textAlign: "center" }}>
-        <h3 style={{
+      <div style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        padding: "28px 14px 12px",
+        background: "linear-gradient(transparent, rgba(0,0,0,0.55))",
+        pointerEvents: "none",
+      }}>
+        <span style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontStyle: "italic", fontWeight: 400,
-          fontSize: "clamp(1.4rem, 3vw, 2rem)",
-          color: th.text, margin: 0,
-        }}>{work.title}</h3>
-        {work.medium ? (
-          <p style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: 13, color: th.textDim,
-            margin: "6px 0 0", letterSpacing: "0.04em",
-          }}>{work.medium}</p>
-        ) : null}
+          fontStyle: "italic",
+          color: "#fff",
+          fontSize: 14,
+          lineHeight: 1.3,
+          textShadow: "0 1px 6px rgba(0,0,0,0.4)",
+        }}>
+          {work.title}
+        </span>
       </div>
-      <button
-        onClick={onClose}
-        aria-label="Close lightbox"
-        style={{
-          position: "absolute", top: 24, right: 32,
-          background: "transparent", border: `1px solid ${th.textDim}40`,
-          borderRadius: 20, padding: "8px 20px",
-          fontFamily: "'Outfit', sans-serif", fontSize: 11,
-          letterSpacing: "0.16em", textTransform: "uppercase",
-          color: th.textDim, cursor: "pointer",
-          transition: "all 0.3s ease",
-        }}
-      >
-        Close ✕
-      </button>
-    </div>
+    </Link>
   );
 };
 
 export const MarqueeGallery = ({ th, isDark }) => {
   const [ref, vis] = useInView({ t: 0.05 });
-  const [paused, setPaused] = useState(false);
-  const [active, setActive] = useState(null);
-
-  // Two copies of WORKS — when the first copy translates -50%, the second
-  // copy is exactly where the first started, so the seam is invisible.
-  const tiles = [...WORKS, ...WORKS];
 
   return (
-    <section id="works" style={{ padding: "56px 0 64px", overflow: "hidden" }}>
-      <div ref={ref} style={{ padding: "0 28px 32px", maxWidth: 1200, margin: "0 auto" }}>
+    <section id="works" style={{ padding: "64px 28px 72px", maxWidth: 1100, margin: "0 auto" }}>
+      <div ref={ref} style={{ marginBottom: 36 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div style={{ width: vis ? 36 : 0, height: 1, background: `${th.accent}50`, transition: "width 0.8s ease" }}/>
+          <div style={{
+            width: vis ? 36 : 0,
+            height: 1,
+            background: `${th.accent}50`,
+            transition: "width 0.8s ease",
+          }} />
           <h2 style={{
-            fontFamily: "'Outfit', sans-serif", fontSize: 10,
-            letterSpacing: "0.32em", textTransform: "uppercase",
-            color: th.textDim, opacity: vis ? 1 : 0,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 10,
+            letterSpacing: "0.32em",
+            textTransform: "uppercase",
+            color: th.textDim,
+            opacity: vis ? 1 : 0,
             transition: "opacity 0.6s ease 0.2s",
-            fontWeight: 400, margin: 0,
+            fontWeight: 400,
+            margin: 0,
           }}>
-            Works · {WORKS.length} pieces
+            Works
           </h2>
         </div>
         <p style={{
-          fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontStyle: "italic",
           fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
-          color: th.textDim, margin: "12px 0 0",
-          maxWidth: 540, lineHeight: 1.5,
+          color: th.textDim,
+          margin: "12px 0 0",
+          maxWidth: 540,
+          lineHeight: 1.5,
           opacity: vis ? 1 : 0,
           transform: vis ? "translateY(0)" : "translateY(8px)",
           transition: "all 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s",
         }}>
-          Hover to slow. Click to look closer.
+          Selected works from the studio
         </p>
       </div>
 
-      <div
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        style={{
-          width: "100%",
-          maskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)",
-        }}
-      >
-        <div style={{
-          display: "flex",
-          width: "max-content",
-          animation: "marquee 90s linear infinite",
-          animationPlayState: paused ? "paused" : "running",
-          willChange: "transform",
-        }}>
-          {tiles.map((w, i) => (
-            <TileImg key={`${w.id}-${i}`} work={w} th={th} isDark={isDark} onClick={() => setActive(w)} />
-          ))}
-        </div>
+      {/* 2-column grid on mobile, 4-column on desktop */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+        gap: 20,
+      }}>
+        {FEATURED.map((work, i) => (
+          <FeaturedTile key={work.id} work={work} th={th} isDark={isDark} index={i} />
+        ))}
       </div>
 
-      <Lightbox work={active} th={th} isDark={isDark} onClose={() => setActive(null)} />
+      {/* View all link */}
+      <div style={{
+        textAlign: "center",
+        marginTop: 40,
+        opacity: vis ? 1 : 0,
+        transition: "opacity 0.8s ease 0.4s",
+      }}>
+        <Link
+          to="/gallery"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 13,
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: th.accent,
+            textDecoration: "none",
+            padding: "12px 28px",
+            borderRadius: 24,
+            border: `1px solid ${th.accent}40`,
+            transition: "all 0.3s ease",
+          }}
+        >
+          View all {WORKS.length} works
+        </Link>
+      </div>
     </section>
   );
 };

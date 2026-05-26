@@ -6,7 +6,7 @@
   "homepage": "https://millyfarfalla.com",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "wrangler pages deploy dist --project-name=farfalla --branch=main --commit-dirty=true",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@playwright/test": "^1.60.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/react": "^18.3.10",

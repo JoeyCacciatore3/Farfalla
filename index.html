@@ -140,22 +140,6 @@
         } catch (e) { /* ignore — fall through to React-driven theme */ }
       })();
 
-      // SPA-redirect catch: paired with public/404.html. If the user landed
-      // here via "/?p=/some/path", restore the original path before React
-      // Router mounts so deep links and refreshes work on GitHub Pages.
-      (function () {
-        var l = window.location;
-        if (l.search.indexOf('p=/') === -1) return;
-        var params = new URLSearchParams(l.search);
-        var p = params.get('p');
-        var q = params.get('q');
-        if (p) {
-          window.history.replaceState(
-            null, null,
-            p + (q ? '?' + q : '') + l.hash
-          );
-        }
-      })();
     </script>
     <div id="root"></div>
     <noscript>

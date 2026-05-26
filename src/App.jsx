@@ -22,9 +22,10 @@ import { Statement } from "./components/sections/Statement";
 import { MarqueeGallery } from "./components/sections/MarqueeGallery";
 import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
-import { CucinaSection } from "./components/sections/CucinaSection";
-import { GiardinoSection } from "./components/sections/GiardinoSection";
+import { CucinaPreview, CucinaPage } from "./components/sections/CucinaSection";
+import { GiardinoPreview, GiardinoPage } from "./components/sections/GiardinoSection";
 import { BlogIndex, BlogPost } from "./components/sections/BlogPage";
+import { GalleryPage } from "./components/sections/GalleryPage";
 import { SicilyPage } from "./components/sections/SicilyPage";
 
 // Initial theme — must agree with the pre-paint script in index.html so we
@@ -195,10 +196,25 @@ export default function App() {
                 <Statement th={th} />
                 <MarqueeGallery th={th} isDark={isDark} />
                 <KitSection th={th} />
-                <CucinaSection th={th} />
-                <GiardinoSection th={th} />
+                <CucinaPreview th={th} />
+                <GiardinoPreview th={th} />
                 <Connect th={th} />
               </main>
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/gallery" element={
+            <SecurityErrorBoundary componentName="GalleryPage">
+              <GalleryPage th={th} isDark={isDark} />
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/cucina" element={
+            <SecurityErrorBoundary componentName="CucinaPage">
+              <CucinaPage th={th} />
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/giardino" element={
+            <SecurityErrorBoundary componentName="GiardinoPage">
+              <GiardinoPage th={th} />
             </SecurityErrorBoundary>
           } />
           <Route path="/blog" element={

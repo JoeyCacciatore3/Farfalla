@@ -1,0 +1,8 @@
+# Serve static assets directly — don't rewrite to SPA
+/blog/index.json    /blog/index.json    200
+/blog/posts/*       /blog/posts/:splat  200
+/blog/images/*      /blog/images/:splat 200
+/artwork/*          /artwork/:splat     200
+
+# SPA catch-all — must be last
+/* /index.html 200
