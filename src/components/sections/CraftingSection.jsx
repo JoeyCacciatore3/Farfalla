@@ -131,13 +131,14 @@ export const CraftingPage = ({ th }) => {
         }}>
           {/* Visual "coming soon" card */}
           <div style={{
-            background: th.surfaceStrong || th.surface,
-            border: `1px solid ${th.borderHover || th.border}`,
+            background: th.bg2,
+            border: `1.5px solid ${th.borderHover}`,
             borderRadius: 20,
             padding: "48px 36px",
             maxWidth: 600,
             margin: "0 auto 48px",
             textAlign: "center",
+            boxShadow: th.cardShadow,
           }}>
             <div style={{
               fontSize: 48,
