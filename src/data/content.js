@@ -88,11 +88,11 @@ export const STUDIO_EMAIL = "amatoemilia94@gmail.com";
 export const THEMES = {
   dark: {
     bg:"#0a0908", bg2:"#0f0e0b",
-    text:"#e2dace", textSoft:"#d0c8b8", textDim:"#8a8070", textGhost:"#3a3530",
+    text:"#e2dace", textSoft:"#d0c8b8", textDim:"#a09888", textGhost:"#3a3530",
     accent:"#c9a84c", accent2:"#a08c6a", accentGlow:"rgba(201,168,76,0.08)",
-    border:"rgba(255,255,255,0.05)", borderHover:"rgba(201,168,76,0.2)",
-    surface:"rgba(255,255,255,0.02)", surfaceHover:"rgba(201,168,76,0.04)",
-    surfaceStrong:"rgba(255,255,255,0.08)",
+    border:"rgba(255,255,255,0.10)", borderHover:"rgba(201,168,76,0.25)",
+    surface:"rgba(255,255,255,0.06)", surfaceHover:"rgba(201,168,76,0.08)",
+    surfaceStrong:"rgba(255,255,255,0.12)",
     imgFilter:"brightness(0.95)", cardShadow:"0 30px 60px rgba(0,0,0,0.35)",
     // navBg + navBgHover are read directly — never concat alpha onto them.
     // Concatenating "F0"/"FA" onto an rgba() string produces invalid CSS and

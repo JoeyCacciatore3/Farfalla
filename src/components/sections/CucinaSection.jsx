@@ -131,8 +131,8 @@ export const CucinaPage = ({ th }) => {
         }}>
           {/* Visual "coming soon" card */}
           <div style={{
-            background: th.surface,
-            border: `1px solid ${th.border}`,
+            background: th.surfaceStrong || th.surface,
+            border: `1px solid ${th.borderHover || th.border}`,
             borderRadius: 20,
             padding: "48px 36px",
             maxWidth: 600,
