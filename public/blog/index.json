@@ -1,10 +1,27 @@
 [
   {
+    "slug": "piano-piano-sicilian-art-of-patience",
+    "title": "Piano Piano — The Sicilian Art of Patience in Paint, Soil, and Kitchen",
+    "date": "2026-05-26",
+    "excerpt": "In Sicily, piano piano is not slowness — it is the understanding that paint, soil, and sauce all resist hurry, and reward the ones who stay.",
+    "tags": [
+      "culture",
+      "wellness",
+      "sicilia",
+      "art"
+    ],
+    "image": "/blog/images/piano-piano-sicilian-patience.jpg"
+  },
+  {
     "slug": "how-painting-heals-the-art-of-slowing-down",
     "title": "How Painting Heals — The Art of Slowing Down",
     "date": "2026-05-25",
     "excerpt": "Why picking up a brush is one of the most powerful things you can do for your mind. The science behind art and well-being, and what I've learned from years at the easel.",
-    "tags": ["art", "technique", "wellness"],
+    "tags": [
+      "art",
+      "technique",
+      "wellness"
+    ],
     "image": "/blog/images/painting-heals.jpg"
   },
   {
@@ -12,7 +29,11 @@
     "title": "The Sicilian Table — Olive Oil and the Secret to Living Well",
     "date": "2026-05-23",
     "excerpt": "Sicily has one of the highest concentrations of centenarians in Europe. The secret is not a supplement — it is a way of eating that begins and ends with olive oil.",
-    "tags": ["recipe", "culture", "wellness"],
+    "tags": [
+      "recipe",
+      "culture",
+      "wellness"
+    ],
     "image": "/blog/images/olive-oil-table.jpg"
   },
   {
@@ -20,7 +41,11 @@
     "title": "Hands in the Earth — Growing a Mediterranean Herb Garden",
     "date": "2026-05-21",
     "excerpt": "Rosemary, basil, oregano, lavender — the herbs of the Mediterranean are medicine, flavor, and therapy in one. How to grow them anywhere, and why your hands in the soil matters more than you think.",
-    "tags": ["garden", "wellness", "culture"],
+    "tags": [
+      "garden",
+      "wellness",
+      "culture"
+    ],
     "image": "/blog/images/herb-garden.jpg"
   },
   {
@@ -28,7 +53,11 @@
     "title": "Color as Language — What Sicilian Light Teaches a Painter",
     "date": "2026-05-19",
     "excerpt": "Sicilian light is not like any other light in the world. It changes how colors behave, how shadows fall, and how a painter sees. A reflection on place, palette, and the art of looking.",
-    "tags": ["art", "technique", "sicilia"],
+    "tags": [
+      "art",
+      "technique",
+      "sicilia"
+    ],
     "image": "/blog/images/sicilian-light.jpg"
   },
   {
@@ -36,7 +65,12 @@
     "title": "Caponata di Melanzane — A Bowl of Sicilian Summer",
     "date": "2026-05-17",
     "excerpt": "Sweet, sour, rich, and layered — caponata is Sicily in a bowl. The dish that connects the garden to the table, and the table to well-being.",
-    "tags": ["recipe", "culture", "sicilia", "garden"],
+    "tags": [
+      "recipe",
+      "culture",
+      "sicilia",
+      "garden"
+    ],
     "image": "/blog/images/mediterranean-vegetables.jpg"
   }
 ]

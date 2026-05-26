@@ -124,7 +124,7 @@ const BlogCard = ({ post, th, index }) => {
       {post.image && (
         <div style={{
           overflow: "hidden",
-          aspectRatio: "16 / 11",
+          minHeight: 200,
         }}>
           <img
             src={post.image}

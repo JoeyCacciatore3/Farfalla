@@ -46,6 +46,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
     { label:"Studio", id:"kit" },
     { label:"Cucina", path:"/cucina" },
     { label:"Giardino", path:"/giardino" },
+    { label:"Crafting", path:"/crafting" },
     { label:"Blog", path:"/blog" },
     { label:"Contact", id:"connect" },
     { label:"Sicilia", path:"/sicilia" },

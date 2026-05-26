@@ -54,6 +54,12 @@ export const CUCINA = [];
 //          season ("spring"|"summer"|"autumn"|"winter"|"all"), category ("plants"|"tips"|"harvest") }
 export const GIARDINO = [];
 
+// ✎ CRAFTING — Emilia's handmade crafts: jewelry, décor, wearables.
+// RULES: Only real crafts she provides. Never invent items, materials, or photos.
+// Shape: { id, title, description, image (optional — path in public/crafting/),
+//          materials (array of strings), category ("jewelry"|"decor"|"wearable"|"other") }
+export const CRAFTING = [];
+
 // ✎ BLOG — Daily posts for SEO visibility and audience building.
 // Shape: { slug, title, date (ISO), excerpt, body (markdown or plain text),
 //          image (optional), tags (array), author: "Milly Farfalla" }

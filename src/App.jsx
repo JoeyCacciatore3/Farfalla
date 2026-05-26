@@ -25,6 +25,7 @@ import { Connect } from "./components/sections/Connect";
 import { CucinaPreview, CucinaPage } from "./components/sections/CucinaSection";
 import { GiardinoPreview, GiardinoPage } from "./components/sections/GiardinoSection";
 import { BlogIndex, BlogPost } from "./components/sections/BlogPage";
+import { CraftingPreview, CraftingPage } from "./components/sections/CraftingSection";
 import { GalleryPage } from "./components/sections/GalleryPage";
 import { SicilyPage } from "./components/sections/SicilyPage";
 
@@ -97,6 +98,12 @@ export default function App() {
     rafId = requestAnimationFrame(raf);
     return () => { cancelAnimationFrame(rafId); lenis.destroy(); };
   }, []);
+
+  // Scroll to top on route change — ensures IntersectionObserver triggers
+  // on sub-pages (blog posts, gallery) that mount above the fold.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     const scheme = isDark ? 'dark' : 'light';
@@ -198,6 +205,7 @@ export default function App() {
                 <KitSection th={th} />
                 <CucinaPreview th={th} />
                 <GiardinoPreview th={th} />
+                <CraftingPreview th={th} />
                 <Connect th={th} />
               </main>
             </SecurityErrorBoundary>
@@ -215,6 +223,11 @@ export default function App() {
           <Route path="/giardino" element={
             <SecurityErrorBoundary componentName="GiardinoPage">
               <GiardinoPage th={th} />
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/crafting" element={
+            <SecurityErrorBoundary componentName="CraftingPage">
+              <CraftingPage th={th} />
             </SecurityErrorBoundary>
           } />
           <Route path="/blog" element={
