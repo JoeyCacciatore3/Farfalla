@@ -1,5 +1,5 @@
 // ✎ WORKS — Source of truth for the gallery. README is canonical:
-// "7 unique source images." Only Emilia's verified works belong here.
+// "9 unique source images." Only Emilia's verified works belong here.
 //
 // RULES (locked 2026-05-15):
 // - Never invent titles. Use roman-numeral "Plate N" until Emilia names a piece.
@@ -15,11 +15,13 @@
 export const WORKS = [
   { id: 1, img: "artwork/optimized/work-01-lightbox.jpg", gallery: "artwork/optimized/work-01-gallery", lightbox: "artwork/optimized/work-01-lightbox", hue: 200, title: "Plate I",   medium: "", artist: "Milly Farfalla" },
   { id: 2, img: "artwork/optimized/work-02-lightbox.jpg", gallery: "artwork/optimized/work-02-gallery", lightbox: "artwork/optimized/work-02-lightbox", hue: 42,  title: "Plate II",  medium: "", artist: "Milly Farfalla" },
-  { id: 3, img: "artwork/optimized/work-03-lightbox.jpg", gallery: "artwork/optimized/work-03-gallery", lightbox: "artwork/optimized/work-03-lightbox", hue: 48,  title: "Plate III", medium: "", artist: "Milly Farfalla" },
+  { id: 3, img: "artwork/optimized/work-03-lightbox.jpg", gallery: "artwork/optimized/work-03-gallery", lightbox: "artwork/optimized/work-03-lightbox", hue: 48,  title: "Palermo's Soccer Logo", medium: "", artist: "Milly Farfalla" },
   { id: 4, img: "artwork/optimized/work-04-lightbox.jpg", gallery: "artwork/optimized/work-04-gallery", lightbox: "artwork/optimized/work-04-lightbox", hue: 265, title: "Cats Heaven",  medium: "Acrylics on canvas", artist: "Milly Farfalla" },
   { id: 5, img: "artwork/optimized/work-05-lightbox.jpg", gallery: "artwork/optimized/work-05-gallery", lightbox: "artwork/optimized/work-05-lightbox", hue: 175, title: "Plate V",   medium: "", artist: "Milly Farfalla" },
   { id: 6, img: "artwork/optimized/work-06-lightbox.jpg", gallery: "artwork/optimized/work-06-gallery", lightbox: "artwork/optimized/work-06-lightbox", hue: 15,  title: "Plate VI",  medium: "", artist: "Milly Farfalla" },
   { id: 7, img: "artwork/optimized/work-07-lightbox.jpg", gallery: "artwork/optimized/work-07-gallery", lightbox: "artwork/optimized/work-07-lightbox", hue: 220, title: "Plate VII", medium: "", artist: "Milly Farfalla" },
+  { id: 8, img: "artwork/optimized/work-08-lightbox.jpg", gallery: "artwork/optimized/work-08-gallery", lightbox: "artwork/optimized/work-08-lightbox", hue: 200, title: "Barcarello, Palermo", medium: "", artist: "Milly Farfalla" },
+  { id: 9, img: "artwork/optimized/work-09-lightbox.jpg", gallery: "artwork/optimized/work-09-gallery", lightbox: "artwork/optimized/work-09-lightbox", hue: 120, title: "Bright Day", medium: "", artist: "Milly Farfalla" },
 ];
 
 // ✎ VIDEOS — Process videos, time-lapses, behind-the-scenes.
