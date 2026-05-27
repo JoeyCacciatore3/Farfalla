@@ -42,13 +42,13 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
   };
 
   const sections = [
-    { label:"Gallery", path:"/gallery" },
+    { label:"Art", path:"/art" },
+    { label:"Crafting", path:"/crafting" },
     { label:"Cucina", path:"/cucina" },
     { label:"Giardino", path:"/giardino" },
-    { label:"Crafting", path:"/crafting" },
+    { label:"Sicilia", path:"/sicilia" },
     { label:"Blog", path:"/blog" },
     { label:"Contact", id:"connect" },
-    { label:"Sicilia", path:"/sicilia" },
   ];
 
   return (

@@ -25,6 +25,7 @@ import { CucinaPreview, CucinaPage } from "./components/sections/CucinaSection";
 import { GiardinoPreview, GiardinoPage } from "./components/sections/GiardinoSection";
 import { BlogIndex, BlogPost } from "./components/sections/BlogPage";
 import { CraftingPreview, CraftingPage } from "./components/sections/CraftingSection";
+import { ArtPreview, ArtPage } from "./components/sections/ArtSection";
 import { GalleryPage } from "./components/sections/GalleryPage";
 import { SicilyPage } from "./components/sections/SicilyPage";
 
@@ -201,11 +202,17 @@ export default function App() {
                 <CinematicHero scrollY={y} th={th} isDark={isDark} />
                 <Statement th={th} />
                 <MarqueeGallery th={th} isDark={isDark} />
+                <ArtPreview th={th} />
+                <CraftingPreview th={th} />
                 <CucinaPreview th={th} />
                 <GiardinoPreview th={th} />
-                <CraftingPreview th={th} />
                 <Connect th={th} />
               </main>
+            </SecurityErrorBoundary>
+          } />
+          <Route path="/art" element={
+            <SecurityErrorBoundary componentName="ArtPage">
+              <ArtPage th={th} />
             </SecurityErrorBoundary>
           } />
           <Route path="/gallery" element={
