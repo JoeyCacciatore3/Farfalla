@@ -20,7 +20,6 @@ import { Footer } from "./components/layout/Footer";
 import { CinematicHero } from "./components/sections/CinematicHero";
 import { Statement } from "./components/sections/Statement";
 import { MarqueeGallery } from "./components/sections/MarqueeGallery";
-import { KitSection } from "./components/sections/KitSection";
 import { Connect } from "./components/sections/Connect";
 import { CucinaPreview, CucinaPage } from "./components/sections/CucinaSection";
 import { GiardinoPreview, GiardinoPage } from "./components/sections/GiardinoSection";
@@ -202,7 +201,6 @@ export default function App() {
                 <CinematicHero scrollY={y} th={th} isDark={isDark} />
                 <Statement th={th} />
                 <MarqueeGallery th={th} isDark={isDark} />
-                <KitSection th={th} />
                 <CucinaPreview th={th} />
                 <GiardinoPreview th={th} />
                 <CraftingPreview th={th} />

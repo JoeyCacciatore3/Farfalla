@@ -43,7 +43,6 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
 
   const sections = [
     { label:"Gallery", path:"/gallery" },
-    { label:"Studio", id:"kit" },
     { label:"Cucina", path:"/cucina" },
     { label:"Giardino", path:"/giardino" },
     { label:"Crafting", path:"/crafting" },
