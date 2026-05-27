@@ -37,7 +37,7 @@ const BlogIndex = ({ th }) => {
         transition: "all 1s cubic-bezier(0.16,1,0.3,1)",
       }}>
         <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(2rem, 5vw, 3rem)",
           fontWeight: 300,
           color: th.text,
@@ -60,7 +60,7 @@ const BlogIndex = ({ th }) => {
       {loading ? (
         <p style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 14,
+          fontSize: 15,
           color: th.textDim,
         }}>
           Loading...
@@ -68,7 +68,7 @@ const BlogIndex = ({ th }) => {
       ) : posts.length === 0 ? (
         <p style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 14,
+          fontSize: 15,
           color: th.textDim,
           fontStyle: "italic",
         }}>
@@ -145,7 +145,7 @@ const BlogCard = ({ post, th, index }) => {
       <div style={{ padding: "20px 24px" }}>
         <time style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 12,
+          fontSize: 15,
           fontWeight: 500,
           color: th.textDim,
           letterSpacing: "0.05em",
@@ -158,7 +158,7 @@ const BlogCard = ({ post, th, index }) => {
             {post.tags.map((tag) => (
               <span key={tag} style={{
                 fontFamily: "'Outfit', sans-serif",
-                fontSize: 11,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
@@ -174,7 +174,7 @@ const BlogCard = ({ post, th, index }) => {
         )}
 
         <h2 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)",
           fontWeight: 500,
           color: th.text,
@@ -186,7 +186,7 @@ const BlogCard = ({ post, th, index }) => {
 
         <p style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 14,
+          fontSize: 15,
           color: th.textSoft,
           lineHeight: 1.6,
           margin: 0,
@@ -198,7 +198,7 @@ const BlogCard = ({ post, th, index }) => {
           display: "inline-block",
           marginTop: 14,
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 12,
+          fontSize: 15,
           fontWeight: 500,
           letterSpacing: "0.06em",
           color: th.accent,
@@ -239,7 +239,7 @@ const BlogPost = ({ th }) => {
   if (loading) {
     return (
       <main style={{ position: "relative", zIndex: 2, padding: "120px 28px 80px", maxWidth: 720, margin: "0 auto", minHeight: "80vh" }}>
-        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 14, color: th.textDim }}>Loading...</p>
+        <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 15, color: th.textDim }}>Loading...</p>
       </main>
     );
   }
@@ -250,7 +250,7 @@ const BlogPost = ({ th }) => {
         <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 16, color: th.text }}>Post not found</p>
         <Link to="/blog" style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 14,
+          fontSize: 15,
           color: th.accent,
           textDecoration: "none",
           marginTop: 16,
@@ -285,7 +285,7 @@ const BlogPost = ({ th }) => {
       }}>
         <Link to="/blog" style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 13,
+          fontSize: 15,
           color: th.textDim,
           textDecoration: "none",
           display: "inline-block",
@@ -298,7 +298,7 @@ const BlogPost = ({ th }) => {
         <time style={{
           display: "block",
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 13,
+          fontSize: 15,
           color: th.textDim,
           letterSpacing: "0.04em",
           marginBottom: 12,
@@ -307,7 +307,7 @@ const BlogPost = ({ th }) => {
         </time>
 
         <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
           fontWeight: 400,
           color: th.text,
@@ -322,7 +322,7 @@ const BlogPost = ({ th }) => {
             {post.tags.map((tag) => (
               <span key={tag} style={{
                 fontFamily: "'Outfit', sans-serif",
-                fontSize: 11,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
@@ -363,7 +363,7 @@ const BlogPost = ({ th }) => {
         <article>
           {paragraphs.map((para, i) => (
             <p key={i} style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
               fontSize: "clamp(1.05rem, 1.6vw, 1.15rem)",
               color: th.textSoft,
               lineHeight: 1.85,
@@ -399,7 +399,7 @@ const BlogPost = ({ th }) => {
         <div style={{ marginTop: 40 }}>
           <Link to="/blog" style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 500,
             letterSpacing: "0.08em",
             textTransform: "uppercase",

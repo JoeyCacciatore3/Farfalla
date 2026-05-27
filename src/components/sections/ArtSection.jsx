@@ -25,7 +25,7 @@ export const ArtPreview = ({ th }) => {
         transition: "all 1s cubic-bezier(0.16,1,0.3,1)",
       }}>
         <h2 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
           fontWeight: 300,
           color: th.text,
@@ -36,7 +36,7 @@ export const ArtPreview = ({ th }) => {
         </h2>
         <p style={{
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 14,
+          fontSize: 15,
           color: th.textDim,
           marginTop: 12,
           marginBottom: 28,
@@ -48,7 +48,7 @@ export const ArtPreview = ({ th }) => {
           to="/art"
           style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 500,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
@@ -103,7 +103,7 @@ export const ArtPage = ({ th }) => {
         transition: "all 1s cubic-bezier(0.16,1,0.3,1)",
       }}>
         <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(2rem, 5vw, 3rem)",
           fontWeight: 300,
           color: th.text,
@@ -147,7 +147,7 @@ export const ArtPage = ({ th }) => {
             🎨
           </div>
           <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontStyle: "italic",
             fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)",
             color: th.text,
@@ -158,7 +158,7 @@ export const ArtPage = ({ th }) => {
           </p>
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 14,
+            fontSize: 15,
             color: th.textDim,
             lineHeight: 1.6,
           }}>
@@ -170,7 +170,7 @@ export const ArtPage = ({ th }) => {
               display: "inline-block",
               marginTop: 20,
               fontFamily: "'Outfit', sans-serif",
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: 500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
@@ -190,7 +190,7 @@ export const ArtPage = ({ th }) => {
           <div>
             <h2 style={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: 11,
+              fontSize: 15,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: th.textDim,
@@ -234,7 +234,7 @@ export const ArtPage = ({ th }) => {
                   )}
                   <div style={{ padding: "16px 20px" }}>
                     <h3 style={{
-                      fontFamily: "'Cormorant Garamond', serif",
+                      fontFamily: "'Cormorant Garamond', Georgia, serif",
                       fontSize: 17,
                       fontWeight: 500,
                       color: th.text,
@@ -245,7 +245,7 @@ export const ArtPage = ({ th }) => {
                     </h3>
                     <p style={{
                       fontFamily: "'Outfit', sans-serif",
-                      fontSize: 12,
+                      fontSize: 15,
                       color: th.textDim,
                       margin: 0,
                       lineHeight: 1.5,

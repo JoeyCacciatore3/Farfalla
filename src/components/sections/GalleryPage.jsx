@@ -77,7 +77,7 @@ const GalleryTile = ({ work, th, isDark, index, onClick }) => {
         transition: "opacity 0.4s ease",
       }}>
         <h3 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontWeight: 400,
           fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
@@ -90,7 +90,7 @@ const GalleryTile = ({ work, th, isDark, index, onClick }) => {
         {work.medium && (
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 11,
+            fontSize: 15,
             color: "rgba(255,255,255,0.7)",
             margin: "4px 0 0",
             letterSpacing: "0.03em",
@@ -207,7 +207,7 @@ const GalleryLightbox = ({ work, th, isDark, onClose, onPrev, onNext }) => {
 
       <div style={{ marginTop: 20, textAlign: "center" }}>
         <h3 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontWeight: 400,
           fontSize: "clamp(1.4rem, 3vw, 2rem)",
@@ -219,7 +219,7 @@ const GalleryLightbox = ({ work, th, isDark, onClose, onPrev, onNext }) => {
         {work.medium && (
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 13,
+            fontSize: 15,
             color: th.textDim,
             margin: "6px 0 0",
             letterSpacing: "0.04em",
@@ -241,7 +241,7 @@ const GalleryLightbox = ({ work, th, isDark, onClose, onPrev, onNext }) => {
           borderRadius: 20,
           padding: "8px 20px",
           fontFamily: "'Outfit', sans-serif",
-          fontSize: 11,
+          fontSize: 15,
           letterSpacing: "0.16em",
           textTransform: "uppercase",
           color: th.textDim,
@@ -290,7 +290,7 @@ export const GalleryPage = ({ th, isDark }) => {
         transition: "all 1s cubic-bezier(0.16,1,0.3,1)",
       }}>
         <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: "clamp(2rem, 5vw, 3rem)",
           fontWeight: 300,
           color: th.text,

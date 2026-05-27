@@ -29,7 +29,7 @@ export class SecurityErrorBoundary extends Component {
           margin: '1rem'
         }}>
           <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: '1.2rem',
             fontStyle: 'italic',
             color: 'inherit',

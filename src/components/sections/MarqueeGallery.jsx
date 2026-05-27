@@ -78,10 +78,10 @@ const FeaturedTile = ({ work, th, isDark, index }) => {
         pointerEvents: "none",
       }}>
         <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           color: "#fff",
-          fontSize: 14,
+          fontSize: 15,
           lineHeight: 1.3,
           textShadow: "0 1px 6px rgba(0,0,0,0.4)",
         }}>
@@ -107,7 +107,7 @@ export const MarqueeGallery = ({ th, isDark }) => {
           }} />
           <h2 style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 10,
+            fontSize: 15,
             letterSpacing: "0.32em",
             textTransform: "uppercase",
             color: th.textDim,
@@ -120,7 +120,7 @@ export const MarqueeGallery = ({ th, isDark }) => {
           </h2>
         </div>
         <p style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontStyle: "italic",
           fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
           color: th.textDim,
@@ -157,7 +157,7 @@ export const MarqueeGallery = ({ th, isDark }) => {
           to="/gallery"
           style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 500,
             letterSpacing: "0.08em",
             textTransform: "uppercase",

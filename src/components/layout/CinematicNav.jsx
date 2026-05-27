@@ -91,7 +91,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
         </div>
         <span style={{
           fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: 14,
+          fontSize: 15,
           fontWeight: 500,
           fontStyle: "italic",
           color: th.text,
@@ -325,7 +325,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
         }}>
           <p style={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: 11,
+            fontSize: 15,
             letterSpacing: "0.15em",
             textTransform: "uppercase",
             color: th.textDim,
@@ -350,7 +350,7 @@ export const CinematicNav = ({ isDark, toggleTheme, th }) => {
                   padding: "8px 16px",
                   borderRadius: 20,
                   fontFamily: "'Outfit', sans-serif",
-                  fontSize: 13,
+                  fontSize: 15,
                   fontWeight: 500,
                   background: th.surfaceStrong,
                   border: `1px solid ${th.border}`,
