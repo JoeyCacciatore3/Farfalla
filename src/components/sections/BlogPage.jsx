@@ -26,7 +26,7 @@ const BlogIndex = ({ th }) => {
 
   return (
     <main style={{
-      padding: "120px 28px 80px",
+      position: "relative", zIndex: 2, padding: "120px 28px 80px",
       maxWidth: 900,
       margin: "0 auto",
       minHeight: "80vh",
@@ -238,7 +238,7 @@ const BlogPost = ({ th }) => {
 
   if (loading) {
     return (
-      <main style={{ padding: "120px 28px 80px", maxWidth: 720, margin: "0 auto", minHeight: "80vh" }}>
+      <main style={{ position: "relative", zIndex: 2, padding: "120px 28px 80px", maxWidth: 720, margin: "0 auto", minHeight: "80vh" }}>
         <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 14, color: th.textDim }}>Loading...</p>
       </main>
     );
@@ -246,7 +246,7 @@ const BlogPost = ({ th }) => {
 
   if (!post) {
     return (
-      <main style={{ padding: "120px 28px 80px", maxWidth: 720, margin: "0 auto", minHeight: "80vh" }}>
+      <main style={{ position: "relative", zIndex: 2, padding: "120px 28px 80px", maxWidth: 720, margin: "0 auto", minHeight: "80vh" }}>
         <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 16, color: th.text }}>Post not found</p>
         <Link to="/blog" style={{
           fontFamily: "'Outfit', sans-serif",
@@ -273,7 +273,7 @@ const BlogPost = ({ th }) => {
 
   return (
     <main style={{
-      padding: "120px 28px 80px",
+      position: "relative", zIndex: 2, padding: "120px 28px 80px",
       maxWidth: 720,
       margin: "0 auto",
       minHeight: "80vh",

@@ -92,7 +92,7 @@ export const GiardinoPage = ({ th }) => {
 
   return (
     <main style={{
-      padding: "120px 28px 80px",
+      position: "relative", zIndex: 2, padding: "120px 28px 80px",
       maxWidth: 1100,
       margin: "0 auto",
       minHeight: "80vh",
